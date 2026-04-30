@@ -1,0 +1,47 @@
+  :host {
+    display: block;
+    width: 100%;
+    font-family: inherit;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  label {
+    color: var(--ui-fg-muted, #6f6f6f);
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  select {
+    width: 100%;
+    min-height: 2.75rem;
+    border: 1px solid var(--ui-border);
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    font: inherit;
+    color: var(--ui-fg);
+    background: var(--ui-surface);
+    outline: none;
+    transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+
+  select:focus {
+    border-color: var(--ui-primary);
+    box-shadow: 0 0 0 4px rgba(38, 132, 255, 0.14);
+    outline: 2px solid var(--ui-primary);
+    outline-offset: 2px;
+  }
+
+  select:focus-visible {
+    border-color: var(--ui-primary);
+    box-shadow: 0 0 0 4px rgba(38, 132, 255, 0.14);
+    outline: 2px solid var(--ui-primary);
+    outline-offset: 2px;
+  }

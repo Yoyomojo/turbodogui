@@ -1,0 +1,115 @@
+  .tabs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .tabs-nav {
+    display: flex;
+    align-items: stretch;
+    position: relative;
+    border-bottom: 2px solid var(--ui-border);
+  }
+
+  .tabs-scroll-wrapper {
+    flex: 1;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .tabs-scroll-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tabs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 0;
+    white-space: nowrap;
+  }
+
+  .tabs-list li {
+    margin: 0;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  .scroll-btn {
+    appearance: none;
+    background: var(--ui-surface);
+    border: none;
+    border-bottom: none;
+    padding: 0 10px;
+    cursor: pointer;
+    color: var(--ui-fg-muted);
+    font-size: 1.25rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    transition: color 150ms ease, background 150ms ease;
+    z-index: 1;
+    flex-shrink: 0;
+  }
+
+  .scroll-btn:hover {
+    color: var(--ui-fg);
+    background: var(--ui-surface-2);
+  }
+
+  .scroll-btn[hidden] {
+    display: none;
+  }
+
+  .tab-button {
+    appearance: none;
+    background: transparent;
+    border: none;
+    padding: 12px 16px;
+    cursor: pointer;
+    font: inherit;
+    color: var(--ui-fg-muted, #6f6f6f);
+    font-weight: 500;
+    position: relative;
+    transition: color 200ms ease;
+    white-space: nowrap;
+  }
+
+  .tab-button:hover {
+    color: var(--ui-fg);
+  }
+
+  .tab-button[aria-selected="true"] {
+    color: var(--ui-primary);
+    font-weight: 600;
+  }
+
+  .tab-button[aria-selected="true"]::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--ui-primary);
+  }
+
+  .tabs-content {
+    padding: 16px 0;
+  }
+
+  .tab-panel {
+    display: none;
+  }
+
+  .tab-panel[data-active="true"] {
+    display: block;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tab-button, .scroll-btn {
+      transition: none;
+    }
+  }

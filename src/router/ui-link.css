@@ -1,0 +1,89 @@
+  :host {
+    display: inline-flex;
+  }
+
+  /* ── Plain link ─────────────────────────────────────────── */
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+    color: var(--ui-primary);
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--ui-primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* ── Button-link ─────────────────────────────────────────── */
+
+  a.button {
+    appearance: none;
+    border: 1px solid var(--ui-border);
+    background: var(--ui-primary);
+    color: var(--ui-primary-foreground);
+    border-radius: 12px;
+    padding: 0.7rem 1rem;
+    font: inherit;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 120ms ease, opacity 120ms ease;
+  }
+
+  a.button:hover {
+    opacity: 0.95;
+    text-decoration: none;
+  }
+
+  a.button:active {
+    transform: translateY(1px);
+  }
+
+  a.button:focus-visible {
+    outline: 2px solid var(--ui-primary);
+    outline-offset: 2px;
+    border-radius: 12px;
+  }
+
+  a.button.disabled {
+    background: var(--ui-surface-2);
+    color: var(--ui-fg-muted, #6f6f6f);
+    cursor: not-allowed;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  a.button.disabled:hover {
+    opacity: 0.7;
+  }
+
+  a.button--success {
+    background: var(--ui-success);
+    color: var(--ui-success-foreground);
+  }
+
+  a.button--warning {
+    background: var(--ui-warning);
+    color: var(--ui-warning-foreground);
+  }
+
+  a.button--alert {
+    background: var(--ui-alert);
+    color: var(--ui-alert-foreground);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    a.button {
+      transition: none;
+    }
+  }

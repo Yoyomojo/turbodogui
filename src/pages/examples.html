@@ -1,0 +1,1261 @@
+<div class="container app-shell">
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <ui-tabs
+        labels="Grid | Inputs & Buttons | Tabs | Modal | Accordion | Loader | API Fetching | Links | Table | Charts"
+        default-tab="0">
+        <div slot="tab-9">
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Pie Chart Example</h2>
+                <p>Pie chart with custom color array and data:</p>
+                <ui-pie-chart title="Stock by Category" id="pie-demo" height="500" style="margin: 2rem auto; display: block;"
+                  colors='["#e57373","#ffd54f","#81c784","#64b5f6","#ba68c8","#4db6ac","#ff8a65","#a1887f","#90a4ae","#f06292","#aed581","#4dd0e1","#ffb74d","#9575cd","#4fc3f7","#dce775","#f48fb1","#80cbc4","#ce93d8","#ef9a9a"]'>
+                </ui-pie-chart>
+                <div style="margin-top:2rem;">
+                  <h3>Usage</h3>
+                  <p><strong>Static (HTML attributes):</strong></p>
+                  <p>&lt;ui-pie-chart<br>
+                    &nbsp;&nbsp;title="Stock by Category"<br>
+                    &nbsp;&nbsp;data='[{"label":"Apples","value":30,"color":"#e57373"}, {"label":"Bananas","value":20,"color":"#ffd54f"}]'<br>
+                    &nbsp;&nbsp;colors='["#e57373","#ffd54f"]'<br>
+                    &nbsp;&nbsp;height="300"<br>
+                    &nbsp;&nbsp;width="100%"<br>
+                    &nbsp;&nbsp;legend-position="right"<br>
+                    &gt;&lt;/ui-pie-chart&gt;</p>
+                  <p><strong>Dynamic (JS properties):</strong></p>
+                  <p>import &#123; getPieChartProducts &#125; from "../api/example-pie-chart-data";<br>
+                    getPieChartProducts().then(res =&gt; &#123;<br>
+                    &nbsp;&nbsp;const data = Object.values(res.products.reduce((acc, p) =&gt; &#123;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;if (!acc[p.category]) acc[p.category] = &#123; label: p.category, value: 0 &#125;;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;acc[p.category].value += p.stock;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return acc;<br>
+                    &nbsp;&nbsp;&#125;, &#123;&#125;));<br>
+                    &nbsp;&nbsp;const pie = document.getElementById("pie-demo");<br>
+                    &nbsp;&nbsp;if (pie) pie.setAttribute("data", JSON.stringify(data));<br>
+                    &#125;);</p>
+                  <h3>Features</h3>
+                  <ul>
+                    <li>Legend displays color and label for each data set</li>
+                    <li>Legend can be positioned: <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code> (default: <code>bottom</code>)</li>
+                    <li>Click or press <kbd>Enter</kbd>/<kbd>Space</kbd> on a legend item to toggle that set</li>
+                    <li>Hover or focus a legend item to highlight the corresponding chart section</li>
+                  </ul>
+                  <h3>Attributes</h3>
+                  <ul>
+                    <li><strong>data:</strong> JSON array of <code>{ label, value, color? }</code> objects</li>
+                    <li><strong>colors:</strong> JSON array of fallback colors (optional)</li>
+                    <li><strong>title:</strong> Optional string — displays a bold title above the chart</li>
+                    <li><strong>height:</strong> Number (chart height in px, default <code>200</code>)</li>
+                    <li><strong>width:</strong> CSS width value (default <code>100%</code>)</li>
+                    <li><strong>legend-position:</strong> <code>top</code> | <code>bottom</code> | <code>left</code> | <code>right</code> (default: <code>bottom</code>)</li>
+                  </ul>
+                </div>
+              </ui-card>
+            </div>
+          </div>
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Bar Chart Example</h2>
+                <p>Bar chart with custom color array and data:</p>
+                <ui-bar-chart title="Avg Price by Category" id="bar-demo" height="400" style="margin: 2rem auto; display: block;"
+                  colors='["#42a5f5","#66bb6a","#ffa726","#ef5350","#ab47bc","#26a69a","#ff7043","#8d6e63","#78909c","#ec407a","#9ccc65","#26c6da","#ffa726","#7e57c2","#29b6f6"]'>
+                </ui-bar-chart>
+                <div style="margin-top:2rem;">
+                  <h3>Usage</h3>
+                  <p><strong>Static (HTML attributes):</strong></p>
+                  <p>&lt;ui-bar-chart<br>
+                    &nbsp;&nbsp;title="Avg Price by Category"<br>
+                    &nbsp;&nbsp;data='[{"label":"Q1","value":40,"color":"#42a5f5"}, {"label":"Q2","value":55,"color":"#66bb6a"}]'<br>
+                    &nbsp;&nbsp;colors='["#42a5f5","#66bb6a"]'<br>
+                    &nbsp;&nbsp;height="300"<br>
+                    &nbsp;&nbsp;width="100%"<br>
+                    &nbsp;&nbsp;font-size="12"<br>
+                    &nbsp;&nbsp;legend-position="right"<br>
+                    &gt;&lt;/ui-bar-chart&gt;</p>
+                  <p><strong>Dynamic (JS properties):</strong></p>
+                  <p>import &#123; getBarChartProducts &#125; from "../api/example-bar-chart-data";<br>
+                    getBarChartProducts().then(res =&gt; &#123;<br>
+                    &nbsp;&nbsp;const totals = res.products.reduce((acc, p) =&gt; &#123;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;if (!acc[p.category]) acc[p.category] = &#123; sum: 0, count: 0 &#125;;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;acc[p.category].sum += p.price;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;acc[p.category].count++;<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;return acc;<br>
+                    &nbsp;&nbsp;&#125;, &#123;&#125;));<br>
+                    &nbsp;&nbsp;const data = Object.entries(totals).map(([label, &#123; sum, count &#125;]) =&gt; (&#123; label, value: Math.round(sum / count) &#125;));<br>
+                    &nbsp;&nbsp;const bar = document.getElementById("bar-demo");<br>
+                    &nbsp;&nbsp;if (bar) bar.setAttribute("data", JSON.stringify(data));<br>
+                    &#125;);</p>
+                  <h3>Features</h3>
+                  <ul>
+                    <li>Legend displays color and label for each data set</li>
+                    <li>Legend can be positioned: <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code> (default: <code>bottom</code>)</li>
+                    <li>Click or press <kbd>Enter</kbd>/<kbd>Space</kbd> on a legend item to toggle that set</li>
+                    <li>Hover or focus a legend item to highlight the corresponding bar</li>
+                    <li>Reference lines overlay dashed horizontal lines at target values across the chart</li>
+                  </ul>
+                  <h3>Attributes</h3>
+                  <ul>
+                    <li><strong>data:</strong> JSON array of <code>{ label, value, color? }</code> objects</li>
+                    <li><strong>colors:</strong> JSON array of fallback colors (optional)</li>
+                    <li><strong>title:</strong> Optional string — displays a bold title above the chart</li>
+                    <li><strong>height:</strong> Number (chart height in px, default <code>200</code>)</li>
+                    <li><strong>width:</strong> CSS width value (default <code>100%</code>)</li>
+                    <li><strong>legend-position:</strong> <code>top</code> | <code>bottom</code> | <code>left</code> | <code>right</code> (default: <code>bottom</code>)</li>
+                    <li><strong>reference-lines:</strong> JSON array of <code>{ value, label?, color? }</code> — overlays dashed horizontal lines at the given values (vertical mode only)</li>
+                  </ul>
+                </div>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Bar Chart with Reference Lines</h2>
+                <p>Use <code>reference-lines</code> to overlay dashed horizontal target lines at specific values.
+                  Each line can have an optional label and color. Reference lines appear in the legend and can be
+                  toggled on/off. The Y-axis scale automatically expands to include them.</p>
+                <ui-bar-chart
+                  id="bar-demo-ref"
+                  title="Sales vs Targets"
+                  height="400"
+                  style="margin: 2rem auto; display: block;"
+                  data='[
+                    {"label":"Jan","value":42,"color":"#42a5f5"},
+                    {"label":"Feb","value":58,"color":"#42a5f5"},
+                    {"label":"Mar","value":71,"color":"#42a5f5"},
+                    {"label":"Apr","value":39,"color":"#42a5f5"},
+                    {"label":"May","value":85,"color":"#42a5f5"},
+                    {"label":"Jun","value":62,"color":"#42a5f5"}
+                  ]'
+                  reference-lines='[
+                    {"value":60,"label":"Monthly Target","color":"#ef5350"},
+                    {"value":80,"label":"Stretch Goal","color":"#ab47bc"}
+                  ]'>
+                </ui-bar-chart>
+                <div style="margin-top:2rem;">
+                  <h3>Usage</h3>
+                  <p>&lt;ui-bar-chart<br>
+                    &nbsp;&nbsp;data='[{"label":"Jan","value":42},{"label":"Feb","value":58}]'<br>
+                    &nbsp;&nbsp;reference-lines='[{"value":60,"label":"Target","color":"#ef5350"}]'<br>
+                    &gt;&lt;/ui-bar-chart&gt;</p>
+                  <h3>Reference line fields</h3>
+                  <ul>
+                    <li><strong>value:</strong> Number — the Y-axis position of the line</li>
+                    <li><strong>label:</strong> Optional string — shown inline on the chart and in the legend</li>
+                    <li><strong>color:</strong> Optional CSS color — defaults to <code>#ef5350</code></li>
+                  </ul>
+                </div>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Bar Chart with Line Series Overlay</h2>
+                <p>Use <code>line-series</code> to overlay one or more data series as connected lines with dot markers
+                  on top of the columns. Each series has a <code>values</code> array aligned to the bar categories.
+                  Series appear in the legend and can be toggled on/off independently.</p>
+                <ui-bar-chart
+                  id="bar-demo-line"
+                  title="Revenue vs Last Year"
+                  height="400"
+                  style="margin: 2rem auto; display: block;"
+                  data='[
+                    {"label":"Jan","value":42,"color":"#90caf9"},
+                    {"label":"Feb","value":58,"color":"#90caf9"},
+                    {"label":"Mar","value":71,"color":"#90caf9"},
+                    {"label":"Apr","value":39,"color":"#90caf9"},
+                    {"label":"May","value":85,"color":"#90caf9"},
+                    {"label":"Jun","value":62,"color":"#90caf9"}
+                  ]'
+                  line-series='[
+                    {"label":"Last Year","values":[35,50,60,55,70,58],"color":"#ff7043"},
+                    {"label":"Target","values":[50,55,65,50,75,65],"color":"#66bb6a"}
+                  ]'>
+                </ui-bar-chart>
+                <div style="margin-top:2rem;">
+                  <h3>Usage</h3>
+                  <p>&lt;ui-bar-chart<br>
+                    &nbsp;&nbsp;data='[{"label":"Jan","value":42},{"label":"Feb","value":58}]'<br>
+                    &nbsp;&nbsp;line-series='[{"label":"Last Year","values":[35,50],"color":"#ff7043"}]'<br>
+                    &gt;&lt;/ui-bar-chart&gt;</p>
+                  <h3>Line series fields</h3>
+                  <ul>
+                    <li><strong>label:</strong> Series name — shown in the legend and tooltip</li>
+                    <li><strong>values:</strong> Array of numbers, one per bar category (must match bar count)</li>
+                    <li><strong>color:</strong> Optional CSS color — auto-assigned if omitted</li>
+                  </ul>
+                </div>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Horizontal Bar Chart Example</h2>
+                <p>Bar chart displayed as horizontal bars — useful when labels are long or there are many categories:</p>
+                <ui-bar-chart title="Avg Price by Category" legend-position="left" id="bar-demo-h" horizontal style="margin: 2rem auto; display: block;"
+                  colors='["#42a5f5","#66bb6a","#ffa726","#ef5350","#ab47bc","#26a69a","#ff7043","#8d6e63","#78909c","#ec407a","#9ccc65","#26c6da","#ffa726","#7e57c2","#29b6f6"]'>
+                </ui-bar-chart>
+                <div style="margin-top:2rem;">
+                  <h3>Usage</h3>
+                  <p><strong>Static (HTML attributes):</strong></p>
+                  <p>&lt;ui-bar-chart<br>
+                    &nbsp;&nbsp;title="Avg Price by Category"<br>
+                    &nbsp;&nbsp;horizontal<br>
+                    &nbsp;&nbsp;data='[{"label":"Q1","value":40,"color":"#42a5f5"}, {"label":"Q2","value":55,"color":"#66bb6a"}]'<br>
+                    &nbsp;&nbsp;colors='["#42a5f5","#66bb6a"]'<br>
+                    &nbsp;&nbsp;width="100%"<br>
+                    &nbsp;&nbsp;font-size="12"<br>
+                    &nbsp;&nbsp;legend-position="left"<br>
+                    &gt;&lt;/ui-bar-chart&gt;</p>
+                  <h3>Attributes</h3>
+                  <ul>
+                    <li><strong>horizontal:</strong> Boolean — renders bars horizontally instead of vertically</li>
+                    <li><strong>title:</strong> Optional string — displays a bold title above the chart</li>
+                    <li><strong>font-size:</strong> Number in px for label text size (default <code>12</code>); axis labels scale proportionally</li>
+                    <li>All other <code>ui-bar-chart</code> attributes apply (data, colors, width, legend-position)</li>
+                    <li>The <code>height</code> attribute is not used in horizontal mode — chart height auto-sizes to fit all bars</li>
+                  </ul>
+                </div>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Line Chart Example</h2>
+                <p>Multi-series line chart with interactive tooltips on each data point:</p>
+                <ui-line-chart
+                  id="line-demo"
+                  title="Avg Price &amp; Stock by Category"
+                  height="400"
+                  style="margin: 2rem auto; display: block;"
+                  colors='["#42a5f5","#66bb6a","#ffa726"]'>
+                </ui-line-chart>
+                <div style="margin-top:2rem;">
+                  <h3>Usage</h3>
+                  <p><strong>Static (HTML attributes):</strong></p>
+                  <p>&lt;ui-line-chart<br>
+                    &nbsp;&nbsp;title="My Chart"<br>
+                    &nbsp;&nbsp;x-labels='["Jan","Feb","Mar"]'<br>
+                    &nbsp;&nbsp;data='[{"label":"Series A","values":[10,25,18]},{"label":"Series B","values":[5,12,20]}]'<br>
+                    &nbsp;&nbsp;colors='["#42a5f5","#66bb6a"]'<br>
+                    &nbsp;&nbsp;height="400"<br>
+                    &nbsp;&nbsp;width="100%"<br>
+                    &nbsp;&nbsp;legend-position="bottom"<br>
+                    &gt;&lt;/ui-line-chart&gt;</p>
+                  <p><strong>Dynamic (JS properties):</strong></p>
+                  <p>import &#123; getLineChartProducts, buildLineChartData &#125; from "../api/example-line-chart-data";<br><br>
+                    getLineChartProducts().then(res =&gt; &#123;<br>
+                    &nbsp;&nbsp;const &#123; categories, series &#125; = buildLineChartData(res);<br>
+                    &nbsp;&nbsp;const chart = document.getElementById("line-demo");<br>
+                    &nbsp;&nbsp;chart.setAttribute("x-labels", JSON.stringify(categories));<br>
+                    &nbsp;&nbsp;chart.setAttribute("data", JSON.stringify(series));<br>
+                    &#125;);</p>
+                  <h3>Features</h3>
+                  <ul>
+                    <li>Multiple series displayed as separate labelled lines</li>
+                    <li>Tooltips on every data point showing series name, x-label, and value</li>
+                    <li>Legend can be positioned: <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code> (default: <code>bottom</code>)</li>
+                    <li>Click or press <kbd>Enter</kbd>/<kbd>Space</kbd> on a legend item to toggle that series</li>
+                    <li>Hover a legend item to highlight its line and dim others</li>
+                    <li>Keyboard accessible: Tab to each data point, tooltip shown on focus</li>
+                  </ul>
+                  <h3>Attributes</h3>
+                  <ul>
+                    <li><strong>data:</strong> JSON array of <code>{ label, values: number[], color? }</code> series objects</li>
+                    <li><strong>x-labels:</strong> JSON array of strings for the x-axis category labels</li>
+                    <li><strong>colors:</strong> JSON array of fallback colors (used when a series has no <code>color</code>)</li>
+                    <li><strong>title:</strong> Optional string — displays a bold title above the chart</li>
+                    <li><strong>height:</strong> Number (chart height in px, default <code>300</code>)</li>
+                    <li><strong>width:</strong> CSS width value (default <code>100%</code>)</li>
+                    <li><strong>legend-position:</strong> <code>top</code> | <code>bottom</code> | <code>left</code> | <code>right</code> (default: <code>bottom</code>)</li>
+                  </ul>
+                </div>
+              </ui-card>
+            </div>
+          </div>
+        </div>
+        <div slot="tab-0">
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Responsive Grid System</h2>
+                <p>The 12-column grid system supports mobile-first responsive design with breakpoints at sm, md, lg, and
+                  xl.</p>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-sm-6 col-lg-12">
+              <strong>12</strong>
+              <span>column layout system</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="app-grid-box">col-12 col-md-6 col-lg-4</div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+              <div class="app-grid-box">col-12 col-md-6 col-lg-4</div>
+            </div>
+            <div class="col-12 col-lg-4">
+              <div class="app-grid-box">col-12 col-lg-4</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <div class="app-grid-box">col-12 col-md-6</div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="app-grid-box">col-12 col-md-6</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <div class="app-grid-box">col-12 (Full Width)</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-lg-6">
+              <div class="app-grid-box">col-12 col-lg-6</div>
+            </div>
+            <div class="col-12 col-lg-6">
+              <div class="app-grid-box">col-12 col-lg-6</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+              <div class="app-grid-box">col-12 col-sm-6 col-md-4 col-lg-3</div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+              <div class="app-grid-box">col-12 col-sm-6 col-md-4 col-lg-3</div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+              <div class="app-grid-box">col-12 col-sm-6 col-md-4 col-lg-3</div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+              <div class="app-grid-box">col-12 col-sm-6 col-md-4 col-lg-3</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-lg-3">
+              <div class="app-grid-box">col-12 col-lg-3</div>
+            </div>
+            <div class="col-12 col-lg-9">
+              <div class="app-grid-box">col-12 col-lg-9</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-3">
+              <div class="app-grid-box">col-12 col-md-3</div>
+            </div>
+            <div class="col-12 col-md-6">
+              <div class="app-grid-box">col-12 col-md-6</div>
+            </div>
+            <div class="col-12 col-md-3">
+              <div class="app-grid-box">col-12 col-md-3</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-lg-2">
+              <div class="app-grid-box">col-12 col-lg-2</div>
+            </div>
+            <div class="col-12 col-lg-8">
+              <div class="app-grid-box">col-12 col-lg-8</div>
+            </div>
+            <div class="col-12 col-lg-2">
+              <div class="app-grid-box">col-12 col-lg-2</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-8">
+              <div class="app-grid-box">col-12 col-md-8</div>
+            </div>
+            <div class="col-12 col-md-4">
+              <div class="app-grid-box">col-12 col-md-4</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-lg-5">
+              <div class="app-grid-box">col-12 col-lg-5</div>
+            </div>
+            <div class="col-12 col-lg-7">
+              <div class="app-grid-box">col-12 col-lg-7</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-sm-4 col-md-6 col-lg-2">
+              <div class="app-grid-box">col-12 col-sm-4 col-md-6 col-lg-2</div>
+            </div>
+            <div class="col-12 col-sm-4 col-md-6 col-lg-3">
+              <div class="app-grid-box">col-12 col-sm-4 col-md-6 col-lg-3</div>
+            </div>
+            <div class="col-12 col-sm-4 col-md-6 col-lg-4">
+              <div class="app-grid-box">col-12 col-sm-4 col-md-6 col-lg-4</div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+              <div class="app-grid-box">col-12 col-md-6 col-lg-3</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-lg-1">
+              <div class="app-grid-box">1</div>
+            </div>
+            <div class="col-12 col-lg-2">
+              <div class="app-grid-box">2</div>
+            </div>
+            <div class="col-12 col-lg-3">
+              <div class="app-grid-box">3</div>
+            </div>
+            <div class="col-12 col-lg-6">
+              <div class="app-grid-box">6</div>
+            </div>
+          </div>
+        </div>
+
+        <div slot="tab-1">
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Text Input Component</h2>
+                <p>A versatile input component supporting multiple input types with consistent styling and validation
+                  states.</p>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Input Types</h2>
+                <p>The same component works with different HTML input types for different purposes:</p>
+                <ui-text-input type="text" label="Text Input" placeholder="Standard text input"></ui-text-input>
+                <ui-text-input type="email" label="Email Input" placeholder="name@example.com"></ui-text-input>
+                <ui-text-input type="password" label="Password Input" placeholder="Enter your password"></ui-text-input>
+                <ui-text-input type="tel" label="Telephone Input" placeholder="(555) 123-4567"></ui-text-input>
+                <ui-text-input type="url" label="URL Input" placeholder="https://example.com"></ui-text-input>
+                <ui-text-input type="search" label="Search Input" placeholder="Search query"></ui-text-input>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Input States</h2>
+                <p>Inputs can display different states:</p>
+                <ui-text-input type="text" label="Normal State" placeholder="This is a normal input"></ui-text-input>
+                <ui-text-input type="text" label="Disabled Input" placeholder="This input is disabled"
+                  disabled></ui-text-input>
+                <ui-text-input type="text" label="Error State" placeholder="This input has an error"
+                  error></ui-text-input>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Text Input Usage</h2>
+                <p>&lt;ui-text-input<br>&nbsp;&nbsp;type="email"<br>&nbsp;&nbsp;label="Email
+                  Address"<br>&nbsp;&nbsp;placeholder="Enter your
+                  email"<br>&nbsp;&nbsp;disabled<br>&nbsp;&nbsp;error<br>&gt;&lt;/ui-text-input&gt;</p>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>type:</strong> HTML input type (text, email, password, tel, url, search, etc.)</li>
+                  <li><strong>label:</strong> Display label for the input</li>
+                  <li><strong>placeholder:</strong> Placeholder text</li>
+                  <li><strong>disabled:</strong> Boolean attribute to disable the input</li>
+                  <li><strong>error:</strong> Boolean attribute to show error state</li>
+                </ul>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Select Component</h2>
+                <p>A styled wrapper around the native select element with custom styling.</p>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Basic Select</h2>
+                <p>Select from a list of options:</p>
+                <ui-select label="Favorite Fruit" name="fruit" value="orange">
+                  <option value="apple">Apple</option>
+                  <option value="banana">Banana</option>
+                  <option value="orange">Orange</option>
+                  <option value="grape">Grape</option>
+                  <option value="strawberry">Strawberry</option>
+                  <option value="mango">Mango</option>
+                </ui-select>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Select with Grouping</h2>
+                <p>Organize options into logical groups:</p>
+                <ui-select label="Programming Language" name="language" value="ts">
+                  <optgroup label="Web">
+                    <option value="js">JavaScript</option>
+                    <option value="ts">TypeScript</option>
+                    <option value="html">HTML/CSS</option>
+                  </optgroup>
+                  <optgroup label="Backend">
+                    <option value="py">Python</option>
+                    <option value="go">Go</option>
+                    <option value="rs">Rust</option>
+                  </optgroup>
+                </ui-select>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Select Usage</h2>
+                <p>&lt;ui-select label="Choose Option" name="options" value="default"&gt;<br>&nbsp;&nbsp;&lt;option
+                  value="default"&gt;Select an option&lt;/option&gt;<br>&nbsp;&nbsp;&lt;option value="one"&gt;Option
+                  One&lt;/option&gt;<br>&nbsp;&nbsp;&lt;option value="two"&gt;Option
+                  Two&lt;/option&gt;<br>&nbsp;&nbsp;&lt;optgroup label="Group"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;option
+                  value="grouped"&gt;Grouped
+                  Option&lt;/option&gt;<br>&nbsp;&nbsp;&lt;/optgroup&gt;<br>&lt;/ui-select&gt;</p>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>label:</strong> Display label for the select</li>
+                  <li><strong>name:</strong> Form field name</li>
+                  <li><strong>value:</strong> Initial selected value</li>
+                  <li><strong>Options:</strong> Use standard HTML &lt;option&gt; and &lt;optgroup&gt; elements</li>
+                </ul>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Button Component</h2>
+                <p>Versatile button component supporting different types, variants, and states.</p>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Button Types</h2>
+                <p>Buttons support different HTML types for form interactions:</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                  <ui-button type="button">Button</ui-button>
+                  <ui-button type="submit">Submit</ui-button>
+                  <ui-button type="reset">Reset</ui-button>
+                </div>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Button Variants</h2>
+                <p>Use variants to convey different actions or states:</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                  <ui-button type="button">Default</ui-button>
+                  <ui-button variant="success">Success</ui-button>
+                  <ui-button variant="warning">Warning</ui-button>
+                  <ui-button variant="alert">Alert</ui-button>
+                </div>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Button States</h2>
+                <p>Buttons can display different states:</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; flex-direction: column;">
+                  <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <ui-button type="button">Enabled</ui-button>
+                    <ui-button type="button" disabled>Disabled</ui-button>
+                  </div>
+                  <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <ui-button variant="success">Success</ui-button>
+                    <ui-button variant="success" disabled>Success Disabled</ui-button>
+                  </div>
+                </div>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Button Usage</h2>
+                <p>
+                  &lt;ui-button<br>&nbsp;&nbsp;type="button"<br>&nbsp;&nbsp;variant="success"<br>&nbsp;&nbsp;disabled<br>&gt;Click
+                  Me&lt;/ui-button&gt;</p>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>type:</strong> HTML button type (button, submit, reset, default: button)</li>
+                  <li><strong>variant:</strong> Visual style (success, warning, alert, or default/primary)</li>
+                  <li><strong>disabled:</strong> Boolean attribute to disable the button</li>
+                  <li><strong>label:</strong> Alternative way to set button text (uses textContent if not provided)</li>
+                </ul>
+              </ui-card>
+            </div>
+          </div>
+        </div>
+
+        <div slot="tab-2">
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Tabs Component</h2>
+                <p>The tabs component provides a clean, accessible way to organize content across multiple tabs.</p>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Basic Example</h2>
+                <p>A simple tabs component with three content sections:</p>
+                <ui-tabs labels="Overview | Details | Settings" default-tab="0">
+                  <div slot="tab-0">
+                    <h3>Overview</h3>
+                    <p>This is the overview content. Click the other tabs to see their content.</p>
+                    <p>Each tab is independently accessible with keyboard navigation.</p>
+                  </div>
+                  <div slot="tab-1">
+                    <h3>Details</h3>
+                    <p>Here are the details. You can use arrow keys to navigate between tabs.</p>
+                    <p>Home and End keys jump to the first and last tabs respectively.</p>
+                  </div>
+                  <div slot="tab-2">
+                    <h3>Settings</h3>
+                    <p>Configuration options go here.</p>
+                    <p>All tabs emit a <code>tab-changed</code> event when activated.</p>
+                  </div>
+                </ui-tabs>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Default Tab Example</h2>
+                <p>Set a different default tab using the <code>default-tab</code> attribute:</p>
+                <ui-tabs labels="First | Second | Third" default-tab="1">
+                  <div slot="tab-0">
+                    <h3>First Tab</h3>
+                    <p>This tab is not active by default.</p>
+                  </div>
+                  <div slot="tab-1">
+                    <h3>Second Tab</h3>
+                    <p>This tab is set as the default and displays on page load.</p>
+                  </div>
+                  <div slot="tab-2">
+                    <h3>Third Tab</h3>
+                    <p>This tab can be activated by clicking.</p>
+                  </div>
+                </ui-tabs>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Usage Code Example</h2>
+                <p>&lt;ui-tabs labels="Tab 1 | Tab 2 | Tab 3" default-tab="0"&gt;<br>&nbsp;&nbsp;&lt;div
+                  slot="tab-0"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&gt;Tab 1
+                  Content&lt;/h3&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;First tab content goes
+                  here&lt;/p&gt;<br>&nbsp;&nbsp;&lt;/div&gt;<br>&nbsp;&nbsp;&lt;div
+                  slot="tab-1"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&gt;Tab 2
+                  Content&lt;/h3&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Second tab content goes
+                  here&lt;/p&gt;<br>&nbsp;&nbsp;&lt;/div&gt;<br>&nbsp;&nbsp;&lt;div
+                  slot="tab-2"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&gt;Tab 3
+                  Content&lt;/h3&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Third tab content goes
+                  here&lt;/p&gt;<br>&nbsp;&nbsp;&lt;/div&gt;<br>&lt;/ui-tabs&gt;</p>
+                <h3>Component Features</h3>
+                <ul>
+                  <li><strong>Labels:</strong> Pipe-separated string of tab labels</li>
+                  <li><strong>Default Tab:</strong> Index of the tab to show initially (default: 0)</li>
+                  <li><strong>Keyboard Navigation:</strong> Arrow keys, Home, End for accessibility</li>
+                  <li><strong>Events:</strong> Emits <code>tab-changed</code> event with active index</li>
+                  <li><strong>Slots:</strong> Use <code>slot="tab-N"</code> for each tab's content</li>
+                </ul>
+              </ui-card>
+            </div>
+          </div>
+        </div>
+
+        <div slot="tab-5">
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Loader Component</h2>
+                <p>Display loading states with CSS-based spinners during API calls and route transitions.</p>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Basic Loader</h2>
+                <p>Simple spinner with optional loading message:</p>
+                <ui-button type="button" id="loader-basic-btn">Show Basic Loader</ui-button>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Loader with Message</h2>
+                <p>Show a loading message with the spinner:</p>
+                <ui-button type="button" id="loader-message-btn">Show with Message</ui-button>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Custom Spinner Variants</h2>
+                <p>Different spinner animations:</p>
+                <ui-button type="button" id="loader-dots-btn">Dots Spinner</ui-button>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Custom Size & Color</h2>
+                <p>Customize the spinner size and color:</p>
+                <ui-button type="button" id="loader-custom-btn">Custom Loader</ui-button>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Contained Loader</h2>
+                <p>Loader contained within a specific content area instead of full-screen:</p>
+                <div id="loader-container"
+                  style="position: relative; height: 200px; background: var(--ui-surface-2); border: 1px solid var(--ui-border); border-radius: var(--ui-radius); display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                  <div style="text-align: center;">
+                    <p>Content area with contained loader</p>
+                    <ui-button type="button" id="loader-contained-btn">Show Contained Loader</ui-button>
+                  </div>
+                </div>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Usage Code Example</h2>
+                <p>
+                  &lt;ui-loader<br>&nbsp;&nbsp;message="Loading..."<br>&nbsp;&nbsp;size="64px"<br>&nbsp;&nbsp;color="#FF8C00"<br>&nbsp;&nbsp;variant="spinner"<br>&gt;&lt;/ui-loader&gt;
+                </p>
+                <h3>Component Features</h3>
+                <ul>
+                  <li><strong>Message:</strong> Optional loading text display</li>
+                  <li><strong>Size:</strong> Customize spinner size (default: 48px)</li>
+                  <li><strong>Color:</strong> Customize spinner color (default: primary)</li>
+                  <li><strong>Variant:</strong> "spinner" or "dots" animations</li>
+                  <li><strong>Contained:</strong> Boolean attribute for positioning within a container instead of
+                    full-screen</li>
+                  <li><strong>Overlay:</strong> Full-screen overlay with fade animation (or contained)</li>
+                  <li><strong>Methods:</strong> <code>show()</code> and <code>hide()</code></li>
+                  <li><strong>Events:</strong> Emits <code>loader-show</code> and <code>loader-hide</code></li>
+                </ul>
+                <h3>Programmatic Usage</h3>
+                <p>// Create and show a loader<br>const loader = document.createElement('ui-loader');<br>loader.setAttribute('message', 'Loading...');<br>document.body.appendChild(loader);<br><br>// Remove when done<br>loader.remove();<br><br>// Or call the hide() method (also removes from DOM)<br>loader.hide();</p>
+              </ui-card>
+            </div>
+          </div>
+        </div>
+
+        <div slot="tab-6">
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>API Fetching Example</h2>
+                <p>Fetch real data from an API and display it with loading states.</p>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Real-World Example: Fetching Users</h2>
+                <p>Fetch a list of users from JSONPlaceholder API with loader and error handling:</p>
+                <ui-button type="button" id="loader-fetch-btn">Fetch Users List</ui-button>
+                <div id="users-list-container" style="margin-top: 1.5rem; display: none;">
+                  <h3>Users</h3>
+                  <ul id="users-list" style="list-style: none; padding: 0; margin: 0;">
+                  </ul>
+                </div>
+                <div id="users-error" style="color: var(--ui-alert, #ef4444); margin-top: 1rem; display: none;"></div>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Implementation Details</h2>
+                <p>// Import the API function<br>import { getUsers } from "./api/example-users-list";<br><br>// Show
+                  loader and fetch data<br>const loader =
+                  document.createElement('ui-loader');<br>loader.setAttribute('message', 'Fetching
+                  users...');<br>document.body.appendChild(loader);<br><br>try {<br>&nbsp;&nbsp;const users = await
+                  fetch('https://jsonplaceholder.typicode.com/users');<br>&nbsp;&nbsp;const data = await
+                  users.json();<br><br>&nbsp;&nbsp;// Display users<br>&nbsp;&nbsp;data.forEach(user =>
+                  {<br>&nbsp;&nbsp;&nbsp;&nbsp;const li =
+                  document.createElement('li');<br>&nbsp;&nbsp;&nbsp;&nbsp;li.innerHTML =
+                  `&lt;strong&gt;${user.name}&lt;/strong&gt;&lt;br&gt;${user.email}`;<br>&nbsp;&nbsp;&nbsp;&nbsp;usersList.appendChild(li);<br>&nbsp;&nbsp;});<br>}
+                  catch (error) {<br>&nbsp;&nbsp;errorDiv.textContent = 'Error loading users';<br>} finally
+                  {<br>&nbsp;&nbsp;loader.remove();<br>}</p>
+                <h3>Key Concepts</h3>
+                <ul>
+                  <li><strong>Loader during fetch:</strong> Show visual feedback while loading</li>
+                  <li><strong>Error handling:</strong> Catch and display errors gracefully</li>
+                  <li><strong>DOM manipulation:</strong> Build lists dynamically from API data</li>
+                  <li><strong>Cleanup:</strong> Remove loader when done fetching</li>
+                </ul>
+              </ui-card>
+            </div>
+          </div>
+        </div>
+
+        <div slot="tab-3">
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Modal Component</h2>
+                <p>Display content in a centered modal dialog with a customizable overlay and close button.</p>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Basic Modal</h2>
+                <p>Click the button to open a modal with default settings:</p>
+                <ui-button type="button" class="modal-trigger" data-modal-type="basic">Open Modal</ui-button>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Modal with Close on Overlay</h2>
+                <p>Set <code>close-on-overlay</code> to allow clicking the overlay to close the modal:</p>
+                <ui-button type="button" class="modal-trigger" data-modal-type="overlay-close">Open Modal</ui-button>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Standard Overlay Style</h2>
+                <p>A modal with the default semi-transparent overlay background. The overlay colour is set via the <code>--ui-modal-overlay</code> CSS custom property if you need to override it:</p>
+                <ui-button type="button" class="modal-trigger" data-modal-type="opacity">Open Modal</ui-button>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Custom Size</h2>
+                <p>Set custom width with the <code>width</code> attribute:</p>
+                <ui-button type="button" class="modal-trigger" data-modal-type="wide">Open Wide Modal</ui-button>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Usage Code Example</h2>
+                <p>&lt;ui-modal<br>&nbsp;&nbsp;title="Modal
+                  Title"<br>&nbsp;&nbsp;close-on-overlay<br>&nbsp;&nbsp;close-on-escape<br>&nbsp;&nbsp;width="90vw"<br>&gt;<br>&nbsp;&nbsp;&lt;p&gt;Modal
+                  content goes here&lt;/p&gt;<br>&lt;/ui-modal&gt;</p>
+                <h3>Component Features</h3>
+                <ul>
+                  <li><strong>Title:</strong> Modal header title</li>
+                  <li><strong>Close on Overlay:</strong> Boolean attribute to close when clicking overlay</li>
+                  <li><strong>Close on Escape:</strong> Boolean attribute to close when pressing Escape key</li>
+                  <li><strong>Width:</strong> Custom width (e.g., "90vw", "800px", default: 500px)</li>
+                  <li><strong>Centered:</strong> Vertically and horizontally centered on the page</li>
+                  <li><strong>Methods:</strong> <code>close()</code></li>
+                </ul>
+              </ui-card>
+            </div>
+          </div>
+        </div>
+
+        <div slot="tab-4">
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Accordion Component</h2>
+                <p>Create expandable sections of content with smooth animations and keyboard accessibility.</p>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Basic Accordion</h2>
+                <p>A simple accordion with three collapsible items:</p>
+                <ui-accordion items="3" item-0-title="Section One" item-1-title="Section Two"
+                  item-2-title="Section Three">
+                  <div slot="item-0">
+                    <p>This is the content for the first section. Click to expand or collapse.</p>
+                    <p>You can include any HTML content here.</p>
+                  </div>
+                  <div slot="item-1">
+                    <p>This is the content for the second section.</p>
+                    <p>Sections can contain multiple paragraphs and other elements.</p>
+                  </div>
+                  <div slot="item-2">
+                    <p>This is the content for the third section.</p>
+                    <p>Use arrow keys to navigate between sections.</p>
+                  </div>
+                </ui-accordion>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Multiple Items Open</h2>
+                <p>Set <code>allow-multiple</code> to allow more than one section to be open at a time:</p>
+                <ui-accordion items="3" allow-multiple item-0-title="Features" item-1-title="Pricing"
+                  item-2-title="Support">
+                  <div slot="item-0">
+                    <p>Smooth animations and transitions</p>
+                    <p>Keyboard navigation support</p>
+                    <p>Flexible content slots</p>
+                  </div>
+                  <div slot="item-1">
+                    <p>Free tier available</p>
+                    <p>Professional plans starting at $9/month</p>
+                  </div>
+                  <div slot="item-2">
+                    <p>24/7 customer support</p>
+                    <p>Email and live chat available</p>
+                  </div>
+                </ui-accordion>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>FAQ Example</h2>
+                <p>A common use case for accordions - frequently asked questions:</p>
+                <ui-accordion items="3" item-0-title="How do I get started?" item-1-title="What features are included?"
+                  item-2-title="Can I cancel anytime?">
+                  <div slot="item-0">
+                    <p>Getting started is easy! Simply sign up for an account and start using our services immediately.
+                    </p>
+                  </div>
+                  <div slot="item-1">
+                    <p>Our service includes unlimited access to all core features, priority support, and regular
+                      updates.</p>
+                  </div>
+                  <div slot="item-2">
+                    <p>Yes, you can cancel your subscription at any time with no questions asked.</p>
+                  </div>
+                </ui-accordion>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Usage Code Example</h2>
+                <p>&lt;ui-accordion<br>&nbsp;&nbsp;items="3"<br>&nbsp;&nbsp;item-0-title="First
+                  Item"<br>&nbsp;&nbsp;item-1-title="Second Item"<br>&nbsp;&nbsp;item-2-title="Third
+                  Item"<br>&nbsp;&nbsp;allow-multiple<br>&gt;<br>&nbsp;&nbsp;&lt;div
+                  slot="item-0"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Content for first
+                  item&lt;/p&gt;<br>&nbsp;&nbsp;&lt;/div&gt;<br>&nbsp;&nbsp;&lt;div
+                  slot="item-1"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Content for second
+                  item&lt;/p&gt;<br>&nbsp;&nbsp;&lt;/div&gt;<br>&nbsp;&nbsp;&lt;div
+                  slot="item-2"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Content for third
+                  item&lt;/p&gt;<br>&nbsp;&nbsp;&lt;/div&gt;<br>&lt;/ui-accordion&gt;</p>
+                <h3>Component Features</h3>
+                <ul>
+                  <li><strong>Items:</strong> Number of accordion sections</li>
+                  <li><strong>Item Titles:</strong> Use <code>item-N-title</code> attribute for each section title</li>
+                  <li><strong>Allow Multiple:</strong> Boolean attribute to allow multiple sections open simultaneously
+                  </li>
+                  <li><strong>Keyboard Navigation:</strong> Arrow keys to navigate, Home/End for first/last items</li>
+                  <li><strong>Accessibility:</strong> Full ARIA roles and labels for screen readers</li>
+                  <li><strong>Smooth Animations:</strong> CSS transitions for expand/collapse</li>
+                  <li><strong>Events:</strong> Emits <code>accordion-toggle</code> event with active index</li>
+                </ul>
+              </ui-card>
+            </div>
+          </div>
+        </div>
+
+        <div slot="tab-7">
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Link Component</h2>
+                <p>The <code>&lt;ui-link&gt;</code> component provides SPA-friendly navigation using the router, with
+                  optional support for new-window external links.</p>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Route Links</h2>
+                <p>Internal links navigate via the router — no full page reload:</p>
+                <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;">
+                  <ui-link href="/">Home</ui-link>
+                  <ui-link href="/examples">Examples</ui-link>
+                  <ui-link to="/" label="Home (using 'to')"></ui-link>
+                  <ui-link href="/" title="Go to the home page">Home with tooltip</ui-link>
+                </div>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>New Window Links</h2>
+                <p>Add the <code>new-window</code> attribute to open in a new tab with
+                  <code>target="_blank" rel="noopener noreferrer"</code> automatically applied:</p>
+                <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;">
+                  <ui-link href="https://github.com/Yoyomojo/turbodogui" new-window>GitHub</ui-link>
+                  <ui-link href="https://turbodogui.com" new-window title="View the live site">turbodogui.com</ui-link>
+                </div>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Button Links</h2>
+                <p>Add the <code>button</code> attribute to render the link styled identically to
+                  <code>&lt;ui-button&gt;</code>. Supports the same <code>variant</code> and <code>disabled</code>
+                  attributes. The element still navigates via the router.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                  <ui-link href="/" button>Home</ui-link>
+                  <ui-link href="/examples" button variant="success">Examples</ui-link>
+                  <ui-link href="/examples" button variant="warning">Warning</ui-link>
+                  <ui-link href="/examples" button variant="alert">Alert</ui-link>
+                  <ui-link href="/examples" button disabled>Disabled</ui-link>
+                  <ui-link href="https://github.com/Yoyomojo/turbodogui" button new-window title="View on GitHub">GitHub ↗</ui-link>
+                </div>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Usage Code Example</h2>
+                <p>&lt;!-- Internal route link --&gt;<br>&lt;ui-link
+                  href="/examples"&gt;Examples&lt;/ui-link&gt;<br><br>&lt;!-- Using 'to' alias --&gt;<br>&lt;ui-link
+                  to="/about" label="About"&gt;&lt;/ui-link&gt;<br><br>&lt;!-- With tooltip --&gt;<br>&lt;ui-link
+                  href="/" title="Go to the home page"&gt;Home&lt;/ui-link&gt;<br><br>&lt;!-- External link in new
+                  window --&gt;<br>&lt;ui-link href="https://github.com/Yoyomojo/turbodogui" new-window title="View on
+                  GitHub"&gt;GitHub&lt;/ui-link&gt;<br><br>&lt;!-- Button-styled link --&gt;<br>&lt;ui-link
+                  href="/examples" button&gt;Examples&lt;/ui-link&gt;<br><br>&lt;!-- Button-styled with variant --&gt;<br>&lt;ui-link
+                  href="/examples" button variant="success"&gt;Go&lt;/ui-link&gt;<br><br>&lt;!-- Disabled button link --&gt;<br>&lt;ui-link
+                  href="/examples" button disabled&gt;Disabled&lt;/ui-link&gt;</p>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>href / to:</strong> Route path or URL</li>
+                  <li><strong>label:</strong> Link text (falls back to element text content)</li>
+                  <li><strong>title:</strong> Tooltip shown on hover</li>
+                  <li><strong>new-window:</strong> Opens in a new tab with
+                    <code>target="_blank" rel="noopener noreferrer"</code> — router is bypassed</li>
+                  <li><strong>button:</strong> Boolean — renders as a button-styled anchor</li>
+                  <li><strong>variant:</strong> <code>success</code> | <code>warning</code> | <code>alert</code> — applies variant colour (button mode only)</li>
+                  <li><strong>disabled:</strong> Boolean — disables navigation and applies disabled styles (button mode only)</li>
+                </ul>
+              </ui-card>
+            </div>
+          </div>
+        </div>
+        <div slot="tab-8">
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Table Component</h2>
+                <p>A sortable, exportable data table that accepts either JSON attributes for static data or JavaScript
+                  property setters for dynamic content.</p>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Static Data</h2>
+                <p>Columns and rows defined directly via JSON attributes. Sortable columns are marked with
+                  <code>sortable: true</code>. Zebra striping and CSV export are both enabled.</p>
+                <ui-table csv-export csv-filename="team" zebra columns='[
+                    {"key":"name",       "label":"Name",       "sortable":true},
+                    {"key":"role",       "label":"Role",       "sortable":true},
+                    {"key":"department", "label":"Department", "sortable":true},
+                    {"key":"location",   "label":"Location"},
+                    {"key":"joined",     "label":"Joined",     "sortable":true}
+                  ]' data='[
+                    {"name":"Alice Martin",  "role":"Engineer",         "department":"Platform",   "location":"New York",    "joined":"2019-03-12"},
+                    {"name":"Bob Chen",      "role":"Designer",         "department":"Product",    "location":"San Francisco","joined":"2020-07-01"},
+                    {"name":"Carol White",   "role":"Product Manager",  "department":"Product",    "location":"Austin",      "joined":"2018-11-20"},
+                    {"name":"David Kim",     "role":"Engineer",         "department":"Backend",    "location":"Seattle",     "joined":"2021-02-15"},
+                    {"name":"Eva Rossi",     "role":"QA Engineer",      "department":"Platform",   "location":"Chicago",     "joined":"2022-05-30"},
+                    {"name":"Frank Müller",  "role":"DevOps",           "department":"Infra",      "location":"Berlin",      "joined":"2020-01-08"},
+                    {"name":"Grace Liu",     "role":"Data Scientist",   "department":"Analytics",  "location":"Boston",      "joined":"2021-09-17"},
+                    {"name":"Henry Park",    "role":"Engineer",         "department":"Frontend",   "location":"Toronto",     "joined":"2023-03-05"}
+                  ]'>
+                </ui-table>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Dynamic Data</h2>
+                <p>Table columns and rows populated at runtime via JavaScript property setters. Click the button to
+                  fetch real users from the JSONPlaceholder API.</p>
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                  <ui-button type="button" id="table-fetch-btn">Fetch Users</ui-button>
+                  <span id="table-fetch-status"
+                    style="display:none; color: var(--ui-fg-muted, #6f6f6f); font-size: 0.875rem;"></span>
+                </div>
+                <ui-table id="table-dynamic" csv-export csv-filename="users" zebra></ui-table>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Search</h2>
+                <p>Add the <code>search</code> attribute to render a live search input above the table. Typing filters
+                  rows across all columns (case-insensitive). Combine with <code>csv-export</code> and
+                  <code>zebra</code> as needed.</p>
+                <ui-table search csv-export csv-filename="team-search" zebra columns='[
+                    {"key":"name",       "label":"Name",       "sortable":true},
+                    {"key":"role",       "label":"Role",       "sortable":true},
+                    {"key":"department", "label":"Department", "sortable":true},
+                    {"key":"location",   "label":"Location"},
+                    {"key":"joined",     "label":"Joined",     "sortable":true}
+                  ]' data='[
+                    {"name":"Alice Martin",  "role":"Engineer",         "department":"Platform",   "location":"New York",     "joined":"2019-03-12"},
+                    {"name":"Bob Chen",      "role":"Designer",         "department":"Product",    "location":"San Francisco","joined":"2020-07-01"},
+                    {"name":"Carol White",   "role":"Product Manager",  "department":"Product",    "location":"Austin",       "joined":"2018-11-20"},
+                    {"name":"David Kim",     "role":"Engineer",         "department":"Backend",    "location":"Seattle",      "joined":"2021-02-15"},
+                    {"name":"Eva Rossi",     "role":"QA Engineer",      "department":"Platform",   "location":"Chicago",      "joined":"2022-05-30"},
+                    {"name":"Frank Müller",  "role":"DevOps",           "department":"Infra",      "location":"Berlin",       "joined":"2020-01-08"},
+                    {"name":"Grace Liu",     "role":"Data Scientist",   "department":"Analytics",  "location":"Boston",       "joined":"2021-09-17"},
+                    {"name":"Henry Park",    "role":"Engineer",         "department":"Frontend",   "location":"Toronto",      "joined":"2023-03-05"}
+                  ]'>
+                </ui-table>
+              </ui-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <ui-card>
+                <h2>Usage</h2>
+                <p><strong>Static (HTML attributes):</strong></p>
+                <p>&lt;ui-table<br>
+                  &nbsp;&nbsp;search<br>
+                  &nbsp;&nbsp;csv-export<br>
+                  &nbsp;&nbsp;csv-filename="report"<br>
+                  &nbsp;&nbsp;zebra<br>
+                  &nbsp;&nbsp;columns='[{"key":"name","label":"Name","sortable":true}]'<br>
+                  &nbsp;&nbsp;data='[{"name":"Alice"},{"name":"Bob"}]'<br>
+                  &gt;&lt;/ui-table&gt;</p>
+                <p><strong>Dynamic (JS properties):</strong></p>
+                <p>const table = document.querySelector('ui-table');<br>
+                  table.columns = [{ key: 'name', label: 'Name', sortable: true }];<br>
+                  table.data = [{ name: 'Alice' }, { name: 'Bob' }];</p>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>columns:</strong> JSON array of <code>{ key, label, sortable? }</code> objects</li>
+                  <li><strong>data:</strong> JSON array of row objects keyed to column keys</li>
+                  <li><strong>search:</strong> Boolean — shows a live search input that filters rows across all columns</li>
+                  <li><strong>csv-export:</strong> Boolean — shows the Export CSV button above the table</li>
+                  <li><strong>csv-filename:</strong> Download filename without extension (default: "export")</li>
+                  <li><strong>zebra:</strong> Boolean — applies alternating row background colours</li>
+                </ul>
+                <h3>Sorting</h3>
+                <ul>
+                  <li>Click a sortable column header to cycle: ascending → descending → unsorted</li>
+                  <li>Keyboard accessible — Enter or Space activates sort on focused headers</li>
+                </ul>
+              </ui-card>
+            </div>
+          </div>
+        </div>
+      </ui-tabs>
+    </div>
+  </div>
+</div>

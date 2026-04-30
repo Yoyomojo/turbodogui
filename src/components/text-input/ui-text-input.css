@@ -1,0 +1,68 @@
+  :host {
+    display: block;
+    width: 100%;
+    font-family: inherit;
+    margin-bottom: 1rem;
+    padding: 0 0.5rem;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  label {
+    color: var(--ui-fg-muted, #6f6f6f);
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  input {
+    min-height: 2.75rem;
+    border: 1px solid var(--ui-border);
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    font: inherit;
+    color: var(--ui-fg);
+    background: var(--ui-surface);
+    outline: none;
+    transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
+  }
+
+  input::placeholder {
+    color: var(--ui-fg-muted, #a0a0a0);
+  }
+
+  input:focus {
+    border-color: var(--ui-primary);
+    box-shadow: 0 0 0 4px rgba(38, 132, 255, 0.14);
+    outline: 2px solid var(--ui-primary);
+    outline-offset: 2px;
+  }
+
+  input:focus-visible {
+    border-color: var(--ui-primary);
+    box-shadow: 0 0 0 4px rgba(38, 132, 255, 0.14);
+    outline: 2px solid var(--ui-primary);
+    outline-offset: 2px;
+  }
+
+  .field--error input {
+    border-color: var(--ui-alert);
+  }
+
+  .field--error input:focus {
+    border-color: var(--ui-alert);
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.14);
+  }
+
+  .field--error label {
+    color: var(--ui-alert);
+  }
+
+  .error-message {
+    font-size: 0.875rem;
+    color: var(--ui-alert);
+    margin-top: 0.25rem;
+  }

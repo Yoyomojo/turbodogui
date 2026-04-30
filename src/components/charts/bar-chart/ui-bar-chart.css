@@ -1,0 +1,22 @@
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100px;
+  position: relative;
+}
+
+.bar-chart-svg {
+  width: 100%;
+  height: auto;
+  min-height: 100px;
+}
+
+.bar-chart-label {
+  font-size: 1rem;
+  fill: var(--text-color, #222);
+}
+
+.bar-chart-value {
+  font-size: 0.95rem;
+  fill: var(--text-color, #222);
+}

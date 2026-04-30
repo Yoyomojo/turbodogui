@@ -1,0 +1,15 @@
+  .card {
+    background: var(--ui-surface);
+    color: var(--ui-fg);
+    border: 1px solid var(--ui-border);
+    border-radius: var(--ui-radius);
+    padding: 20px;
+    box-shadow: var(--ui-shadow);
+  }
+
+  ::slotted(h1),
+  ::slotted(h2),
+  ::slotted(h3),
+  ::slotted(p) {
+    margin-top: 0;
+  }
