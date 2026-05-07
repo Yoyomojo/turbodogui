@@ -1,0 +1,91 @@
+  :host {
+    display: contents;
+  }
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+  }
+
+  .modal-content {
+    background: var(--ui-surface);
+    color: var(--ui-fg);
+    border: 1px solid var(--ui-border);
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    position: relative;
+    width: 500px;
+    max-height: 90vh;
+    max-width: 90vw;
+    overflow-y: auto;
+    animation: slideIn 200ms ease-out;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .modal-content {
+      animation: none;
+    }
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--ui-border);
+  }
+
+  .modal-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+
+  .modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--ui-fg-muted, #6f6f6f);
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    transition: color 200ms;
+  }
+
+  .modal-close:hover {
+    color: var(--ui-fg);
+  }
+
+  .modal-close:focus {
+    outline: 2px solid var(--ui-primary);
+    outline-offset: 2px;
+  }
+
+  .modal-close:focus-visible {
+    outline: 2px solid var(--ui-primary);
+    outline-offset: 2px;
+  }
+
+  .modal-body {
+    padding: 20px;
+  }

@@ -1,0 +1,221 @@
+<div class="container app-shell">
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <div style="text-align: center; margin-bottom: 3rem; display: flex; justify-content: center;">
+        <img src="/turbodog-ui-logo.png" alt="Turbodog UI Logo" style="max-width: 400px; width: 100%; height: auto;">
+      </div>
+      <ui-card>
+        <h2>Turbodog UI</h2>
+        <p>A lightweight TypeScript Web Component library with a tiny router, theme system, shared fetch helper, and
+          responsive grid.</p>
+        <p>The grid starts mobile-first and expands through <code>sm</code>, <code>md</code>, <code>lg</code>, and
+          <code>xl</code> breakpoints.
+        </p>
+      </ui-card>
+    </div>
+  </div>
+
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <ui-card>
+        <h2>Getting Started</h2>
+        <p>Clone the repository and run the following commands:</p>
+        <p>
+          npm install<br />
+          npm run dev
+        </p>
+      </ui-card>
+    </div>
+  </div>
+
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <ui-card>
+        <h2>Grid System</h2>
+        <p>12-column layout system with responsive breakpoints:</p>
+        <ul>
+          <li><code>sm</code>: 576px+</li>
+          <li><code>md</code>: 768px+</li>
+          <li><code>lg</code>: 992px+</li>
+          <li><code>xl</code>: 1200px+</li>
+        </ul>
+      </ui-card>
+    </div>
+  </div>
+
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <ui-card>
+        <h2>Adding Routes</h2>
+        <p>Routes are registered in <code>src/main.ts</code> using the router. Each route maps a path to a page
+          and optional metadata.</p>
+        <h3>Register a Route</h3>
+        <p>import { router } from "../core/router";<br>import navHtml from "../shared/nav.html?raw";<br>import
+          myPageHtml from "./my-page.html?raw";<br><br>router.register("/my-page", () => navHtml + myPageHtml,
+          {<br>&nbsp;&nbsp;title: "My Page",<br>&nbsp;&nbsp;description: "Description for SEO"<br>});</p>
+        <h3>Dynamic Route Parameters</h3>
+        <p>Routes support dynamic parameters using colon syntax <code>:param</code>:</p>
+        <p>router.register("/users/:id", (params) => {<br>&nbsp;&nbsp;return navHtml + `&lt;h1&gt;User
+          ${params.id}&lt;/h1&gt;`;<br>}, {<br>&nbsp;&nbsp;title: "User Details"<br>});</p>
+        <p>Navigate to routes using the <code>router.navigate()</code> method or the <code>&lt;ui-link&gt;</code>
+          component.</p>
+      </ui-card>
+    </div>
+  </div>
+
+
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <ui-card>
+        <h2>Creating Pages</h2>
+        <p>Pages are HTML files stored in <code>src/pages/</code> and imported as raw strings in <code>main.ts</code>.
+        </p>
+        <h3>Create a Page File</h3>
+        <p>Create <code>src/pages/my-page.html</code>:</p>
+        <p>&lt;div class="container app-shell"&gt;<br>&nbsp;&nbsp;&lt;div class="row
+          row--center"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class="col-12
+          col-lg-12"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ui-card&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h2&gt;My
+          Page&lt;/h2&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Page content goes
+          here&lt;/p&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ui-card&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>&nbsp;&nbsp;&lt;/div&gt;<br>&lt;/div&gt;
+        </p>
+        <h3>Import and Register</h3>
+        <p>In <code>src/main.ts</code>, import the page and register it:</p>
+        <p>import myPageHtml from "./my-page.html?raw";<br><br>router.register("/my-page", () => navHtml + myPageHtml);
+        </p>
+      </ui-card>
+    </div>
+  </div>
+
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <ui-card>
+        <h2>API Calls</h2>
+        <p>The <code>http</code> helper in <code>src/api/http.ts</code> provides a lightweight fetch wrapper with
+          built-in JSON handling and error handling.</p>
+        <h3>Create an API Module</h3>
+        <p>Create <code>src/api/users-api.ts</code>:</p>
+        <p>import { http } from "./http";<br><br>export interface User {<br>&nbsp;&nbsp;id: number;<br>&nbsp;&nbsp;name:
+          string;<br>&nbsp;&nbsp;email: string;<br>}<br><br>export const getUsers = () =>
+          http&lt;User[]&gt;("/api/users");<br><br>export const getUser = (id: number) =>
+          http&lt;User&gt;(`/api/users/${id}`);<br><br>export const createUser = (data: Omit&lt;User, "id"&gt;)
+          =><br>&nbsp;&nbsp;http&lt;User&gt;("/api/users", {<br>&nbsp;&nbsp;&nbsp;&nbsp;method:
+          "POST",<br>&nbsp;&nbsp;&nbsp;&nbsp;body: data<br>&nbsp;&nbsp;});</p>
+        <h3>Using the HTTP Helper</h3>
+        <p>const data = await http("/api/example");<br><br>// With type safety<br>const users = await
+          http&lt;User[]&gt;("/api/users");<br><br>// With request options<br>const result = await http("/api/data",
+          {<br>&nbsp;&nbsp;method: "POST",<br>&nbsp;&nbsp;headers: { "Authorization": "Bearer token"
+          },<br>&nbsp;&nbsp;body: { name: "John" }<br>});</p>
+      </ui-card>
+    </div>
+  </div>
+
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <ui-card>
+        <h2>Populating Pages with Data</h2>
+        <p>Since pages are rendered server-side in the route handler, fetch data before rendering the HTML:</p>
+        <h3>Fetch and Render Pattern</h3>
+        <p>// In main.ts<br>router.register("/users", async () => {<br>&nbsp;&nbsp;try
+          {<br>&nbsp;&nbsp;&nbsp;&nbsp;const users = await getUsers();<br>&nbsp;&nbsp;&nbsp;&nbsp;const usersList =
+          users<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.map(u => `&lt;li&gt;${u.name} -
+          ${u.email}&lt;/li&gt;`)<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.join("");<br><br>&nbsp;&nbsp;&nbsp;&nbsp;return
+          navHtml + `<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div
+          class="container"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul&gt;${usersList}&lt;/ul&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;`;<br>&nbsp;&nbsp;}
+          catch (error) {<br>&nbsp;&nbsp;&nbsp;&nbsp;return navHtml + `<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div
+          class="container"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;p&gt;Error loading
+          users&lt;/p&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;`;<br>&nbsp;&nbsp;}<br>},
+          {<br>&nbsp;&nbsp;title: "Users",<br>&nbsp;&nbsp;description: "List of all users"<br>});</p>
+        <h3>Using Web Components for Dynamic Content</h3>
+        <p>For more complex, interactive pages, use Web Components:</p>
+        <p>// src/pages/users-page.ts<br>import { UIComponent } from "../core/component";<br>import { getUsers } from
+          "../api/users-api";<br><br>export class UsersPage extends UIComponent {<br>&nbsp;&nbsp;protected async
+          render(): Promise&lt;void&gt; {<br>&nbsp;&nbsp;&nbsp;&nbsp;try {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const
+          users = await getUsers();<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.root.innerHTML =
+          `<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;ul&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${users.map(u
+          =>
+          `&lt;li&gt;${u.name}&lt;/li&gt;`).join("")}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/ul&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`;<br>&nbsp;&nbsp;&nbsp;&nbsp;}
+          catch (error) {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.root.innerHTML = `&lt;p&gt;Error loading
+          users&lt;/p&gt;`;<br>&nbsp;&nbsp;&nbsp;&nbsp;}<br>&nbsp;&nbsp;}<br>}<br><br>customElements.define("users-page",
+          UsersPage);</p>
+      </ui-card>
+    </div>
+  </div>
+
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <ui-card>
+        <h2>Creating Web Components</h2>
+        <p>Extend the <code>UIComponent</code> base class to create reusable components. Place each component in its
+          own folder with a paired <code>.css</code> file — Vite's <code>?raw</code> import brings it in as a string
+          at build time so it lands inside the Shadow DOM.</p>
+        <h3>File structure</h3>
+        <p>src/components/my-component/<br>&nbsp;&nbsp;my-component.ts<br>&nbsp;&nbsp;my-component.css</p>
+        <h3>my-component.css</h3>
+        <p>:host {<br>&nbsp;&nbsp;display: block;<br>}<br><br>.my-component {<br>&nbsp;&nbsp;padding:
+          1rem;<br>&nbsp;&nbsp;background: var(--ui-surface);<br>&nbsp;&nbsp;color:
+          var(--ui-fg);<br>&nbsp;&nbsp;border-radius: var(--ui-radius);<br>}</p>
+        <h3>my-component.ts</h3>
+        <p>import { UIComponent } from "../../core/component";<br>import styles from
+          "./my-component.css?raw";<br><br>export class MyComponent extends UIComponent {<br>&nbsp;&nbsp;static tag =
+          "my-component";<br>&nbsp;&nbsp;static observedAttributes = ["label",
+          "disabled"];<br><br>&nbsp;&nbsp;attributeChangedCallback()
+          {<br>&nbsp;&nbsp;&nbsp;&nbsp;this.render();<br>&nbsp;&nbsp;}<br><br>&nbsp;&nbsp;protected render(): void
+          {<br>&nbsp;&nbsp;&nbsp;&nbsp;const label = this.getAttribute("label") ??
+          "Default";<br>&nbsp;&nbsp;&nbsp;&nbsp;const disabled =
+          this.hasAttribute("disabled");<br><br>&nbsp;&nbsp;&nbsp;&nbsp;this.root.innerHTML =
+          `<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${this.css(styles)}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;div
+          class="my-component"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button ${disabled ? "disabled"
+          :
+          ""}&gt;${label}&lt;/button&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;slot&gt;&lt;/slot&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp;`;<br>&nbsp;&nbsp;}<br>}<br><br>customElements.define(MyComponent.tag,
+          MyComponent);</p>
+        <h3>Register in src/index.ts</h3>
+        <p>import "./components/my-component/my-component";</p>
+        <h3>Use in any page HTML</h3>
+        <p>&lt;my-component label="Click me"&gt;<br>&nbsp;&nbsp;&lt;p&gt;Slotted
+          content&lt;/p&gt;<br>&lt;/my-component&gt;</p>
+        <h3>Key points</h3>
+        <ul>
+          <li><code>?raw</code> — Vite import suffix that returns the file contents as a plain string</li>
+          <li><code>this.css(styles)</code> — wraps the string in a <code>&lt;style&gt;</code> tag scoped inside the
+            Shadow DOM</li>
+          <li><code>:host</code> — selects the custom element itself from within its own stylesheet</li>
+          <li><code>static observedAttributes</code> — list attributes that should trigger
+            <code>attributeChangedCallback</code> and re-render</li>
+          <li><code>&lt;slot&gt;</code> — projects child content from the light DOM into the Shadow DOM</li>
+        </ul>
+      </ui-card>
+    </div>
+  </div>
+
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <ui-card>
+        <h2>Environment Variables</h2>
+        <p>Vite loads <code>.env.development</code> during <code>npm run dev</code> and <code>.env.production</code>
+          during <code>npm run build</code>. Copy the example templates to get started:</p>
+        <p>cp .env.development.example .env.development<br>cp .env.production.example .env.production</p>
+        <p>All variables exposed to the client must be prefixed with <code>VITE_</code>:</p>
+        <h3>.env.development</h3>
+        <p>VITE_API_URL=http://localhost:3000<br>VITE_APP_ENV=development</p>
+        <h3>.env.production</h3>
+        <p>VITE_API_URL=https://api.example.com<br>VITE_APP_ENV=production</p>
+        <h3>Usage</h3>
+        <p>const apiUrl = import.meta.env.VITE_API_URL;<br>const env = import.meta.env.VITE_APP_ENV;</p>
+        <p>Add new variables to <code>src/env.d.ts</code> to keep them typed.</p>
+      </ui-card>
+    </div>
+  </div>
+
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <ui-card>
+        <h2>Theming</h2>
+        <p>The application uses CSS variables for theming. Colors are defined in <code>src/theme/base-theme.css</code>
+          and can be toggled between light and dark modes.</p>
+        <p>import { initializeTheme, toggleTheme } from "./src/theme/theme";<br><br>initializeTheme(); // Initialize on
+          app start<br>toggleTheme(); // Toggle between light/dark</p>
+        <p>The selected theme is persisted in <code>localStorage</code> under the key <code>turbodogui-theme</code>.</p>
+      </ui-card>
+    </div>
+  </div>
+</div>

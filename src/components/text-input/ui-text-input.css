@@ -1,0 +1,109 @@
+  :host {
+    display: block;
+    width: 100%;
+    font-family: inherit;
+    margin-bottom: 1rem;
+    padding: 0 0.5rem;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  label {
+    color: var(--ui-fg-muted, #6f6f6f);
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  input {
+    min-height: 2.75rem;
+    border: 1px solid var(--ui-border);
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    font: inherit;
+    color: var(--ui-fg);
+    background: var(--ui-surface);
+    outline: none;
+    transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
+  }
+
+
+  .field--small input {
+    min-height: 1.75rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    border-radius: 6px;
+  }
+
+  .field--small label {
+    font-size: 0.8rem;
+  }
+
+  .field--medium input {
+    min-height: 2.75rem;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border-radius: 12px;
+  }
+
+  .field--large input {
+    min-height: 3.25rem;
+    padding: 0.9rem 1.2rem;
+    font-size: 1.125rem;
+    border-radius: 14px;
+  }
+
+  .field--large label {
+    font-size: 1.125rem;
+  }
+
+  .field--extra-large input {
+    min-height: 4rem;
+    padding: 1.1rem 1.5rem;
+    font-size: 1.375rem;
+    border-radius: 16px;
+  }
+
+  .field--extra-large label {
+    font-size: 1.375rem;
+  }
+
+  input::placeholder {
+    color: var(--ui-fg-muted, #a0a0a0);
+  }
+
+  input:focus {
+    border-color: var(--ui-primary);
+    box-shadow: 0 0 0 4px rgba(38, 132, 255, 0.14);
+    outline: 2px solid var(--ui-primary);
+    outline-offset: 2px;
+  }
+
+  input:focus-visible {
+    border-color: var(--ui-primary);
+    box-shadow: 0 0 0 4px rgba(38, 132, 255, 0.14);
+    outline: 2px solid var(--ui-primary);
+    outline-offset: 2px;
+  }
+
+  .field--error input {
+    border-color: var(--ui-alert);
+  }
+
+  .field--error input:focus {
+    border-color: var(--ui-alert);
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.14);
+  }
+
+  .field--error label {
+    color: var(--ui-alert);
+  }
+
+  .error-message {
+    font-size: 0.875rem;
+    color: var(--ui-alert);
+    margin-top: 0.25rem;
+  }

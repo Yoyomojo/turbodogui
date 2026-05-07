@@ -1,0 +1,94 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.code-wrap {
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius);
+  overflow: hidden;
+}
+
+.code-header {
+  display: flex;
+  align-items: center;
+  padding: 6px 10px 6px 14px;
+  background: var(--ui-surface-2);
+  border-bottom: 1px solid var(--ui-border);
+  gap: 8px;
+  min-height: 42px;
+}
+
+.labels {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.filename {
+  font-family: "Cascadia Code", "Fira Code", "Consolas", monospace;
+  font-size: 0.8125rem;
+  color: var(--ui-fg);
+  opacity: 0.75;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.lang-badge {
+  font-size: 0.6875rem;
+  font-family: monospace;
+  padding: 2px 9px;
+  border-radius: 99px;
+  background: var(--ui-primary);
+  color: var(--ui-primary-foreground);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.copy-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--ui-muted);
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+  flex-shrink: 0;
+}
+
+.copy-btn:hover {
+  background: var(--ui-surface);
+  border-color: var(--ui-border);
+  color: var(--ui-fg);
+}
+
+.copy-btn.copied {
+  color: var(--ui-success);
+  border-color: var(--ui-success);
+}
+
+pre.code-pre {
+  margin: 0;
+  padding: 18px 20px;
+  overflow-x: auto;
+  background: var(--ui-code-bg, #0d1117);
+  font-size: 0.875rem;
+  line-height: 1.65;
+  tab-size: 2;
+}
+
+pre.code-pre code {
+  font-family: "Cascadia Code", "Fira Code", "Consolas", "Monaco", "Lucida Console", monospace;
+  color: var(--ui-code-fg, #e6edf3);
+  white-space: pre;
+}

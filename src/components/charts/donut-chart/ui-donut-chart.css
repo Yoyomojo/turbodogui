@@ -1,0 +1,113 @@
+:host {
+	display: block;
+	width: 100%;
+	min-height: 100px;
+	position: relative;
+}
+
+.donut-chart-title {
+	font-weight: bold;
+	font-size: 1.1em;
+	margin-bottom: 0.5em;
+	text-align: center;
+	color: var(--ui-fg, inherit);
+}
+
+.donut-chart-svg {
+	width: 100%;
+	height: auto;
+	min-height: 100px;
+}
+
+.donut-tooltip {
+	background: #222;
+	color: #fff;
+	padding: 0.4em 0.7em;
+	border-radius: 4px;
+	font-size: 0.95em;
+	pointer-events: none;
+	position: absolute;
+	z-index: 10;
+	display: none;
+	white-space: nowrap;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+	transition: opacity 0.15s;
+	opacity: 0.95;
+}
+
+.donut-legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em;
+	margin: 1em 0 0 0;
+}
+
+.donut-legend--top,
+.donut-legend--bottom {
+	flex-direction: row;
+	justify-content: center;
+}
+
+.donut-legend--left,
+.donut-legend--right {
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.donut-legend-item {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+	cursor: pointer;
+}
+
+.donut-legend-item:focus {
+	outline: 2px solid #2563eb;
+}
+
+.donut-legend-swatch {
+	display: inline-block;
+	width: 1em;
+	height: 1em;
+	border-radius: 2px;
+	border: 1px solid #ccc;
+}
+
+.donut-slice-label {
+	font-size: 0.82em;
+	font-weight: 700;
+	fill: #fff;
+	pointer-events: none;
+	text-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+}
+
+.donut-center-label {
+	font-size: 1em;
+	font-weight: 700;
+	fill: var(--ui-fg, #222);
+	pointer-events: none;
+}
+
+.chart-side-layout {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+}
+
+.chart-side-chart {
+	flex: 1;
+	min-width: 0;
+}
+
+@media (max-width: 600px) {
+	.chart-side-layout {
+		flex-direction: column;
+	}
+
+	.donut-legend--left,
+	.donut-legend--right {
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+	}
+}

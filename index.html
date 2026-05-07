@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Turbodog UI</title>
+    <meta name="description" content="A lightweight TypeScript Web Component library with a tiny router, theme system, shared fetch helper, and responsive grid." />
+    <meta name="theme-color" content="#FF8C00" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Turbodog UI" />
+    <meta property="og:title" content="Turbodog UI - Web Component Library" />
+    <meta property="og:description" content="A lightweight TypeScript Web Component library with a tiny router, theme system, shared fetch helper, and responsive grid." />
+    <meta property="og:url" content="https://turbodogui.com" />
+    <meta property="og:image" content="https://turbodogui.com/og-image.png" />
+    <meta property="og:image:alt" content="Turbodog UI Logo" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Turbodog UI - Web Component Library" />
+    <meta name="twitter:description" content="A lightweight TypeScript Web Component library with a tiny router, theme system, shared fetch helper, and responsive grid." />
+    <meta name="twitter:image" content="https://turbodogui.com/og-image.png" />
+    <meta name="twitter:image:alt" content="Turbodog UI Logo" />
+
+    <script>
+      (() => {
+        try {
+          const storedTheme = localStorage.getItem("turbodogui-theme");
+          const theme = storedTheme === "dark" || storedTheme === "light"
+            ? storedTheme
+            : (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      })();
+    </script>
+    <script type="module" src="/src/main.ts"></script>
+  </head>
+  <body>
+    <a href="#main-content" style="position: absolute; top: -40px; left: 0; background: #000; color: white; padding: 8px; z-index: 100;">Skip to main content</a>
+    <main id="main-content">
+      <div id="app"></div>
+    </main>
+  </body>
+</html>

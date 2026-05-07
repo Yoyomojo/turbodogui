@@ -1,0 +1,30 @@
+:host {
+  display: block;
+}
+
+:host([stretch]) {
+  display: flex;
+  height: 100%;
+}
+
+:host([stretch]) .card {
+  flex: 1;
+  box-sizing: border-box;
+}
+
+  .card {
+    background: var(--ui-surface);
+    color: var(--ui-fg);
+    border: 1px solid var(--ui-border);
+    border-radius: var(--ui-radius);
+    padding: 20px;
+    box-shadow: var(--ui-shadow);
+    min-width: 0;
+  }
+
+  ::slotted(h1),
+  ::slotted(h2),
+  ::slotted(h3),
+  ::slotted(p) {
+    margin-top: 0;
+  }
