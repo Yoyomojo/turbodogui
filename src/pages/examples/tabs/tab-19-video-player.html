@@ -1,0 +1,105 @@
+          <div class="row">
+            <div class="col-12">
+              <td-card>
+                <h2>Video Player</h2>
+                <p><code>&lt;td-video-player&gt;</code> is a fully custom video player component with support for local
+                  files (drag-and-drop or browse), external URLs via the <code>src</code> attribute, playback controls,
+                  volume, and video sharing with a timestamped link.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-lg-6">
+              <td-card stretch>
+                <h3>Local file player</h3>
+                <p>Add a file to the src attribute and load it locally. The "Share" button copies a timestamped link with the current playback time to the clipboard, which will work as long as the same file is loaded again.
+                </p>
+                <td-video-player src="/example-video/old-skate-video.mp4" title="Old Skate Video"
+                  style="margin-top:1rem;"></td-video-player>
+              </td-card>
+            </div>
+            <div class="col-12 col-lg-6">
+              <td-card stretch>
+                <h3>External source</h3>
+                <p>Set the <code>src</code> attribute to any publicly accessible video URL. The <strong>Share</strong>
+                  button copies a timestamped link (<code>?t=&lt;seconds&gt;</code>) to the clipboard.</p>
+                <td-video-player title="Vimeo Sample" src="https://vimeo.com/2081767?fl=pl&amp;fe=sh"
+                  style="margin-top:1rem;"></td-video-player>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Basic usage</h3>
+                <td-code language="html">
+                  <template>
+                    
+                    <td-video-player></td-video-player>
+
+                    
+                    <td-video-player src="https://example.com/video.mp4" title="My Video"
+                      poster="/thumbnail.jpg"></td-video-player>
+
+                    
+                    <td-video-player src="/clips/intro.mp4" autoplay muted loop></td-video-player>
+                  </template>
+                </td-code>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Attributes</h3>
+                <table style="width:100%;font-size:0.875rem;border-collapse:collapse;">
+                  <thead>
+                    <tr style="border-bottom:2px solid var(--td-border);">
+                      <th style="text-align:left;padding:6px 8px;">Attribute</th>
+                      <th style="text-align:left;padding:6px 8px;">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="padding:6px 8px;"><code>src</code></td>
+                      <td style="padding:6px 8px;">URL of the video to load</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:6px 8px;"><code>title</code></td>
+                      <td style="padding:6px 8px;">Overlay title shown at the top of the video</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:6px 8px;"><code>poster</code></td>
+                      <td style="padding:6px 8px;">Thumbnail image shown before playback starts</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:6px 8px;"><code>autoplay</code></td>
+                      <td style="padding:6px 8px;">Start playing automatically (use with <code>muted</code>)</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:6px 8px;"><code>muted</code></td>
+                      <td style="padding:6px 8px;">Start with audio muted</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:6px 8px;"><code>loop</code></td>
+                      <td style="padding:6px 8px;">Loop playback continuously</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <h3 style="margin-top:1.5rem;">Controls</h3>
+                <ul>
+                  <li><strong>Play / Pause</strong> button or click the video; also <kbd>Space</kbd> / <kbd>K</kbd>
+                  </li>
+                  <li><strong>Rewind / Forward</strong> ±10 seconds; also <kbd>â†</kbd> / <kbd>â†’</kbd></li>
+                  <li><strong>Volume</strong> slider + mute toggle; also <kbd>M</kbd></li>
+                  <li><strong>Load file</strong> swap the current video for a local file</li>
+                  <li><strong>Share</strong> copies a timestamped link (external <code>src</code>) or the current
+                    timestamp (local file) to the clipboard</li>
+                  <li><strong>Fullscreen</strong> browser fullscreen; also <kbd>F</kbd></li>
+                </ul>
+                <h3 style="margin-top:1rem;">Timestamp deep-link</h3>
+                <p>Append <code>?t=&lt;seconds&gt;</code> to any page URL and the player will automatically seek to that
+                  time when the video metadata loads.</p>
+              </td-card>
+            </div>
+          </div>

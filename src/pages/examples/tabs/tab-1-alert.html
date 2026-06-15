@@ -1,0 +1,165 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Alert Component</h2>
+                <p>Display contextual feedback messages with four semantic variants: <code>info</code>,
+                  <code>success</code>, <code>warning</code>, and <code>alert</code>. Alerts can be used inline as
+                  static banners or as <strong>toast notifications</strong> - fixed overlay messages that stack
+                  in a corner of the viewport, slide in with an animation, and optionally auto-dismiss after a
+                  configurable delay.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Variants</h2>
+                <p>Four semantic variants communicate intent at a glance:</p>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                  <td-alert variant="info">This is an <strong>informational</strong> message.</td-alert>
+                  <td-alert variant="success">Your changes have been <strong>saved successfully</strong>.</td-alert>
+                  <td-alert variant="warning">Your session will expire in 5 minutes.</td-alert>
+                  <td-alert variant="alert">An error occurred while processing your request.</td-alert>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>With Title</h2>
+                <p>Use the <code>title</code> attribute to add a bold heading above the message:</p>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                  <td-alert variant="info" title="Did you know?">You can use the <code>title</code> attribute to add a
+                    heading.</td-alert>
+                  <td-alert variant="success" title="Upload complete">All 3 files were processed without
+                    errors.</td-alert>
+                  <td-alert variant="warning" title="Low storage">You are using 90% of your available
+                    storage.</td-alert>
+                  <td-alert variant="alert" title="Action required">Please verify your email address to
+                    continue.</td-alert>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Dismissible</h2>
+                <p>Add the <code>dismissible</code> attribute to show a close button. Clicking it hides the alert and
+                  emits a <code>dismiss</code> event:</p>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                  <td-alert variant="info" dismissible>Click the Ã -  to dismiss this alert.</td-alert>
+                  <td-alert variant="success" title="Subscription updated" dismissible>Your plan has been upgraded to
+                    Pro.</td-alert>
+                  <td-alert variant="warning" title="Unsaved changes" dismissible>You have unsaved changes that will be
+                    lost.</td-alert>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Toast Notifications</h2>
+                <p>Add the <code>toast</code> attribute to display the alert as a fixed toast notification. Use
+                  <code>toast-position</code> to choose the corner and <code>duration</code> (ms) for auto-dismiss.
+                  Toast alerts always include a close button.</p>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                  <td-button id="toast-info-btn">Info Toast</td-button>
+                  <td-button id="toast-success-btn" variant="success">Success Toast</td-button>
+                  <td-button id="toast-warning-btn" variant="warning">Warning Toast</td-button>
+                  <td-button id="toast-alert-btn" variant="alert">Alert Toast</td-button>
+                  <td-button id="toast-auto-btn">Auto-dismiss (3s)</td-button>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Usage Code Example</h2>
+                <td-code language="html">
+                  <template>
+                    <td-alert variant="info">Informational message.</td-alert>;
+
+                    <td-alert variant="success" title="Success!">
+                      Your changes were saved.
+                    </td-alert>
+
+                    <td-alert variant="warning" dismissible>
+                      This action cannot be undone.
+                    </td-alert>
+
+                    <td-alert variant="alert" title="Error" dismissible>
+                      Something went wrong.
+                    </td-alert>
+
+                    
+                    <td-alert toast variant="success" title="Saved!" duration="4000">
+                      Your changes have been saved.
+                    </td-alert>
+
+                    
+                    <td-alert toast toast-position="bottom-right" variant="warning" title="Warning">
+                      Check your input and try again.
+                    </td-alert>
+                  </template>
+                </td-code>
+                <h3>Component Features</h3>
+                <ul>
+                  <li><strong>Variants:</strong> <code>info</code>, <code>success</code>, <code>warning</code>,
+                    <code>alert</code></li>
+                  <li><strong>Title:</strong> Optional bold heading via the <code>title</code> attribute</li>
+                  <li><strong>Dismissible:</strong> Boolean attribute - shows a close button that hides the alert
+                  </li>
+                  <li><strong>Toast:</strong> Boolean attribute - renders as a fixed overlay toast with a
+                    built-in close button; always closable in toast mode</li>
+                  <li><strong>Toast Position:</strong> <code>toast-position</code> -
+                    <code>top-right</code> (default), <code>top-left</code>, <code>bottom-right</code>,
+                    <code>bottom-left</code>, <code>top-center</code>, <code>bottom-center</code></li>
+                  <li><strong>Duration:</strong> <code>duration</code> (ms) - auto-dismiss delay; omit or
+                    <code>0</code> for no auto-dismiss</li>
+                  <li><strong>Slot:</strong> Default slot accepts any HTML content</li>
+                  <li><strong>Theme:</strong> Colors automatically adapt to light and dark mode</li>
+                  <li><strong>Events:</strong> Emits <code>dismiss</code> when closed by button or auto-dismiss</li>
+                </ul>
+              </td-card>
+            </div>
+          </div>
+
+<script type="module" data-tab-init="tab-1-alert.ts">
+function initTab() {
+    var toastDefs = [
+        ['toast-info-btn', 'info', 'Just so you know', 'This is an informational toast notification.'],
+        ['toast-success-btn', 'success', 'Saved!', 'Your changes have been saved successfully.'],
+        ['toast-warning-btn', 'warning', 'Heads up', 'Your session will expire in 5 minutes.'],
+        ['toast-alert-btn', 'alert', 'Something went wrong', 'Please try again or contact support.'],
+        ['toast-auto-btn', 'info', 'Auto-dismiss', 'This toast will close in 3 seconds.', 3000],
+    ];
+    toastDefs.forEach(function ([btnId, variant, title, message, duration]) {
+        var btn = document.getElementById(btnId);
+        if (!btn)
+            return;
+        btn.addEventListener('click', function () {
+            var toast = document.createElement('td-alert');
+            toast.setAttribute('toast', '');
+            toast.setAttribute('toast-position', 'top-right');
+            toast.setAttribute('variant', variant);
+            toast.setAttribute('title', title);
+            if (duration)
+                toast.setAttribute('duration', String(duration));
+            toast.textContent = message;
+            document.body.appendChild(toast);
+        });
+    });
+}
+if (typeof initTab === "function") {
+    initTab();
+}
+</script>

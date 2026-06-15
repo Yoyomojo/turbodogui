@@ -1,0 +1,49 @@
+:host {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--td-radius, 8px);
+  position: relative;
+  background: var(--td-surface-2);
+}
+
+.item {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+::slotted(img) {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 350ms ease;
+}
+
+:host(:hover) ::slotted(img) {
+  transform: scale(1.04);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  transition: opacity 220ms ease;
+  pointer-events: none;
+  display: flex;
+  align-items: flex-end;
+  padding: 12px;
+}
+
+:host(:hover) .overlay {
+  opacity: 1;
+}
+
+::slotted([slot="overlay"]) {
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}

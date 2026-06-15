@@ -1,0 +1,64 @@
+<div class="login-layout">
+  <div class="container">
+    <div class="row" style="justify-content: center; padding-top: 4rem;">
+      <div class="col-12 col-sm-10 col-md-7 col-lg-5 col-xl-4">
+
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <img src="/turbodog-td-logo.png" alt="Turbodog UI" style="max-width: 160px; width: 100%; height: auto; display: block; margin: 0 auto;">
+        </div>
+
+        <td-card>
+          <div style="padding: 0.5rem 0.25rem;">
+            <h1 style="font-size: 1.5rem; margin-bottom: 0.25rem; text-align: center;">Welcome back</h1>
+            <p style="color: var(--td-muted); margin-top: 0; margin-bottom: 2rem; text-align: center;">Sign in to your account</p>
+
+            <form id="login-form" novalidate>
+              <div class="row row--dense">
+                <div class="col-12">
+                  <td-text-input
+                    label="Email"
+                    type="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    required>
+                  </td-text-input>
+                </div>
+                <div class="col-12">
+                  <td-text-input
+                    label="Password"
+                    type="password"
+                    name="password"
+                    placeholder="••••••••"
+                    required>
+                  </td-text-input>
+                </div>
+              </div>
+
+              <div style="display: flex; justify-content: flex-end; margin-top: 0.25rem; margin-bottom: 1.5rem;">
+                <td-link to="/examples" label="Forgot password?"></td-link>
+              </div>
+
+              <p style="text-align: center; margin-bottom: 1.5rem;">
+                <td-checkbox
+                  label="I agree to the terms of service"
+                  name="terms"
+                  required>
+                </td-checkbox>
+              </p>
+
+              <td-button type="submit" size="large" full-width>
+                Sign in
+              </td-button>
+            </form>
+
+            <p style="text-align: center; color: var(--td-muted); margin-top: 1.75rem; margin-bottom: 0; font-size: 0.9rem;">
+              Don't have an account?
+              <td-link to="/examples/layouts/register" label="Create one"></td-link>
+            </p>
+          </div>
+        </td-card>
+
+      </div>
+    </div>
+  </div>
+</div>

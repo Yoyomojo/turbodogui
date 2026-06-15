@@ -1,0 +1,87 @@
+  :host {
+    display: block;
+    width: 100%;
+    font-family: inherit;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  label {
+    color: var(--td-fg-muted, #6f6f6f);
+    font-size: 1rem;
+    line-height: 1.2;
+  }
+
+  select {
+    width: 100%;
+    min-height: 2.75rem;
+    border: 1px solid var(--td-border);
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    font: inherit;
+    color: var(--td-fg);
+    background: var(--td-surface);
+    outline: none;
+    transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+
+  .field--small select {
+    min-height: 1.75rem;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+    border-radius: 6px;
+  }
+
+  .field--small label {
+    font-size: 0.8rem;
+  }
+
+  .field--medium select {
+    min-height: 2.75rem;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border-radius: 12px;
+  }
+
+  .field--large select {
+    min-height: 3.25rem;
+    padding: 0.9rem 1.2rem;
+    font-size: 1.125rem;
+    border-radius: 14px;
+  }
+
+  .field--large label {
+    font-size: 1.125rem;
+  }
+
+  .field--extra-large select {
+    min-height: 4rem;
+    padding: 1.1rem 1.5rem;
+    font-size: 1.375rem;
+    border-radius: 16px;
+  }
+
+  .field--extra-large label {
+    font-size: 1.375rem;
+  }
+
+  select:focus {
+    border-color: var(--td-primary);
+    box-shadow: 0 0 0 4px rgba(38, 132, 255, 0.14);
+    outline: 2px solid var(--td-primary);
+    outline-offset: 2px;
+  }
+
+  select:focus-visible {
+    border-color: var(--td-primary);
+    box-shadow: 0 0 0 4px rgba(38, 132, 255, 0.14);
+    outline: 2px solid var(--td-primary);
+    outline-offset: 2px;
+  }

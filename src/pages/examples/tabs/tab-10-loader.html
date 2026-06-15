@@ -1,0 +1,138 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Loader Component</h2>
+                <p>Display loading states with CSS-based spinners during API calls and route transitions.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Basic Loader</h2>
+                <p>Simple spinner with optional loading message:</p>
+                <td-button type="button" id="loader-basic-btn">Show Basic Loader</td-button>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Loader with Message</h2>
+                <p>Show a loading message with the spinner:</p>
+                <td-button type="button" id="loader-message-btn">Show with Message</td-button>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Custom Spinner Variants</h2>
+                <p>Different spinner animations:</p>
+                <td-button type="button" id="loader-dots-btn">Dots Spinner</td-button>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Custom Size & Color</h2>
+                <p>Customize the spinner size and color:</p>
+                <td-button type="button" id="loader-custom-btn">Custom Loader</td-button>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Contained Loader</h2>
+                <p>Loader contained within a specific content area instead of full-screen:</p>
+                <div id="loader-container"
+                  style="position: relative; height: 200px; background: var(--td-surface-2); border: 1px solid var(--td-border); border-radius: var(--td-radius); display: flex; align-items: center; justify-content: center; overflow: hidden;">
+                  <div style="text-align: center;">
+                    <p>Content area with contained loader</p>
+                    <td-button type="button" id="loader-contained-btn">Show Contained Loader</td-button>
+                  </div>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Usage Code Example</h2>
+                <td-code language="html">
+                  <template>
+                    <td-loader message="Loading..." size="64px" color="#FF8C00" variant="spinner">
+                    </td-loader>
+                  </template>
+                </td-code>
+                <h3>Component Features</h3>
+                <ul>
+                  <li><strong>Message:</strong> Optional loading text display</li>
+                  <li><strong>Size:</strong> Customize spinner size (default: 48px)</li>
+                  <li><strong>Color:</strong> Customize spinner color (default: primary)</li>
+                  <li><strong>Variant:</strong> "spinner" or "dots" animations</li>
+                  <li><strong>Contained:</strong> Boolean attribute for positioning within a container instead of
+                    full-screen</li>
+                  <li><strong>Overlay:</strong> Full-screen overlay with fade animation (or contained)</li>
+                  <li><strong>Methods:</strong> <code>show()</code> and <code>hide()</code></li>
+                  <li><strong>Events:</strong> Emits <code>loader-show</code> and <code>loader-hide</code></li>
+                </ul>
+                <h3>Programmatic Usage</h3>
+                <td-code language="js">
+                  <template>
+                    const loader = document.createElement('td-loader');
+                    loader.setAttribute('message', 'Loading...');
+                    document.body.appendChild(loader);
+
+                    loader.remove();
+
+                    loader.hide();
+                  </template>
+                </td-code>
+              </td-card>
+            </div>
+          </div>
+
+<script type="module" data-tab-init="tab-10-loader.ts">
+function initTab() {
+    function spawnLoader(message, variant, size, color, containerId) {
+        var loader = document.createElement('td-loader');
+        if (message)
+            loader.setAttribute('message', message);
+        if (variant)
+            loader.setAttribute('variant', variant);
+        if (size)
+            loader.setAttribute('size', size);
+        if (color)
+            loader.setAttribute('color', color);
+        if (containerId) {
+            loader.setAttribute('contained', '');
+            var container = document.getElementById(containerId);
+            if (container) {
+                container.appendChild(loader);
+                setTimeout(function () { loader.remove(); }, 2000);
+            }
+        }
+        else {
+            document.body.appendChild(loader);
+            setTimeout(function () { loader.remove(); }, 2000);
+        }
+    }
+    document.getElementById('loader-basic-btn')?.addEventListener('click', function (e) { e.stopPropagation(); spawnLoader(null, null, null, null, null); });
+    document.getElementById('loader-message-btn')?.addEventListener('click', function (e) { e.stopPropagation(); spawnLoader('Loading data...', null, null, null, null); });
+    document.getElementById('loader-dots-btn')?.addEventListener('click', function (e) { e.stopPropagation(); spawnLoader('Processing...', 'dots', null, null, null); });
+    document.getElementById('loader-custom-btn')?.addEventListener('click', function (e) { e.stopPropagation(); spawnLoader('Custom loader', null, '64px', '#FF8C00', null); });
+    document.getElementById('loader-contained-btn')?.addEventListener('click', function (e) { e.stopPropagation(); spawnLoader('Loading content...', null, null, null, 'loader-container'); });
+}
+if (typeof initTab === "function") {
+    initTab();
+}
+</script>

@@ -1,0 +1,505 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Text Input Component</h2>
+                <p>A versatile input component supporting multiple input types with consistent styling and validation
+                  states.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h2>Input Sizes</h2>
+                <p>Use the <code>size</code> attribute to control the input's visual size:</p>
+                <td-text-input type="text" label="Small" placeholder="size=small" size="small"></td-text-input>
+                <td-text-input type="text" label="Medium (default)" placeholder="size=medium"></td-text-input>
+                <td-text-input type="text" label="Large" placeholder="size=large" size="large"></td-text-input>
+                <td-text-input type="text" label="Extra Large" placeholder="size=extra-large"
+                  size="extra-large"></td-text-input>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h2>Input Types</h2>
+                <p>The same component works with different HTML input types for different purposes:</p>
+                <td-text-input type="text" label="Text Input" placeholder="Standard text input"></td-text-input>
+                <td-text-input type="email" label="Email Input" placeholder="name@example.com"></td-text-input>
+                <td-text-input type="password" label="Password Input" placeholder="Enter your password"></td-text-input>
+                <td-text-input type="tel" label="Telephone Input" placeholder="(555) 123-4567"></td-text-input>
+                <td-text-input type="url" label="URL Input" placeholder="https://example.com"></td-text-input>
+                <td-text-input type="search" label="Search Input" placeholder="Search query"></td-text-input>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Input States</h2>
+                <p>Inputs can display different states:</p>
+                <td-text-input type="text" label="Normal State" placeholder="This is a normal input"></td-text-input>
+                <td-text-input type="text" label="Disabled Input" placeholder="This input is disabled"
+                  disabled></td-text-input>
+                <td-text-input type="text" label="Error State" placeholder="This input has an error"
+                  error></td-text-input>
+                <td-code language="html">
+                  <template>
+                    <td-text-input type="email" label="Email Address" placeholder="Enter your email" size="large"
+                      disabled error>
+                    </td-text-input>
+                  </template>
+                </td-code>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>type:</strong> HTML input type (text, email, password, tel, url, search, etc.)</li>
+                  <li><strong>label:</strong> Display label for the input</li>
+                  <li><strong>placeholder:</strong> Placeholder text</li>
+                  <li><strong>size:</strong> <code>small</code> | <code>medium</code> | <code>large</code> |
+                    <code>extra-large</code> (default: <code>medium</code>)</li>
+                  <li><strong>disabled:</strong> Boolean attribute to disable the input</li>
+                  <li><strong>error:</strong> Boolean attribute to show error state</li>
+                </ul>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h2>File Input Component</h2>
+                <p>Drag and drop files into the zone, or click to browse from your device.</p>
+                <td-file-input id="file-input-any" label="Upload File (Single)" mode="single"></td-file-input>
+                <td-file-input id="file-input-images" label="Upload Files (Multiple)" mode="multiple" accept="image/*" multiple></td-file-input>
+                <p id="file-input-status" style="margin-top:0.75rem; font-size:0.875rem; color: var(--td-fg-muted);">
+                  No files selected yet.
+                </p>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h2>File Input Usage</h2>
+                <td-code language="html">
+                  <template>
+                    <td-file-input label="Upload Document" accept=".pdf,.doc,.docx"></td-file-input>
+                    <td-file-input label="Upload Images" accept="image/*" multiple></td-file-input>
+                  </template>
+                </td-code>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>label:</strong> Label shown above the drop zone</li>
+                  <li><strong>accept:</strong> Allowed file types using standard file input syntax (for example <code>image/*</code> or <code>.pdf,.docx</code>)</li>
+                  <li><strong>multiple:</strong> Boolean - allows selecting more than one file</li>
+                  <li><strong>disabled:</strong> Boolean - disables click and drag/drop selection</li>
+                </ul>
+                <h3>Defaults</h3>
+                <ul>
+                  <li>When <code>accept</code> is not provided, it defaults to <code>*/*</code> (all file types)</li>
+                </ul>
+                <h3>Events</h3>
+                <p><code>change</code> - emits <code>detail.files</code> and <code>detail.names</code> after file selection.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Select Component</h2>
+                <p>A styled wrapper around the native select element with custom styling.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h2>Basic Select</h2>
+                <p>Select from a list of options:</p>
+                <td-select label="Favorite Fruit" name="fruit" value="orange">
+                  <option value="apple">Apple</option>
+                  <option value="banana">Banana</option>
+                  <option value="orange">Orange</option>
+                  <option value="grape">Grape</option>
+                  <option value="strawberry">Strawberry</option>
+                  <option value="mango">Mango</option>
+                </td-select>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h2>Select with Grouping</h2>
+                <p>Organize options into logical groups:</p>
+                <td-select label="Programming Language" name="language" value="ts">
+                  <optgroup label="Web">
+                    <option value="js">JavaScript</option>
+                    <option value="ts">TypeScript</option>
+                    <option value="html">HTML/CSS</option>
+                  </optgroup>
+                  <optgroup label="Backend">
+                    <option value="py">Python</option>
+                    <option value="go">Go</option>
+                    <option value="rs">Rust</option>
+                  </optgroup>
+                </td-select>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Select Usage</h2>
+                <td-code language="html">
+                  <template>
+                    <td-select label="Choose Option" name="options" value="default">
+                      <option value="default">Select an option</option>
+                      <option value="one">Option One</option>
+                      <option value="two">Option Two</option>
+                      <optgroup label="Group">
+                        <option value="grouped">Grouped Option</option>
+                      </optgroup>
+                    </td-select>
+                  </template>
+                </td-code>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>label:</strong> Display label for the select</li>
+                  <li><strong>name:</strong> Form field name</li>
+                  <li><strong>value:</strong> Initial selected value</li>
+                  <li><strong>Options:</strong> Use standard HTML &lt;option&gt; and &lt;optgroup&gt; elements</li>
+                </ul>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Multi-Select Component</h2>
+                <p>A checkbox-based multi-select list. Add the <code>search</code> attribute to show a live search
+                  field above the options.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-md-6">
+              <td-card>
+                <h2>Basic Multi-Select</h2>
+                <p>A scrollable list of checkbox options. Selected values are returned as an array via the
+                  <code>change</code> event.
+                </p>
+                <td-multi-select label="Favorite Fruits" select-all options='[
+                    {"value":"apple","label":"Apple"},
+                    {"value":"banana","label":"Banana"},
+                    {"value":"cherry","label":"Cherry"},
+                    {"value":"grape","label":"Grape"},
+                    {"value":"mango","label":"Mango"},
+                    {"value":"orange","label":"Orange"},
+                    {"value":"peach","label":"Peach"},
+                    {"value":"strawberry","label":"Strawberry"}
+                  ]'>
+                </td-multi-select>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card>
+                <h2>Multi-Select with Search</h2>
+                <p>Add the <code>search</code> attribute to render a live search input above the options list.</p>
+                <td-multi-select label="Programming Languages" search select-all
+                  search-placeholder="Search languages..." options='[
+                    {"value":"ts","label":"TypeScript"},
+                    {"value":"js","label":"JavaScript"},
+                    {"value":"py","label":"Python"},
+                    {"value":"go","label":"Go"},
+                    {"value":"rs","label":"Rust"},
+                    {"value":"java","label":"Java"},
+                    {"value":"cs","label":"C#"},
+                    {"value":"cpp","label":"C++"},
+                    {"value":"swift","label":"Swift"},
+                    {"value":"kotlin","label":"Kotlin"},
+                    {"value":"rb","label":"Ruby"},
+                    {"value":"php","label":"PHP"}
+                  ]' value='["ts","py"]'>
+                </td-multi-select>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>API-Populated Multi-Select</h2>
+                <p>Options loaded dynamically from an API.</p>
+                <td-multi-select id="multi-select-api" label="Product Categories" search select-all
+                  search-placeholder="Filter categories...">
+                </td-multi-select>
+                <p id="multi-select-api-status"
+                  style="margin-top:0.75rem; font-size:0.875rem; color: var(--td-fg-muted); display:none;"></p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Multi-Select Usage</h2>
+                <p><strong>Static (HTML attributes):</strong></p>
+                <td-code language="html">
+                  <template>
+                    <td-multi-select label="Choose Items" search search-placeholder="Search..."
+                      options='[{"value":"a","label":"Option A"},{"value":"b","label":"Option B"}]' value='["a"]'>
+                    </td-multi-select>
+                  </template>
+                </td-code>
+                <p><strong>Dynamic (JS properties):</strong></p>
+                <td-code language="js">
+                  <template>
+                    const ms = document.querySelector('td-multi-select');
+                    ms.options = [{ value: 'a', label: 'Option A' }, { value: 'b', label: 'Option B' }];
+                    ms.value = ['a'];
+                    ms.addEventListener('change', e => console.log(e.detail.value));
+                  </template>
+                </td-code>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>label:</strong> Display label above the list</li>
+                  <li><strong>options:</strong> JSON array of <code>{ value, label }</code> objects</li>
+                  <li><strong>value:</strong> JSON array of initially selected values</li>
+                  <li><strong>search:</strong> Boolean - shows a search input above the options</li>
+                  <li><strong>search-placeholder:</strong> Placeholder text for the search input (default: "Search...")
+                  </li>
+                  <li><strong>select-all:</strong> Boolean - adds a Select all / Deselect all row at the top of the list
+                  </li>
+                  <li><strong>placeholder:</strong> Trigger placeholder text when nothing is selected. Falls back to
+                    <code>label</code> if not set.</li>
+                </ul>
+                <h3>Events</h3>
+                <ul>
+                  <li><strong>change:</strong> Fires on every toggle. <code>detail.value</code> is the full array of
+                    currently selected values.</li>
+                </ul>
+                <h3>JS properties</h3>
+                <ul>
+                  <li><code>options</code>: get/set the options array</li>
+                  <li><code>value</code>: get/set the selected values array</li>
+                </ul>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Button Component</h2>
+                <p>Versatile button component supporting different types, variants, and states.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Button Types</h2>
+                <p>Buttons support different HTML types for form interactions:</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                  <td-button type="button">Button</td-button>
+                  <td-button type="submit">Submit</td-button>
+                  <td-button type="reset">Reset</td-button>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Button Sizes</h2>
+                <p>Use the <code>size</code> attribute to control the button's visual size:</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                  <td-button size="small">Small</td-button>
+                  <td-button>Medium</td-button>
+                  <td-button size="large">Large</td-button>
+                  <td-button size="extra-large">Extra Large</td-button>
+                </div>
+              </td-card>
+              <p>Use variants to convey different actions or states:</p>
+              <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <td-button type="button">Default</td-button>
+                <td-button variant="success">Success</td-button>
+                <td-button variant="warning">Warning</td-button>
+                <td-button variant="alert">Alert</td-button>
+              </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Button Variants</h2>
+                <p>Buttons can display different states:</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; flex-direction: column;">
+                  <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <td-button type="button">Enabled</td-button>
+                    <td-button type="button" disabled>Disabled</td-button>
+                  </div>
+                  <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <td-button variant="success">Success</td-button>
+                    <td-button variant="success" disabled>Success Disabled</td-button>
+                  </div>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Button Usage</h2>
+                <td-code language="html">
+                  <template>
+                    <td-button type="button" variant="success" size="large" disabled>
+                      Click Me
+                    </td-button>
+                  </template>
+                </td-code>
+                <h2>Full Width</h2>
+                <p>Add the <code>full-width</code> boolean attribute to make the button fill its parent container:</p>
+                <td-button full-width>Full Width Button</td-button>
+                <td-code language="html">
+                  <template>
+                    <td-button full-width>Full Width Button</td-button>
+                  </template>
+                </td-code>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>type:</strong> HTML button type (button, submit, reset, default: button)</li>
+                  <li><strong>variant:</strong> Visual style (success, warning, alert, or default/primary)</li>
+                  <li><strong>size:</strong> <code>small</code> | <code>medium</code> | <code>large</code> |
+                    <code>extra-large</code> (default: <code>medium</code>)</li>
+                  <li><strong>disabled:</strong> Boolean attribute to disable the button</li>
+                  <li><strong>full-width:</strong> Boolean attribute to make the button fill 100% of its parent</li>
+                  <li><strong>label:</strong> Alternative way to set button text (uses textContent if not provided)</li>
+                </ul>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-lg-6">
+              <td-card stretch>
+                <h2>Checkbox Component</h2>
+                <p>A styled checkbox with label, states, and accessible error handling.</p>
+                <h3>States</h3>
+                <td-checkbox label="Default checkbox" name="cb1"></td-checkbox>
+                <td-checkbox label="Checked by default" name="cb2" checked></td-checkbox>
+                <td-checkbox label="Disabled" name="cb3" disabled></td-checkbox>
+                <td-checkbox label="Disabled &amp; checked" name="cb4" disabled checked></td-checkbox>
+                <td-checkbox label="Error state" name="cb5" error></td-checkbox>
+                <td-checkbox label="Required field" name="cb6" required></td-checkbox>
+              </td-card>
+            </div>
+            <div class="col-12 col-lg-6">
+              <td-card stretch>
+                <h2>Checkbox Usage</h2>
+                <td-code language="html">
+                  <template>
+                    <td-checkbox label="Accept terms and conditions" name="terms"
+                      required>
+                    </td-checkbox>
+                  </template>
+                </td-code>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>label:</strong> Text label displayed beside the checkbox</li>
+                  <li><strong>name:</strong> Form field name</li>
+                  <li><strong>value:</strong> Submitted value when checked (default: <code>on</code>)</li>
+                  <li><strong>checked:</strong> Boolean â€” pre-checked state</li>
+                  <li><strong>disabled:</strong> Boolean â€” disables interaction</li>
+                  <li><strong>required:</strong> Boolean â€” marks field as required</li>
+                  <li><strong>error:</strong> Boolean â€” shows error state and message</li>
+                </ul>
+                <h3>Events</h3>
+                <p><code>change</code> â€” fires on toggle:
+                  <code>detail: &#123; checked: boolean, value: string &#125;</code></p>
+                <h3>JS Properties</h3>
+                <td-code language="js">
+                  <template>
+                    const cb = document.querySelector('td-checkbox');
+                    cb.checked = true;
+                    cb.addEventListener('change', e => {
+                    console.log(e.detail.checked, e.detail.value);
+                    });
+                  </template>
+                </td-code>
+              </td-card>
+            </div>
+          </div>
+
+<script type="module" data-tab-init="tab-8-inputs-buttons.ts">
+function initTab() {
+    var multiSelectApi = document.getElementById('multi-select-api');
+    var msStatus = document.getElementById('multi-select-api-status');
+  var fileInputAny = document.getElementById('file-input-any');
+  var fileInputImages = document.getElementById('file-input-images');
+  var fileInputStatus = document.getElementById('file-input-status');
+
+  var onFileChange = function (e) {
+    if (!fileInputStatus) {
+      return;
+    }
+    var names = (e.detail && e.detail.names) ? e.detail.names : [];
+    fileInputStatus.textContent = names.length > 0
+      ? 'Selected files: ' + names.join(', ')
+      : 'No files selected.';
+  };
+
+  if (fileInputAny) {
+    fileInputAny.addEventListener('change', onFileChange);
+  }
+  if (fileInputImages) {
+    fileInputImages.addEventListener('change', onFileChange);
+  }
+
+    if (multiSelectApi) {
+        fetch('https://dummyjson.com/products?limit=100&select=category')
+            .then(function (r) { return r.json(); })
+            .then(function (res) {
+            var seen = {};
+            var categories = res.products
+                .map(function (p) { return p.category; })
+                .filter(function (c) {
+                if (seen[c])
+                    return false;
+                seen[c] = true;
+                return true;
+            })
+                .sort();
+            multiSelectApi.options = categories.map(function (c) { return { value: c, label: c }; });
+            if (msStatus) {
+                msStatus.textContent = categories.length + ' categories loaded from dummyjson.com';
+                msStatus.style.display = 'block';
+            }
+        })
+            .catch(function () {
+            if (msStatus) {
+                msStatus.textContent = 'Failed to load categories.';
+                msStatus.style.display = 'block';
+            }
+        });
+        multiSelectApi.addEventListener('change', function (e) {
+            var selected = e.detail.value;
+            if (msStatus) {
+                msStatus.textContent = selected.length > 0 ? 'Selected: ' + selected.join(', ') : 'No categories selected.';
+                msStatus.style.display = 'block';
+            }
+        });
+    }
+}
+if (typeof initTab === "function") {
+    initTab();
+}
+</script>

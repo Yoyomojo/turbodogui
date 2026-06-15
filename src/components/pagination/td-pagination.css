@@ -1,0 +1,105 @@
+:host {
+  display: block;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.pagination.hidden {
+  display: none;
+}
+
+.arrow-btn {
+  appearance: none;
+  background: var(--td-surface);
+  border: 1px solid var(--td-border);
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--td-fg);
+  font-size: 1.375rem;
+  line-height: 1;
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.arrow-btn:hover {
+  background: var(--td-surface-2);
+  border-color: var(--td-primary);
+  color: var(--td-primary);
+}
+
+.arrow-btn[disabled] {
+  opacity: 0.35;
+  cursor: default;
+  pointer-events: none;
+}
+
+.arrow-btn[hidden] {
+  display: none;
+}
+
+.pages-nav {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  gap: 4px;
+}
+
+.pages-scroll-wrapper {
+  flex: 1;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.pages-scroll-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.pages-list {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 0;
+}
+
+.page-btn {
+  appearance: none;
+  background: var(--td-surface);
+  border: 1px solid var(--td-border);
+  border-radius: 8px;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 8px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--td-fg);
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.page-btn:hover {
+  background: var(--td-surface-2);
+  border-color: var(--td-primary);
+  color: var(--td-primary);
+}
+
+.page-btn.active {
+  background: var(--td-primary);
+  border-color: var(--td-primary);
+  color: #fff;
+  font-weight: 600;
+}

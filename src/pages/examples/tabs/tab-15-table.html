@@ -1,0 +1,538 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Table Component</h2>
+                <p>A sortable, exportable data table that accepts JSON attributes set directly in HTML
+                  for static data, or JavaScript property setters for dynamic content.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Static Data</h2>
+                <p>Columns and rows defined directly via JSON attributes. Sortable columns are marked with
+                  <code>sortable: true</code>. Zebra striping and CSV export are both enabled.
+                </p>
+                <td-table csv-export csv-filename="team" zebra columns='[
+                    {"key":"name",       "label":"Name",       "sortable":true},
+                    {"key":"role",       "label":"Role",       "sortable":true},
+                    {"key":"department", "label":"Department", "sortable":true},
+                    {"key":"location",   "label":"Location"},
+                    {"key":"joined",     "label":"Joined",     "sortable":true}
+                  ]' data='[
+                    {"name":"Alice Martin",  "role":"Engineer",         "department":"Platform",   "location":"New York",    "joined":"2019-03-12"},
+                    {"name":"Bob Chen",      "role":"Designer",         "department":"Product",    "location":"San Francisco","joined":"2020-07-01"},
+                    {"name":"Carol White",   "role":"Product Manager",  "department":"Product",    "location":"Austin",      "joined":"2018-11-20"},
+                    {"name":"David Kim",     "role":"Engineer",         "department":"Backend",    "location":"Seattle",     "joined":"2021-02-15"},
+                    {"name":"Eva Rossi",     "role":"QA Engineer",      "department":"Platform",   "location":"Chicago",     "joined":"2022-05-30"},
+                    {"name":"Frank MÃ¼ller",  "role":"DevOps",           "department":"Infra",      "location":"Berlin",      "joined":"2020-01-08"},
+                    {"name":"Grace Liu",     "role":"Data Scientist",   "department":"Analytics",  "location":"Boston",      "joined":"2021-09-17"},
+                    {"name":"Henry Park",    "role":"Engineer",         "department":"Frontend",   "location":"Toronto",     "joined":"2023-03-05"}
+                  ]'>
+                </td-table>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Dynamic Data</h2>
+                <p>Table columns and rows populated at runtime via JavaScript property setters. Click the button to
+                  fetch real users from the JSONPlaceholder API.</p>
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                  <td-button type="button" id="table-fetch-btn">Fetch Users</td-button>
+                  <span id="table-fetch-status"
+                    style="display:none; color: var(--td-fg-muted, #6f6f6f); font-size: 0.875rem;"></span>
+                </div>
+                <td-table id="table-dynamic" csv-export csv-filename="users" zebra></td-table>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Search</h2>
+                <p>Add the <code>search</code> attribute to render a live search input above the table. Typing filters
+                  rows across all columns (case-insensitive). Combine with <code>csv-export</code> and
+                  <code>zebra</code> as needed.
+                </p>
+                <td-table search csv-export csv-filename="team-search" zebra columns='[
+                    {"key":"name",       "label":"Name",       "sortable":true},
+                    {"key":"role",       "label":"Role",       "sortable":true},
+                    {"key":"department", "label":"Department", "sortable":true},
+                    {"key":"location",   "label":"Location"},
+                    {"key":"joined",     "label":"Joined",     "sortable":true}
+                  ]' data='[
+                    {"name":"Alice Martin",  "role":"Engineer",         "department":"Platform",   "location":"New York",     "joined":"2019-03-12"},
+                    {"name":"Bob Chen",      "role":"Designer",         "department":"Product",    "location":"San Francisco","joined":"2020-07-01"},
+                    {"name":"Carol White",   "role":"Product Manager",  "department":"Product",    "location":"Austin",       "joined":"2018-11-20"},
+                    {"name":"David Kim",     "role":"Engineer",         "department":"Backend",    "location":"Seattle",      "joined":"2021-02-15"},
+                    {"name":"Eva Rossi",     "role":"QA Engineer",      "department":"Platform",   "location":"Chicago",      "joined":"2022-05-30"},
+                    {"name":"Frank MÃ¼ller",  "role":"DevOps",           "department":"Infra",      "location":"Berlin",       "joined":"2020-01-08"},
+                    {"name":"Grace Liu",     "role":"Data Scientist",   "department":"Analytics",  "location":"Boston",       "joined":"2021-09-17"},
+                    {"name":"Henry Park",    "role":"Engineer",         "department":"Frontend",   "location":"Toronto",      "joined":"2023-03-05"}
+                  ]'>
+                </td-table>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Sticky Header &amp; Scrollable Body</h2>
+                <p>Add <code>sticky-header</code> to pin the header row and <code>max-rows="N"</code> to limit the
+                  visible
+                  row count and enable vertical scrolling. The two attributes are independent: you can use either or
+                  both.</p>
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                  <td-button type="button" id="table-sticky-fetch-btn">Fetch Users</td-button>
+                  <span id="table-sticky-fetch-status"
+                    style="display:none; color: var(--td-fg-muted, #6f6f6f); font-size: 0.875rem;"></span>
+                </div>
+                <td-table id="table-sticky" sticky-header max-rows="5" zebra search csv-export
+                  csv-filename="users-sticky"></td-table>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Editable Data</h2>
+                <p>The <strong>Name</strong> column renders a <code>td-text-input</code> per row. Edits dispatch a
+                  <code>cell-change</code> event on the table element: useful for inline editing workflows.
+                </p>
+                <p id="table-editable-status"
+                  style="color: var(--td-fg-muted, #6f6f6f); font-size: 0.875rem; min-height: 1.4em;"></p>
+                <td-table id="table-editable" zebra></td-table>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Custom HTML Table</h2>
+                <p>Place <code>&lt;thead&gt;</code> and <code>&lt;tbody&gt;</code> children directly inside
+                  <code>&lt;td-table&gt;</code> to author the table manually. All component styles: borders, zebra
+                  striping, hover states: still apply.
+                </p>
+                <td-table zebra>
+                  <template>
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Department</th>
+                        <th>Location</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Alice Martin</td>
+                        <td>Engineer</td>
+                        <td>Platform</td>
+                        <td>New York</td>
+                      </tr>
+                      <tr>
+                        <td>Bob Chen</td>
+                        <td>Designer</td>
+                        <td>Product</td>
+                        <td>San Francisco</td>
+                      </tr>
+                      <tr>
+                        <td>Carol White</td>
+                        <td>Product Manager</td>
+                        <td>Product</td>
+                        <td>Austin</td>
+                      </tr>
+                      <tr>
+                        <td>David Kim</td>
+                        <td>Engineer</td>
+                        <td>Backend</td>
+                        <td>Seattle</td>
+                      </tr>
+                    </tbody>
+                  </template>
+                </td-table>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Nested / Grouped Column Headers</h2>
+                <p>Add a <code>children</code> array to any column definition to create a spanning group header. Nesting
+                  is unlimited. Leaf columns (those without <code>children</code>) control the data keys and can still
+                  be sortable. Works with <code>sticky-header</code> too; each header row sticks independently.</p>
+                <td-table id="table-nested" zebra sticky-header max-rows="6" center-headers search csv-export
+                  csv-filename="performance"></td-table>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Highlighting</h2>
+                <p>Rows and individual cells can be coloured using the same four variants as the button component.
+                  Use a <strong>badge span</strong> inside a <code>render()</code> function for inline text labels.</p>
+                <td-table id="table-highlight" zebra></td-table>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Usage</h2>
+                <p><strong>Static (HTML attributes):</strong></p>
+                <td-code language="html">
+                  <template>
+                    <td-table search csv-export csv-filename="report" zebra
+                      columns='[{"key":"name","label":"Name","sortable":true}]'
+                      data='[{"name":"Alice"},{"name":"Bob"}]'>
+                    </td-table>
+                  </template>
+                </td-code>
+                <p><strong>Dynamic (JS properties):</strong></p>
+                <td-code language="js">
+                  <template>
+                    const table = document.querySelector('td-table');
+                    table.columns = [{ key: 'name', label: 'Name', sortable: true }];
+                    table.data = [{ name: 'Alice' }, { name: 'Bob' }];
+                  </template>
+                </td-code>
+                <p><strong>Custom HTML (template child):</strong></p>
+                <td-code language="html">
+                  <template>
+                    <td-table zebra>
+                      <template>
+                        <thead>
+                          <tr>
+                            <th>Name</th>
+                            <th>Role</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Alice</td>
+                            <td>Engineer</td>
+                          </tr>
+                        </tbody>
+                      </template>
+                    </td-table>
+                  </template>
+                </td-code>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>columns:</strong> JSON array of <code>{ key, label, sortable? }</code> objects</li>
+                  <li><strong>data:</strong> JSON array of row objects keyed to column keys</li>
+                  <li><strong>search:</strong> Boolean: shows a live search input that filters rows across all columns
+                  </li>
+                  <li><strong>csv-export:</strong> Boolean: shows the Export CSV button above the table</li>
+                  <li><strong>csv-filename:</strong> Download filename without extension (default: "export")</li>
+                  <li><strong>zebra:</strong> Boolean: applies alternating row background colours (works in all modes)
+                  </li>
+                </ul>
+                <h3>Sorting</h3>
+                <ul>
+                  <li>Click a sortable column header to cycle: ascending â†’ descending â†’ unsorted</li>
+                  <li>Keyboard accessible: Enter or Space activates sort on focused headers</li>
+                </ul>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Nested Headers Usage</h2>
+                <p>Add a <code>children</code> array to any column to create a spanning group header row. Group headers
+                  have no <code>key</code> and cannot be sorted. Leaf columns (those without <code>children</code>)
+                  drive the data and can be sortable. Nesting can go as deep as needed.</p>
+                <p><strong>Via JS property setter:</strong></p>
+                <td-code language="js">
+                  <template>
+                    const table = document.querySelector('td-table');
+                    table.columns = [
+                    {
+                    key: '', label: 'Employee',
+                    children: [
+                    { key: 'name', label: 'Name', sortable: true },
+                    { key: 'department', label: 'Department', sortable: true },
+                    ],
+                    },
+                    {
+                    key: '', label: 'Performance',
+                    children: [
+                    { key: 'y2024', label: '2024', sortable: true },
+                    { key: 'y2025', label: '2025', sortable: true },
+                    ],
+                    },
+                    { key: 'status', label: 'Status', sortable: true },
+                    ];
+                    table.data = [
+                    { name: 'Alice', department: 'Engineering', y2024: 91, y2025: 94, status: 'Active' },
+                    { name: 'Bob', department: 'Design', y2024: 78, y2025: 80, status: 'Active' },
+                    ];
+                  </template>
+                </td-code>
+                <p><strong>Via JSON attribute (columns only, data as attribute):</strong></p>
+                <td-code language="html">
+                  <template>
+                    <td-table zebra center-headers sticky-header max-rows="5" columns='[
+    {"key":"","label":"Employee","children":[
+      {"key":"name","label":"Name","sortable":true},
+      {"key":"department","label":"Department","sortable":true}
+    ]},
+    {"key":"","label":"Performance","children":[
+      {"key":"y2024","label":"2024","sortable":true},
+      {"key":"y2025","label":"2025","sortable":true}
+    ]},
+    {"key":"status","label":"Status","sortable":true}
+  ]' data='[{"name":"Alice","department":"Engineering","y2024":91,"y2025":94,"status":"Active"}]'>
+                    </td-table>
+                  </template>
+                </td-code>
+                <p><strong>Via custom HTML template (manual markup):</strong></p>
+                <td-code language="html">
+                  <template>
+                    <td-table zebra>
+                      <template>
+                        <thead>
+                          <tr>
+                            <th rowspan="2">Name</th>
+                            <th colspan="2">Performance</th>
+                            <th rowspan="2">Status</th>
+                          </tr>
+                          <tr>
+                            <th>2024</th>
+                            <th>2025</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Alice</td>
+                            <td>91</td>
+                            <td>94</td>
+                            <td>Active</td>
+                          </tr>
+                        </tbody>
+                      </template>
+                    </td-table>
+                  </template>
+                </td-code>
+                <h3>Column fields</h3>
+                <ul>
+                  <li><strong>key:</strong> Data property name. Use <code>""</code> for group headers that have no
+                    direct data column</li>
+                  <li><strong>label:</strong> Header text</li>
+                  <li><strong>sortable:</strong> Boolean: enables click/keyboard sort on leaf columns only</li>
+                  <li><strong>children:</strong> Array of sub-columns. Presence of this field makes the column a group
+                    header; <code>key</code> and <code>sortable</code> are ignored</li>
+                  <li><strong>render:</strong> Optional function <code>(value, row) =&gt; string</code>: return an HTML
+                    string to fully control the cell content</li>
+                </ul>
+                <h3>Highlighting</h3>
+                <p><strong>Row highlight</strong> â€” add <code>_variant</code> to a row object:</p>
+                <td-code language="js">
+                  <template>
+                    table.data = [
+                    { name: 'Alice', status: 'Active', _variant: 'success' },
+                    { name: 'Bob', status: 'Inactive', _variant: 'alert' },
+                    ];
+                  </template>
+                </td-code>
+                <p><strong>Cell highlight</strong> â€” add <code>_variant_&lt;colKey&gt;</code>:</p>
+                <td-code language="js">
+                  <template>
+                    table.data = [
+                    { name: 'Alice', score: 95, _variant_score: 'success' },
+                    { name: 'Bob', score: 42, _variant_score: 'alert' },
+                    ];
+                  </template>
+                </td-code>
+                <p><strong>Badge spans</strong> â€” use inside a column <code>render()</code>:</p>
+                <td-code language="js">
+                  <template>
+                    {
+                    key: 'status', label: 'Status',
+                    render: (v) => `&lt;span class="badge badge--success"&gt;${v}&lt;/span&gt;`
+                    }
+                  </template>
+                </td-code>
+                <p>Available variants: <code>primary</code>, <code>success</code>, <code>warning</code>,
+                  <code>alert</code>.<br>
+                  Badge modifiers: <code>.badge--success</code> (solid) Â· <code>.badge--success-subtle</code> (tinted).
+                </p>
+              </td-card>
+            </div>
+          </div>
+
+<script type="module" data-tab-init="tab-15-table.ts">
+function initTab() {
+    var fetchBtn = document.getElementById('table-fetch-btn');
+    var tableDynamic = document.getElementById('table-dynamic');
+    var fetchStatus = document.getElementById('table-fetch-status');
+    if (fetchBtn && tableDynamic) {
+        fetchBtn.addEventListener('click', function () {
+            fetchBtn.disabled = true;
+            if (fetchStatus) {
+                fetchStatus.textContent = 'Fetching\u2026';
+                fetchStatus.style.display = 'block';
+            }
+            fetch('https://jsonplaceholder.typicode.com/users')
+                .then(function (r) { return r.json(); })
+                .then(function (users) {
+                tableDynamic.columns = [
+                    { key: 'id', label: 'ID' },
+                    { key: 'name', label: 'Name', sortable: true },
+                    { key: 'email', label: 'Email', sortable: true },
+                    { key: 'phone', label: 'Phone' },
+                    { key: 'company', label: 'Company', sortable: true },
+                ];
+                tableDynamic.data = users.map(function (u) {
+                    return { id: u.id, name: u.name, email: u.email, phone: u.phone, company: u.company.name };
+                });
+                if (fetchStatus)
+                    fetchStatus.style.display = 'none';
+            })
+                .catch(function (err) {
+                if (fetchStatus)
+                    fetchStatus.textContent = 'Error: ' + err.message;
+                fetchBtn.disabled = false;
+            });
+        });
+    }
+    var stickyBtn = document.getElementById('table-sticky-fetch-btn');
+    var tableSticky = document.getElementById('table-sticky');
+    var stickyStatus = document.getElementById('table-sticky-fetch-status');
+    if (stickyBtn && tableSticky) {
+        stickyBtn.addEventListener('click', function () {
+            stickyBtn.disabled = true;
+            if (stickyStatus) {
+                stickyStatus.textContent = 'Fetching\u2026';
+                stickyStatus.style.display = 'block';
+            }
+            fetch('https://jsonplaceholder.typicode.com/users')
+                .then(function (r) { return r.json(); })
+                .then(function (users) {
+                tableSticky.columns = [
+                    { key: 'id', label: 'ID' },
+                    { key: 'name', label: 'Name', sortable: true },
+                    { key: 'email', label: 'Email', sortable: true },
+                    { key: 'phone', label: 'Phone' },
+                    { key: 'company', label: 'Company', sortable: true },
+                ];
+                tableSticky.data = users.map(function (u) {
+                    return { id: u.id, name: u.name, email: u.email, phone: u.phone, company: u.company.name };
+                });
+                if (stickyStatus)
+                    stickyStatus.style.display = 'none';
+            })
+                .catch(function (err) {
+                if (stickyStatus)
+                    stickyStatus.textContent = 'Error: ' + err.message;
+                stickyBtn.disabled = false;
+            });
+        });
+    }
+    var tableNested = document.getElementById('table-nested');
+    if (tableNested) {
+        tableNested.columns = [
+            {
+                key: '', label: 'Employee', children: [
+                    { key: 'name', label: 'Name', sortable: true },
+                    { key: 'department', label: 'Department', sortable: true },
+                ]
+            },
+            {
+                key: '', label: 'Contact', children: [
+                    { key: 'email', label: 'Email' },
+                    { key: 'phone', label: 'Phone' },
+                ]
+            },
+            {
+                key: '', label: 'Performance', children: [
+                    { key: 'y2024', label: '2024', sortable: true },
+                    { key: 'y2025', label: '2025', sortable: true },
+                ]
+            },
+            { key: 'status', label: 'Status', sortable: true },
+        ];
+        tableNested.data = [
+            { name: 'Alice Martin', department: 'Engineering', email: 'alice@example.com', phone: '555-0101', y2024: 91, y2025: 94, status: 'Active' },
+            { name: 'Bob Chen', department: 'Design', email: 'bob@example.com', phone: '555-0102', y2024: 78, y2025: 80, status: 'Active' },
+            { name: 'Carol White', department: 'Product', email: 'carol@example.com', phone: '555-0103', y2024: 85, y2025: 87, status: 'Active' },
+            { name: 'David Kim', department: 'Engineering', email: 'david@example.com', phone: '555-0104', y2024: 72, y2025: 79, status: 'On Leave' },
+            { name: 'Eva Rossi', department: 'Marketing', email: 'eva@example.com', phone: '555-0105', y2024: 88, y2025: 91, status: 'Active' },
+            { name: 'Frank M\u00fcller', department: 'Engineering', email: 'frank@example.com', phone: '555-0106', y2024: 95, y2025: 96, status: 'Active' },
+            { name: 'Grace Lee', department: 'Design', email: 'grace@example.com', phone: '555-0107', y2024: 80, y2025: 78, status: 'Active' },
+            { name: 'Henry Park', department: 'Product', email: 'henry@example.com', phone: '555-0108', y2024: 70, y2025: 77, status: 'Inactive' },
+        ];
+    }
+    var tableHighlight = document.getElementById('table-highlight');
+    if (tableHighlight) {
+        tableHighlight.columns = [
+            { key: 'name', label: 'Name', sortable: true },
+            { key: 'dept', label: 'Dept', sortable: true },
+            { key: 'score', label: 'Score', sortable: true },
+            {
+                key: 'status', label: 'Status', sortable: true, render: function (v) {
+                    var map = { Active: 'badge--success', Warning: 'badge--warning', Inactive: 'badge--alert', New: 'badge--primary' };
+                    return '<span class="badge ' + (map[v] || '') + '">' + v + '</span>';
+                }
+            },
+            { key: 'notes', label: 'Notes' },
+        ];
+        tableHighlight.data = [
+            { name: 'Alice Martin', dept: 'Engineering', score: 94, status: 'Active', notes: 'Top performer', _variant: 'success' },
+            { name: 'Bob Chen', dept: 'Design', score: 81, status: 'Active', notes: 'On track', _variant_score: 'primary' },
+            { name: 'Carol White', dept: 'Product', score: 67, status: 'Warning', notes: 'Needs review', _variant: 'warning' },
+            { name: 'David Kim', dept: 'Engineering', score: 55, status: 'Inactive', notes: 'On leave', _variant: 'alert' },
+            { name: 'Eva Rossi', dept: 'Marketing', score: 89, status: 'Active', notes: 'Exceeded targets', _variant_score: 'success' },
+            { name: 'Frank M\u00fcller', dept: 'Infra', score: 43, status: 'Inactive', notes: 'Contract ended', _variant: 'alert' },
+            { name: 'Grace Liu', dept: 'Analytics', score: 77, status: 'Active', notes: '', _variant_score: 'primary' },
+            { name: 'Henry Park', dept: 'Frontend', score: 62, status: 'Warning', notes: 'Deadline missed', _variant_score: 'warning' },
+            { name: 'Iris Tan', dept: 'Engineering', score: 98, status: 'Active', notes: 'Promoted this quarter', _variant: 'success' },
+            { name: 'James Roy', dept: 'Product', score: 71, status: 'New', notes: 'Joined last month' },
+        ];
+    }
+    var tableEditable = document.getElementById('table-editable');
+    var editableStatus = document.getElementById('table-editable-status');
+    if (tableEditable) {
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(function (r) { return r.json(); })
+            .then(function (users) {
+            tableEditable.columns = [
+                {
+                    key: 'name', label: 'Name', render: function (val) {
+                        return '<td-text-input size="small" style="margin-bottom:0" value="' + String(val || '').replace(/"/g, '&quot;') + '" placeholder="Name"></td-text-input>';
+                    }
+                },
+                { key: 'email', label: 'Email', sortable: true },
+                { key: 'phone', label: 'Phone' },
+                { key: 'company', label: 'Company', sortable: true },
+            ];
+            tableEditable.data = users.map(function (u) {
+                return { id: u.id, name: u.name, email: u.email, phone: u.phone, company: u.company.name };
+            });
+            tableEditable.addEventListener('cell-change', function (e) {
+                if (editableStatus) {
+                    editableStatus.textContent = 'Row ' + (e.detail.rowIndex + 1) + ' \u00b7 ' + e.detail.colKey + ': "' + e.detail.value + '"';
+                }
+            });
+        });
+    }
+}
+if (typeof initTab === "function") {
+    initTab();
+}
+</script>

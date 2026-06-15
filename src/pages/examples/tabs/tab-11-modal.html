@@ -1,0 +1,111 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Modal Component</h2>
+                <p>Display content in a centered modal dialog with a customizable overlay and close button.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Basic Modal</h2>
+                <p>Click the button to open a modal with default settings:</p>
+                <td-button type="button" class="modal-trigger" data-modal-type="basic">Open Modal</td-button>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Modal with Close on Overlay</h2>
+                <p>Set <code>close-on-overlay</code> to allow clicking the overlay to close the modal:</p>
+                <td-button type="button" class="modal-trigger" data-modal-type="overlay-close">Open Modal</td-button>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Standard Overlay Style</h2>
+                <p>A modal with the default semi-transparent overlay background. The overlay colour is set via the
+                  <code>--td-modal-overlay</code> CSS custom property if you need to override it:</p>
+                <td-button type="button" class="modal-trigger" data-modal-type="opacity">Open Modal</td-button>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Custom Size</h2>
+                <p>Set custom width with the <code>width</code> attribute:</p>
+                <td-button type="button" class="modal-trigger" data-modal-type="wide">Open Wide Modal</td-button>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Usage Code Example</h2>
+                <td-code language="html">
+                  <template>
+                    <td-modal title="Modal Title" close-on-overlay close-on-escape width="90vw">
+                      <p>Modal content goes here</p>
+                    </td-modal>
+                  </template>
+                </td-code>
+                <h3>Component Features</h3>
+                <ul>
+                  <li><strong>Title:</strong> Modal header title</li>
+                  <li><strong>Close on Overlay:</strong> Boolean attribute to close when clicking overlay</li>
+                  <li><strong>Close on Escape:</strong> Boolean attribute to close when pressing Escape key</li>
+                  <li><strong>Width:</strong> Custom width (e.g., "90vw", "800px", default: 500px)</li>
+                  <li><strong>Centered:</strong> Vertically and horizontally centered on the page</li>
+                  <li><strong>Methods:</strong> <code>close()</code></li>
+                </ul>
+              </td-card>
+            </div>
+          </div>
+
+<script type="module" data-tab-init="tab-11-modal.ts">
+function initTab() {
+    document.querySelectorAll('.modal-trigger').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var type = btn.getAttribute('data-modal-type');
+            var modal = document.createElement('td-modal');
+            var p = document.createElement('p');
+            if (type === 'basic') {
+                modal.setAttribute('title', 'Welcome');
+                modal.setAttribute('close-on-escape', '');
+                p.textContent = 'This is a basic modal. Click the X button or press Escape to close.';
+            }
+            else if (type === 'overlay-close') {
+                modal.setAttribute('title', 'Closeable Modal');
+                modal.setAttribute('close-on-overlay', '');
+                modal.setAttribute('close-on-escape', '');
+                p.textContent = 'Click anywhere outside the modal or press Escape to close it.';
+            }
+            else if (type === 'opacity') {
+                modal.setAttribute('title', 'Darker Overlay');
+                p.textContent = 'This modal has custom styling.';
+            }
+            else if (type === 'wide') {
+                modal.setAttribute('title', 'Wide Modal');
+                modal.setAttribute('width', '90vw');
+                p.textContent = 'This modal is 90% of the viewport width.';
+            }
+            modal.appendChild(p);
+            document.body.appendChild(modal);
+        });
+    });
+}
+if (typeof initTab === "function") {
+    initTab();
+}
+</script>

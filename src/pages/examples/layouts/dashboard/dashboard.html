@@ -1,0 +1,113 @@
+<div class="dashboard-layout">
+  <div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+
+    <div style="margin-bottom: 2rem;">
+      <h1 style="font-size: 1.75rem; font-weight: 700; margin: 0 0 0.375rem;">Dashboard</h1>
+      <p style="margin: 0; color: var(--td-muted); font-size: 0.9375rem;">Product catalog overview - live data from dummyjson.com</p>
+    </div>
+
+    <div class="row row--dense">
+      <div class="col-12 col-sm-6 col-xl-3">
+        <td-card id="dash-card-stat-products">
+          <div style="display: flex; flex-direction: column; gap: 0.25rem; padding: 0.125rem 0;">
+            <span style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--td-muted);">Total Products</span>
+            <span id="dash-stat-products" style="font-size: 2rem; font-weight: 700; line-height: 1.1; opacity: 0.3;"> - </span>
+            <span style="font-size: 0.8125rem; color: var(--td-muted);">Items in catalog</span>
+          </div>
+        </td-card>
+      </div>
+      <div class="col-12 col-sm-6 col-xl-3">
+        <td-card id="dash-card-stat-price">
+          <div style="display: flex; flex-direction: column; gap: 0.25rem; padding: 0.125rem 0;">
+            <span style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--td-muted);">Avg Price</span>
+            <span id="dash-stat-price" style="font-size: 2rem; font-weight: 700; line-height: 1.1; opacity: 0.3;"> - </span>
+            <span style="font-size: 0.8125rem; color: var(--td-muted);">Across all categories</span>
+          </div>
+        </td-card>
+      </div>
+      <div class="col-12 col-sm-6 col-xl-3">
+        <td-card id="dash-card-stat-stock">
+          <div style="display: flex; flex-direction: column; gap: 0.25rem; padding: 0.125rem 0;">
+            <span style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--td-muted);">Total Stock</span>
+            <span id="dash-stat-stock" style="font-size: 2rem; font-weight: 700; line-height: 1.1; opacity: 0.3;"> - </span>
+            <span style="font-size: 0.8125rem; color: var(--td-muted);">Units available</span>
+          </div>
+        </td-card>
+      </div>
+      <div class="col-12 col-sm-6 col-xl-3">
+        <td-card id="dash-card-stat-categories">
+          <div style="display: flex; flex-direction: column; gap: 0.25rem; padding: 0.125rem 0;">
+            <span style="font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--td-muted);">Categories</span>
+            <span id="dash-stat-categories" style="font-size: 2rem; font-weight: 700; line-height: 1.1; opacity: 0.3;"> - </span>
+            <span style="font-size: 0.8125rem; color: var(--td-muted);">Product categories</span>
+          </div>
+        </td-card>
+      </div>
+    </div>
+
+    <div class="row row--dense" style="margin-top: 1rem;">
+      <div class="col-12 col-lg-8">
+        <td-card id="dash-card-line">
+          <p style="font-size: 0.9375rem; font-weight: 600; margin: 0 0 1rem; color: var(--td-fg);">Avg Price &amp; Stock by Category</p>
+          <td-line-chart id="dash-line-chart" height="240" show-values></td-line-chart>
+        </td-card>
+      </div>
+      <div class="col-12 col-lg-4">
+        <td-card id="dash-card-donut">
+          <p style="font-size: 0.9375rem; font-weight: 600; margin: 0 0 1rem; color: var(--td-fg);">Stock Distribution</p>
+          <td-donut-chart id="dash-donut-chart" height="240" center-label="Stock" show-values></td-donut-chart>
+        </td-card>
+      </div>
+    </div>
+
+    <div class="row row--dense" style="margin-top: 1rem;">
+      <div class="col-12">
+        <td-card id="dash-card-bar">
+          <p style="font-size: 0.9375rem; font-weight: 600; margin: 0 0 1rem; color: var(--td-fg);">Avg Price by Category</p>
+          <td-bar-chart id="dash-bar-chart" height="260" show-values></td-bar-chart>
+        </td-card>
+      </div>
+    </div>
+
+    <div class="row row--dense" style="margin-top: 1rem;">
+      <div class="col-12 col-lg-8">
+        <td-card id="dash-card-bubble">
+          <p style="font-size: 0.9375rem; font-weight: 600; margin: 0 0 1rem; color: var(--td-fg);">Price vs Stock Bubble Analysis</p>
+          <td-bubble-chart
+            id="dash-bubble-chart"
+            height="300"
+            x-label="Average Price ($)"
+            y-label="Average Stock"
+            legend-position="bottom"
+            show-values>
+          </td-bubble-chart>
+        </td-card>
+      </div>
+      <div class="col-12 col-lg-4">
+        <td-card id="dash-card-pie">
+          <p style="font-size: 0.9375rem; font-weight: 600; margin: 0 0 1rem; color: var(--td-fg);">Category Product Share</p>
+          <td-pie-chart id="dash-pie-chart" height="300" show-values></td-pie-chart>
+        </td-card>
+      </div>
+    </div>
+
+    <div class="row row--dense" style="margin-top: 1rem;">
+      <div class="col-12">
+        <td-card id="dash-card-orders">
+          <p style="font-size: 0.9375rem; font-weight: 600; margin: 0 0 1rem; color: var(--td-fg);">Recent Orders</p>
+          <td-table id="dash-orders-table" zebra search csv-export csv-filename="orders" sticky-header max-rows="8"></td-table>
+        </td-card>
+      </div>
+    </div>
+
+    <div class="row row--dense" style="margin-top: 1rem;">
+      <div class="col-12">
+        <td-card id="dash-card-products">
+          <p style="font-size: 0.9375rem; font-weight: 600; margin: 0 0 1rem; color: var(--td-fg);">Product Catalog Snapshot</p>
+          <td-table id="dash-products-table" zebra search csv-export csv-filename="products" sticky-header max-rows="10"></td-table>
+        </td-card>
+      </div>
+    </div>
+
+  </div>
+</div>

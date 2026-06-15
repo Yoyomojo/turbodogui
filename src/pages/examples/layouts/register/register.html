@@ -1,0 +1,87 @@
+<div class="register-layout">
+  <div class="container">
+    <div class="row" style="justify-content: center; padding-top: 4rem; padding-bottom: 4rem;">
+      <div class="col-12 col-sm-10 col-md-7 col-lg-6 col-xl-5">
+
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <img src="/turbodog-td-logo.png" alt="Turbodog UI" style="max-width: 160px; width: 100%; height: auto; display: block; margin: 0 auto;">
+        </div>
+
+        <td-card>
+          <div style="padding: 0.5rem 0.25rem;">
+            <h1 style="font-size: 1.5rem; margin-bottom: 0.25rem; text-align: center;">Create an account</h1>
+            <p style="color: var(--td-muted); margin-top: 0; margin-bottom: 2rem; text-align: center;">Get started for free</p>
+
+            <form id="register-form" novalidate>
+              <div class="row row--dense">
+                <div class="col-12 col-sm-6">
+                  <td-text-input
+                    label="First name"
+                    type="text"
+                    name="first-name"
+                    placeholder="Jane"
+                    required>
+                  </td-text-input>
+                </div>
+                <div class="col-12 col-sm-6">
+                  <td-text-input
+                    label="Last name"
+                    type="text"
+                    name="last-name"
+                    placeholder="Smith"
+                    required>
+                  </td-text-input>
+                </div>
+                <div class="col-12">
+                  <td-text-input
+                    label="Email"
+                    type="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    required>
+                  </td-text-input>
+                </div>
+                <div class="col-12">
+                  <td-text-input
+                    label="Password"
+                    type="password"
+                    name="password"
+                    placeholder="Min. 8 characters"
+                    required>
+                  </td-text-input>
+                </div>
+                <div class="col-12">
+                  <td-text-input
+                    label="Confirm password"
+                    type="password"
+                    name="confirm-password"
+                    placeholder="Re-enter your password"
+                    required>
+                  </td-text-input>
+                </div>
+              </div>
+
+              <p style="text-align: center; margin-top: 0.5rem; margin-bottom: 1.5rem;">
+                <td-checkbox
+                  label="I agree to the terms of service"
+                  name="terms"
+                  required>
+                </td-checkbox>
+              </p>
+
+              <td-button type="submit" size="large" full-width>
+                Create account
+              </td-button>
+            </form>
+
+            <p style="text-align: center; color: var(--td-muted); margin-top: 1.75rem; margin-bottom: 0; font-size: 0.9rem;">
+              Already have an account?
+              <td-link to="/examples/layouts/login" label="Sign in"></td-link>
+            </p>
+          </div>
+        </td-card>
+
+      </div>
+    </div>
+  </div>
+</div>

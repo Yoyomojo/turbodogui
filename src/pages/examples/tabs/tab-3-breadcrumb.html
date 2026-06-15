@@ -1,0 +1,150 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card stretch>
+                <h2>Breadcrumb Component</h2>
+                <p>The breadcrumb component provides accessible page-trail navigation. It supports three usage modes:
+                  plain HTML markup inside the tags, a JSON <code>items</code> attribute, and dynamic population
+                  from an API via <code>src</code> or the JavaScript <code>items</code> setter.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-lg-6">
+              <td-card stretch>
+                <h2>HTML Slot Mode</h2>
+                <p>Place <code>&lt;li&gt;</code> elements directly inside
+                  <code>&lt;td-breadcrumb&gt;</code>. The component automatically injects separators between
+                  items using the <code>separator</code> attribute (default <code>/</code>). Mark the active
+                  crumb with <code>aria-current="page"</code>:</p>
+                <td-breadcrumb separator="›" style="margin: 1rem 0;">
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/components">Components</a></li>
+                  <li aria-current="page">Breadcrumb</li>
+                </td-breadcrumb>
+                <td-code language="html">
+                  <template>
+                    <td-breadcrumb separator="›">
+                      <li><a href="/">Home</a></li>
+                      <li><a href="/components">Components</a></li>
+                      <li aria-current="page">Breadcrumb</li>
+                    </td-breadcrumb>
+                  </template>
+                </td-code>
+              </td-card>
+            </div>
+            <div class="col-12 col-lg-6">
+              <td-card stretch>
+                <h2>JSON Attribute Mode</h2>
+                <p>Pass an <code>items</code> JSON array. The last item is automatically rendered as
+                  non-linked current page text. Use the <code>separator</code> attribute to customise
+                  the divider:</p>
+                <td-breadcrumb
+                  separator="›"
+                  items='[{"label":"Home","href":"/"},{"label":"Products","href":"/products"},{"label":"Laptops","href":"/products/laptops"},{"label":"Laptop Pro 15"}]'
+                  style="margin: 1rem 0;">
+                </td-breadcrumb>
+                <td-code language="html">
+                  <template>
+                    <td-breadcrumb
+                      separator="›"
+                      items='[
+                        {"label":"Home","href":"/"},
+                        {"label":"Products","href":"/products"},
+                        {"label":"Laptops","href":"/products/laptops"},
+                        {"label":"Laptop Pro 15"}
+                      ]'>
+                    </td-breadcrumb>
+                  </template>
+                </td-code>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-lg-6">
+              <td-card stretch>
+                <h2>API / Dynamic Population</h2>
+                <p>Set the <code>src</code> attribute to a URL that returns a JSON array of
+                  <code>{ label, href? }</code> objects, or use the JavaScript <code>items</code>
+                  property setter for full control:</p>
+                <td-breadcrumb id="breadcrumb-dynamic" style="margin: 1rem 0;"></td-breadcrumb>
+                <td-button type="button" id="breadcrumb-load-btn">Simulate API load</td-button>
+                <td-code language="js">
+                  <template>
+                    const bc = document.querySelector('td-breadcrumb');
+                    bc.setAttribute('src', '/api/breadcrumbs');
+
+                    bc.items = [
+                      { label: 'Home', href: '/' },
+                      { label: 'Dashboard', href: '/dashboard' },
+                      { label: 'Settings' }
+                    ];
+
+                    bc.addEventListener('breadcrumb-click', e => {
+                      const { index, label, href } = e.detail;
+                      router.navigate(href);
+                    });
+                  </template>
+                </td-code>
+              </td-card>
+            </div>
+            <div class="col-12 col-lg-6">
+              <td-card stretch>
+                <h2>Attributes &amp; API</h2>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>items:</strong> JSON array of <code>{ label: string, href?: string }</code> objects</li>
+                  <li><strong>src:</strong> URL to fetch the items array from</li>
+                  <li><strong>separator:</strong> Divider string between crumbs (default <code>/</code>)</li>
+                </ul>
+                <h3>JavaScript</h3>
+                <ul>
+                  <li><strong>items</strong>  -  get/set <code>BreadcrumbItem[]</code>; triggers a re-render</li>
+                </ul>
+                <h3>Events</h3>
+                <ul>
+                  <li><strong>breadcrumb-click</strong>  -  fires when a non-current crumb is clicked;
+                    <code>detail: { index, label, href }</code></li>
+                </ul>
+                <h3>Slot (HTML) mode</h3>
+                <ul>
+                  <li>Supply <code>&lt;li&gt;</code> children  -  the component clones them into a shadow
+                    <code>&lt;ul&gt;</code> and injects <code>separator</code> items automatically</li>
+                  <li>Mark the last crumb with <code>aria-current="page"</code> to suppress its link</li>
+                </ul>
+                <h3>Accessibility</h3>
+                <ul>
+                  <li>Wrapped in <code>&lt;nav aria-label="Breadcrumb"&gt;</code></li>
+                  <li>Both modes render a semantic <code>&lt;ul&gt;</code> with <code>&lt;li&gt;</code> items</li>
+                  <li>Last item carries <code>aria-current="page"</code></li>
+                </ul>
+              </td-card>
+            </div>
+          </div>
+
+<script type="module" data-tab-init="tab-3-breadcrumb.ts">
+function initTab() {
+    var breadcrumbDynamic = document.getElementById('breadcrumb-dynamic');
+    var breadcrumbLoadBtn = document.getElementById('breadcrumb-load-btn');
+    if (breadcrumbDynamic && breadcrumbLoadBtn) {
+        breadcrumbLoadBtn.addEventListener('click', function () {
+            breadcrumbLoadBtn.disabled = true;
+            breadcrumbLoadBtn.textContent = 'Loading\u2026';
+            setTimeout(function () {
+                breadcrumbDynamic.items = [
+                    { label: 'Home', href: '/' },
+                    { label: 'Dashboard', href: '/dashboard' },
+                    { label: 'Reports', href: '/dashboard/reports' },
+                    { label: 'Q1 2026' }
+                ];
+                breadcrumbLoadBtn.disabled = false;
+                breadcrumbLoadBtn.textContent = 'Simulate API load';
+            }, 600);
+        });
+    }
+}
+if (typeof initTab === "function") {
+    initTab();
+}
+</script>

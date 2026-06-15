@@ -1,0 +1,153 @@
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100px;
+  position: relative;
+}
+
+.bubble-chart-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.bubble-chart-title {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 0.5em;
+  text-align: center;
+  color: var(--td-fg, inherit);
+}
+
+.bubble-axis-label {
+  font-size: 11px;
+  fill: var(--td-muted, #888);
+}
+
+.bubble-axis-name {
+  font-size: 12px;
+  font-weight: 600;
+  fill: var(--td-muted, #888);
+}
+
+.bubble-gridline {
+  stroke: var(--td-border, #e0e0e0);
+  stroke-width: 1;
+}
+
+.bubble-gridline--vert {
+  stroke-dasharray: 3 3;
+}
+
+.bubble-axis-line {
+  stroke: var(--td-border, #c0c0c0);
+  stroke-width: 1.5;
+}
+
+.bubble-dot {
+  cursor: pointer;
+  transition: fill-opacity 120ms, stroke-width 120ms;
+}
+
+.bubble-dot:focus {
+  outline: none;
+}
+
+.bubble-dot:focus-visible {
+  outline: 3px solid var(--td-primary, #2563eb);
+  outline-offset: 2px;
+}
+
+.bubble-tooltip {
+  background: #222;
+  color: #fff;
+  padding: 0.4em 0.75em;
+  border-radius: 5px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  pointer-events: none;
+  position: absolute;
+  white-space: nowrap;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  display: none;
+  z-index: 10;
+}
+
+.bubble-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin-top: 0.5em;
+}
+
+.bubble-legend--top,
+.bubble-legend--bottom {
+  flex-direction: row;
+  justify-content: center;
+}
+
+.bubble-legend--left,
+.bubble-legend--right {
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.chart-side-layout {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5em;
+}
+
+.chart-side-chart {
+  flex: 1;
+  min-width: 0;
+}
+
+@media (max-width: 600px) {
+  .chart-side-layout {
+    flex-direction: column;
+  }
+
+  .bubble-legend--left,
+  .bubble-legend--right {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 0.5em 0;
+  }
+}
+
+.bubble-legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  padding: 2px 4px;
+  border-radius: 4px;
+  margin: 0 0.25em 0.25em 0;
+  color: var(--td-fg, inherit);
+  font-size: 0.9rem;
+}
+
+.bubble-legend-item:focus-visible {
+  outline: 2px solid var(--td-primary, #2563eb);
+}
+
+.bubble-legend-swatch {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.bubble-value-label {
+  font-size: 10px;
+  font-weight: 700;
+  fill: #fff;
+  pointer-events: none;
+}

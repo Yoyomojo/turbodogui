@@ -1,0 +1,202 @@
+          <div class="row">
+            <div class="col-12">
+              <td-card>
+                <h2>Pagination</h2>
+                <p><code>&lt;td-pagination&gt;</code> renders page controls driven by a <code>total</code> item count
+                  and a <code>page-size</code>. It dispatches a <code>td-page-change</code> event so your data layer
+                  knows which slice to fetch. When there are too many pages to display, scroll arrows appear
+                  automatically.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <td-card>
+                <h3>Live demo</h3>
+                <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;margin-bottom:1.25rem;">
+                  <div>
+                    <label style="display:block;font-size:0.8125rem;font-weight:600;margin-bottom:4px;">Rows per
+                      page</label>
+                    <select id="demo-page-size"
+                      style="font:inherit;padding:6px 10px;border:1px solid var(--td-border);border-radius:8px;background:var(--td-surface);color:var(--td-fg);cursor:pointer;">
+                      <option value="5">5</option>
+                      <option value="10" selected>10</option>
+                      <option value="25">25</option>
+                    </select>
+                  </div>
+                  <div id="demo-page-info" style="font-size:0.875rem;color:var(--td-fg-muted);padding-bottom:6px;">
+                    Loadingâ€¦</div>
+                </div>
+                <td-table id="demo-table"></td-table>
+                <div style="margin-top:1rem;">
+                  <td-pagination id="demo-pagination" page-size="10"></td-pagination>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Many pages (scroll arrows)</h3>
+                <p>When the page strip overflows its container, â€¹ â€º scroll arrows appear at the edges.</p>
+                <div style="max-width:320px;margin-top:1rem;">
+                  <td-pagination total="500" page-size="5" page="50"></td-pagination>
+                </div>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Few pages (no scroll arrows)</h3>
+                <p>Prev / Next arrows appear only when not on the first or last page.</p>
+                <div style="margin-top:1rem;">
+                  <td-pagination total="30" page-size="10" page="2"></td-pagination>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>HTML usage</h3>
+                <td-code language="html">
+                  <template>
+                    
+                    <td-pagination id="my-pager" total="350" page-size="25">
+                    </td-pagination>
+                  </template>
+                </td-code>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>JavaScript integration</h3>
+                <td-code language="js">
+                  <template>
+                    const pager = document.querySelector('#my-pager');
+
+                    fetch('/api/items?count=true')
+                    .then(r => r.json())
+                    .then(({ total }) => { pager.total = total; });
+
+                    pager.addEventListener('td-page-change', e => {
+                    const { page, pageSize, offset, limit } = e.detail;
+                    fetchPage(offset, limit);
+                    });
+
+                    function fetchPage(offset, limit) {
+                    fetch(`/api/items?offset=${offset}&limit=${limit}`)
+                    .then(r => r.json())
+                    .then(data => renderTable(data));
+                    }
+                  </template>
+                </td-code>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Attributes &amp; properties</h3>
+                <table style="width:100%;font-size:0.875rem;border-collapse:collapse;">
+                  <thead>
+                    <tr style="border-bottom:2px solid var(--td-border);">
+                      <th style="text-align:left;padding:6px 8px;">Name</th>
+                      <th style="text-align:left;padding:6px 8px;">Default</th>
+                      <th style="text-align:left;padding:6px 8px;">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="padding:6px 8px;"><code>total</code></td>
+                      <td style="padding:6px 8px;"><code>0</code></td>
+                      <td style="padding:6px 8px;">Total number of items (from API). Hidden when 0.</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:6px 8px;"><code>page-size</code></td>
+                      <td style="padding:6px 8px;"><code>10</code></td>
+                      <td style="padding:6px 8px;">Number of rows per page.</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:6px 8px;"><code>page</code></td>
+                      <td style="padding:6px 8px;"><code>1</code></td>
+                      <td style="padding:6px 8px;">Current page (1-based).</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Event: <code>td-page-change</code></h3>
+                <td-code language="js">
+                  <template>
+                    {
+                    page: 3, // 1-based current page
+                    pageSize: 10, // rows per page
+                    offset: 20, // (page - 1) * pageSize
+                    limit: 10 // same as pageSize
+                    }
+                  </template>
+                </td-code>
+              </td-card>
+            </div>
+          </div>
+
+<script type="module" data-tab-init="tab-13-pagination.ts">
+function initTab() {
+    var pager = document.getElementById('demo-pagination');
+    var pageSizeEl = document.getElementById('demo-page-size');
+    var infoEl = document.getElementById('demo-page-info');
+    var demoTable = document.getElementById('demo-table');
+    if (pager && demoTable && infoEl) {
+        var allRows = [];
+        demoTable.columns = [
+            { key: 'id', label: 'ID' },
+            { key: 'name', label: 'Name', sortable: true },
+            { key: 'username', label: 'Username', sortable: true },
+            { key: 'email', label: 'Email', sortable: true },
+            { key: 'phone', label: 'Phone' },
+            { key: 'company', label: 'Company', sortable: true },
+        ];
+        function renderPage() {
+            var p = pager.page;
+            var ps = pager.pageSize;
+            var total = allRows.length;
+            var from = total === 0 ? 0 : (p - 1) * ps + 1;
+            var to = Math.min(p * ps, total);
+            infoEl.textContent = 'Showing ' + from + '\u2013' + to + ' of ' + total + ' users';
+            demoTable.data = allRows.slice((p - 1) * ps, p * ps);
+        }
+        pager.addEventListener('td-page-change', function () { renderPage(); });
+        if (pageSizeEl) {
+            pageSizeEl.addEventListener('change', function () {
+                var ps = parseInt(pageSizeEl.value, 10);
+                if (!isNaN(ps) && ps >= 1) {
+                    pager.pageSize = ps;
+                    pager.page = 1;
+                    renderPage();
+                }
+            });
+        }
+        infoEl.textContent = 'Loading\u2026';
+        fetch('https://dummyjson.com/users?limit=100&select=id,firstName,lastName,username,email,phone,company')
+            .then(function (r) { return r.json(); })
+            .then(function (res) {
+            allRows = res.users.map(function (u) {
+                return { id: u.id, name: u.firstName + ' ' + u.lastName, username: u.username, email: u.email, phone: u.phone, company: u.company.name };
+            });
+            pager.total = allRows.length;
+            pager.page = 1;
+            renderPage();
+        })
+            .catch(function () { infoEl.textContent = 'Failed to load data.'; });
+    }
+}
+if (typeof initTab === "function") {
+    initTab();
+}
+</script>

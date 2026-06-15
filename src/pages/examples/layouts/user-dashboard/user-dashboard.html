@@ -1,0 +1,582 @@
+<div class="dashboard-layout">
+  <div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+
+    <div class="row row--center" style="margin-bottom: 0.25rem;">
+      <div class="col-12 col-lg-12">
+        <td-breadcrumb separator=">" items='[
+          {"label":"Home","href":"/"},
+          {"label":"Examples","href":"/examples"},
+          {"label":"Layouts","href":"/examples/layouts/dashboard"},
+          {"label":"Admin Panel"}
+        ]'></td-breadcrumb>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 col-lg-12">
+        <td-card stretch>
+          <h1 style="margin: 0 0 0.5rem; font-size: 1.9rem;">Admin Panel</h1>
+          <p style="margin: 0; color: var(--td-fg-muted, #6f6f6f);">
+            A business operations panel powered by live API data for users, orders, products, and performance trends.
+          </p>
+        </td-card>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 0.75rem;">
+      <div class="col-12">
+        <td-alert id="admin-panel-status" variant="info" title="Live API Mode" dismissible>
+          Pulling users, products, and order metrics from API endpoints.
+        </td-alert>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 0.5rem;">
+      <div class="col-12 col-sm-6 col-xl-3">
+        <td-card stretch>
+          <p style="margin:0; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--td-fg-muted,#6f6f6f);">Active Users</p>
+          <p id="admin-kpi-users" style="margin:0.35rem 0 0; font-size:2rem; font-weight:700;">-</p>
+          <p id="admin-kpi-users-sub" style="margin:0.25rem 0 0; color:#1f9d55; font-size:0.9rem;">Loading...</p>
+        </td-card>
+      </div>
+      <div class="col-12 col-sm-6 col-xl-3">
+        <td-card stretch>
+          <p style="margin:0; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--td-fg-muted,#6f6f6f);">Order Revenue</p>
+          <p id="admin-kpi-revenue" style="margin:0.35rem 0 0; font-size:2rem; font-weight:700;">-</p>
+          <p id="admin-kpi-revenue-sub" style="margin:0.25rem 0 0; color:#1f9d55; font-size:0.9rem;">Loading...</p>
+        </td-card>
+      </div>
+      <div class="col-12 col-sm-6 col-xl-3">
+        <td-card stretch>
+          <p style="margin:0; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--td-fg-muted,#6f6f6f);">Conversion Rate</p>
+          <p id="admin-kpi-conversion" style="margin:0.35rem 0 0; font-size:2rem; font-weight:700;">-</p>
+          <p id="admin-kpi-conversion-sub" style="margin:0.25rem 0 0; color:#b78103; font-size:0.9rem;">Loading...</p>
+        </td-card>
+      </div>
+      <div class="col-12 col-sm-6 col-xl-3">
+        <td-card stretch>
+          <p style="margin:0; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.06em; color:var(--td-fg-muted,#6f6f6f);">Open Tickets</p>
+          <p id="admin-kpi-tickets" style="margin:0.35rem 0 0; font-size:2rem; font-weight:700;">-</p>
+          <p id="admin-kpi-tickets-sub" style="margin:0.25rem 0 0; color:var(--td-fg-muted,#6f6f6f); font-size:0.9rem;">Loading...</p>
+        </td-card>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 0.75rem;">
+      <div class="col-12 col-lg-8">
+        <td-card stretch>
+          <h2 style="margin-top:0;">Traffic Trend</h2>
+          <td-line-chart
+            id="admin-line-chart"
+            title="Sessions and Signups"
+            height="330"
+            legend-position="bottom"
+            x-labels='["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]'
+            data='[
+              {"label":"Sessions","values":[1200,1325,1410,1380,1520,1610,1705]},
+              {"label":"Signups","values":[180,210,240,225,260,290,315]}
+            ]'
+            colors='["#42a5f5","#66bb6a"]'
+            show-values>
+          </td-line-chart>
+        </td-card>
+      </div>
+      <div class="col-12 col-lg-4">
+        <td-card stretch>
+          <h2 style="margin-top:0;">Channel Mix</h2>
+          <td-donut-chart
+            id="admin-donut-chart"
+            title="Acquisition"
+            center-label="Channels"
+            height="330"
+            legend-position="bottom"
+            data='[
+              {"label":"Organic","value":42,"color":"#42a5f5"},
+              {"label":"Referral","value":23,"color":"#66bb6a"},
+              {"label":"Paid","value":19,"color":"#ffa726"},
+              {"label":"Direct","value":16,"color":"#ef5350"}
+            ]'
+            show-values>
+          </td-donut-chart>
+        </td-card>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 0.75rem;">
+      <div class="col-12 col-md-6">
+        <td-card stretch>
+          <h2 style="margin-top:0;">Quarterly Revenue</h2>
+          <td-bar-chart
+            id="admin-bar-chart"
+            title="Revenue by Quarter"
+            height="320"
+            legend-position="bottom"
+            data='[
+              {"label":"Q1","value":22000,"color":"#42a5f5"},
+              {"label":"Q2","value":24800,"color":"#66bb6a"},
+              {"label":"Q3","value":27100,"color":"#ffa726"},
+              {"label":"Q4","value":30200,"color":"#ef5350"}
+            ]'
+            show-values>
+          </td-bar-chart>
+        </td-card>
+      </div>
+      <div class="col-12 col-md-6">
+        <td-card stretch>
+          <h2 style="margin-top:0;">Team Capability Radar</h2>
+          <td-radar-chart
+            id="admin-radar-chart"
+            title="Squad Comparison"
+            height="320"
+            legend-position="bottom"
+            axis-labels='["Delivery","Quality","Velocity","Collaboration","Ownership"]'
+            data='[
+              {"label":"Team A","values":[88,92,81,90,86],"color":"#42a5f5"},
+              {"label":"Team B","values":[78,84,87,79,83],"color":"#66bb6a"}
+            ]'
+            show-values>
+          </td-radar-chart>
+        </td-card>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 0.75rem;">
+      <div class="col-12 col-lg-12">
+        <td-card stretch>
+          <h2 style="margin-top:0;">User Directory</h2>
+          <td-table id="admin-users-table" search zebra sticky-header max-rows="6" csv-export csv-filename="users"></td-table>
+          <div style="margin-top:0.85rem;">
+            <td-pagination id="admin-users-pagination" total="0" page-size="10" page="1"></td-pagination>
+          </div>
+        </td-card>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 0.75rem;">
+      <div class="col-12 col-lg-12">
+        <td-card stretch>
+          <h2 style="margin-top:0;">Product Performance</h2>
+          <td-table id="admin-products-table" search zebra sticky-header max-rows="6" csv-export csv-filename="product-performance"></td-table>
+          <div style="margin-top:0.85rem;">
+            <td-pagination id="admin-products-pagination" total="0" page-size="10" page="1"></td-pagination>
+          </div>
+        </td-card>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 0.75rem;">
+      <div class="col-12 col-lg-7">
+        <td-card stretch>
+          <h2 style="margin-top:0;">Orders Overview</h2>
+          <td-table id="admin-orders-table" search zebra sticky-header max-rows="6" csv-export csv-filename="orders"></td-table>
+          <div style="margin-top:0.85rem;">
+            <td-pagination id="admin-orders-pagination" total="0" page-size="10" page="1"></td-pagination>
+          </div>
+        </td-card>
+      </div>
+
+      <div class="col-12 col-lg-5">
+        <td-card stretch>
+          <h2 style="margin-top:0;">Filters and Actions</h2>
+
+          <div style="display:flex; flex-direction:column; gap:0.85rem;">
+            <td-text-input label="Search Accounts" type="search" placeholder="Type customer name" value="Acme"></td-text-input>
+
+            <td-select label="Region" value="na">
+              <option value="na">North America</option>
+              <option value="eu">Europe</option>
+              <option value="apac">APAC</option>
+              <option value="latam">LATAM</option>
+            </td-select>
+
+            <td-multi-select label="Segments" search select-all value='["enterprise","saas"]'>
+              <option value="enterprise">Enterprise</option>
+              <option value="mid-market">Mid Market</option>
+              <option value="saas">SaaS</option>
+              <option value="ecommerce">eCommerce</option>
+              <option value="healthcare">Healthcare</option>
+            </td-multi-select>
+
+            <td-slider label="Risk Threshold" min="0" max="100" step="5" value="65"></td-slider>
+
+            <td-checkbox label="Show only active customers" checked></td-checkbox>
+            <td-checkbox label="Include trial accounts"></td-checkbox>
+
+            <td-button-group>
+              <td-button>Apply</td-button>
+              <td-button variant="warning">Reset</td-button>
+              <td-button variant="success">Save View</td-button>
+            </td-button-group>
+          </div>
+        </td-card>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 0.75rem;">
+      <div class="col-12 col-lg-7">
+        <td-card stretch>
+          <h2 style="margin-top:0;">Roadmap and Notes</h2>
+          <td-tabs labels="Roadmap | Incidents | Notes" default-tab="0">
+            <div slot="tab-0">
+              <td-accordion items="3" allow-multiple item-0-title="Q3 Releases" item-1-title="Q4 Targets" item-2-title="Dependencies">
+                <div slot="item-0">
+                  <p>Release onboarding wizard v2, billing profile editor, and workflow templates.</p>
+                </div>
+                <div slot="item-1">
+                  <p>Expand self-serve conversions from 4.7% to 5.5% and reduce onboarding churn by 12%.</p>
+                </div>
+                <div slot="item-2">
+                  <p>Need analytics schema finalization before dashboard personalization launch.</p>
+                </div>
+              </td-accordion>
+            </div>
+            <div slot="tab-1">
+              <td-alert variant="warning" title="Incident #3241">Email webhook retries are delayed by up to 4 minutes.</td-alert>
+              <td-alert variant="success" title="Resolved">Search indexing throughput recovered to normal levels.</td-alert>
+            </div>
+            <div slot="tab-2">
+              <td-code language="md">
+                <template>
+# Weekly Notes
+- Follow up with finance on revised MRR forecast.
+- Confirm customer council schedule.
+- Publish incident playbook updates.
+                </template>
+              </td-code>
+            </div>
+          </td-tabs>
+        </td-card>
+      </div>
+
+      <div class="col-12 col-lg-5">
+        <td-card stretch>
+          <h2 style="margin-top:0;">Media and Activity</h2>
+          <td-carousel label="Activity Highlights" autoplay loop interval="3500" style="margin-bottom: 0.85rem;">
+            <div slot="slide-0" style="height:160px;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--td-primary) 16%,transparent);border-radius:12px;font-size:1.2rem;font-weight:700;color:var(--td-primary);">+420 New Leads</div>
+            <div slot="slide-1" style="height:160px;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,#10b981 16%,transparent);border-radius:12px;font-size:1.2rem;font-weight:700;color:#10b981;">87 Deals Closed</div>
+            <div slot="slide-2" style="height:160px;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,#f59e0b 16%,transparent);border-radius:12px;font-size:1.2rem;font-weight:700;color:#b78103;">NPS +9 Points</div>
+          </td-carousel>
+
+          <td-video-player src="/example-video/old-skate-video.mp4" title="Team Update Reel"></td-video-player>
+          <div style="margin-top: 0.75rem; display:flex; align-items:center; justify-content:space-between; gap:0.5rem; flex-wrap:wrap;">
+            <td-link href="https://github.com/Yoyomojo/turbodogui" target="_blank" rel="noopener noreferrer">View Repository</td-link>
+          </div>
+        </td-card>
+      </div>
+    </div>
+
+    <div class="row" style="margin-top: 0.75rem;">
+      <div class="col-12">
+        <td-card>
+          <h2 style="margin-top:0;">Snapshot Mosaic</h2>
+          <td-mosaic columns="4" gap="8px" row-height="130px" style="margin-top:0.75rem;">
+            <td-mosaic-item col-span="2" row-span="2" style="--td-radius:12px;">
+              <div style="width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;padding:18px;box-sizing:border-box;background:var(--td-primary);color:var(--td-primary-foreground,#fff);border-radius:inherit;">
+                <div style="font-size:1.3rem;font-weight:700;">Customer Health</div>
+                <div style="opacity:0.9;">84% accounts in healthy tier</div>
+              </div>
+            </td-mosaic-item>
+            <td-mosaic-item style="--td-radius:12px;"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--td-surface-2);border-radius:inherit;font-weight:700;">Churn 1.8%</div></td-mosaic-item>
+            <td-mosaic-item style="--td-radius:12px;"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--td-surface-2);border-radius:inherit;font-weight:700;">ARPA $142</div></td-mosaic-item>
+            <td-mosaic-item style="--td-radius:12px;"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--td-surface-2);border-radius:inherit;font-weight:700;">CSAT 92</div></td-mosaic-item>
+            <td-mosaic-item style="--td-radius:12px;"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--td-surface-2);border-radius:inherit;font-weight:700;">SLA 99.98%</div></td-mosaic-item>
+            <td-mosaic-item col-span="2" style="--td-radius:12px;"><div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1d4ed8,#0ea5e9);color:#fff;border-radius:inherit;font-size:1.1rem;font-weight:700;">Pipeline Coverage 3.6x</div></td-mosaic-item>
+          </td-mosaic>
+        </td-card>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script type="module" data-tab-init="admin-panel.ts">
+function initTab() {
+  var status = document.getElementById('admin-panel-status');
+
+  function setText(id, value) {
+    var el = document.getElementById(id);
+    if (el) el.textContent = value;
+  }
+
+  function escapeAttr(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/"/g, '&quot;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+  }
+
+  function editableRenderer(field) {
+    return function (value) {
+      return '<td-text-input size="small" value="' + escapeAttr(value) + '" placeholder="' + escapeAttr(field) + '"></td-text-input>';
+    };
+  }
+
+  function bindPagedTable(tableEl, pagerEl, rows, columns) {
+    if (!tableEl || !pagerEl)
+      return;
+
+    tableEl.columns = columns;
+    pagerEl.total = rows.length;
+    if (!pagerEl.pageSize || pagerEl.pageSize < 1)
+      pagerEl.pageSize = 10;
+    pagerEl.page = 1;
+
+    function renderPage() {
+      var page = pagerEl.page || 1;
+      var pageSize = pagerEl.pageSize || 10;
+      var start = (page - 1) * pageSize;
+      var end = start + pageSize;
+      tableEl.data = rows.slice(start, end);
+    }
+
+    pagerEl.addEventListener('td-page-change', renderPage);
+    renderPage();
+  }
+
+  Promise.all([
+    fetch('https://randomuser.me/api/?results=250&nat=us,gb,ca,au,nz').then(function (r) { return r.json(); }),
+    fetch('https://dummyjson.com/products?limit=100').then(function (r) { return r.json(); }),
+    fetch('https://dummyjson.com/carts?limit=50').then(function (r) { return r.json(); })
+  ])
+    .then(function (results) {
+      var usersRes = results[0] || { results: [] };
+      var productsRes = results[1] || { products: [] };
+      var cartsRes = results[2] || { carts: [] };
+
+      var departments = ['Sales', 'Support', 'Operations', 'Finance', 'Engineering', 'HR', 'Compliance'];
+      var users = (usersRes.results || []).map(function (u, i) {
+        return {
+          id: i + 1,
+          firstName: u.name && u.name.first ? u.name.first : '',
+          lastName: u.name && u.name.last ? u.name.last : '',
+          email: u.email || '',
+          department: departments[i % departments.length],
+          company: 'Business Unit ' + ((i % 12) + 1),
+          country: u.location && u.location.country ? u.location.country : 'Unknown',
+          age: u.dob && typeof u.dob.age === 'number' ? u.dob.age : 30
+        };
+      });
+      var products = productsRes.products || [];
+      var carts = cartsRes.carts || [];
+
+      var activeUsers = users.filter(function (u) { return u.age >= 18; }).length;
+      var totalRevenue = carts.reduce(function (sum, c) { return sum + (c.discountedTotal || 0); }, 0);
+      var conversionRate = users.length ? ((carts.length / users.length) * 100) : 0;
+      var avgCartItems = carts.length ? (carts.reduce(function (sum, c) { return sum + (c.totalProducts || 0); }, 0) / carts.length) : 0;
+      var openTickets = Math.max(0, Math.round((users.length * 0.18) + (avgCartItems * 2)));
+
+      setText('admin-kpi-users', activeUsers.toLocaleString());
+      setText('admin-kpi-users-sub', users.length + ' total users in directory');
+      setText('admin-kpi-revenue', '$' + totalRevenue.toLocaleString());
+      setText('admin-kpi-revenue-sub', carts.length + ' orders processed');
+      setText('admin-kpi-conversion', conversionRate.toFixed(2) + '%');
+      setText('admin-kpi-conversion-sub', 'Orders to user ratio');
+      setText('admin-kpi-tickets', openTickets.toLocaleString());
+      setText('admin-kpi-tickets-sub', Math.round(openTickets * 0.22) + ' high priority');
+
+      var usersTable = document.getElementById('admin-users-table');
+      var usersPager = document.getElementById('admin-users-pagination');
+      var userRows = users.map(function (u) {
+        return {
+          name: (u.firstName || '') + ' ' + (u.lastName || ''),
+          email: u.email || '-',
+          department: u.department || '-',
+          company: u.company || '-',
+          country: u.country || '-'
+        };
+      });
+      if (usersTable) {
+        var usersColumns = [
+          { key: 'name', label: 'Name', sortable: true, render: editableRenderer('Name') },
+          { key: 'email', label: 'Email', sortable: true, render: editableRenderer('Email') },
+          { key: 'department', label: 'Department', sortable: true, render: editableRenderer('Department') },
+          { key: 'company', label: 'Company', sortable: true, render: editableRenderer('Company') },
+          { key: 'country', label: 'Country', sortable: true, render: editableRenderer('Country') }
+        ];
+
+        bindPagedTable(usersTable, usersPager, userRows, usersColumns);
+
+        usersTable.addEventListener('cell-change', function (e) {
+          if (!usersPager)
+            return;
+          var detail = e.detail || {};
+          var absoluteIndex = ((usersPager.page || 1) - 1) * (usersPager.pageSize || 10) + (detail.rowIndex || 0);
+          if (userRows[absoluteIndex]) {
+            userRows[absoluteIndex][detail.colKey] = detail.value;
+          }
+        });
+      }
+
+      var productsTable = document.getElementById('admin-products-table');
+      var productsPager = document.getElementById('admin-products-pagination');
+      if (productsTable) {
+        var productRows = products.map(function (p) {
+          return {
+            title: p.title,
+            category: p.category,
+            price: Number(p.price || 0).toFixed(2),
+            rating: Number(p.rating || 0).toFixed(1),
+            stock: p.stock || 0,
+            status: (p.stock || 0) > 30 ? 'Healthy' : ((p.stock || 0) > 10 ? 'Watch' : 'At Risk')
+          };
+        });
+
+        bindPagedTable(productsTable, productsPager, productRows, [
+          { key: 'title', label: 'Product', sortable: true },
+          { key: 'category', label: 'Category', sortable: true },
+          { key: 'price', label: 'Price ($)', sortable: true },
+          { key: 'rating', label: 'Rating', sortable: true },
+          { key: 'stock', label: 'Stock', sortable: true },
+          { key: 'status', label: 'Status', sortable: true }
+        ]);
+      }
+
+      var ordersTable = document.getElementById('admin-orders-table');
+      var ordersPager = document.getElementById('admin-orders-pagination');
+      if (ordersTable) {
+        var orderRows = carts.map(function (c) {
+          var statuses = ['Delivered', 'Shipped', 'Processing', 'Queued'];
+          return {
+            order: '#' + String(c.id).padStart(4, '0'),
+            customer: 'User ' + c.userId,
+            items: c.totalProducts || 0,
+            total: Number(c.discountedTotal || 0).toFixed(2),
+            status: statuses[c.id % statuses.length]
+          };
+        });
+
+        bindPagedTable(ordersTable, ordersPager, orderRows, [
+          { key: 'order', label: 'Order', sortable: true },
+          { key: 'customer', label: 'Customer', sortable: true },
+          { key: 'items', label: 'Items', sortable: true },
+          { key: 'total', label: 'Total ($)', sortable: true },
+          { key: 'status', label: 'Status', sortable: true }
+        ]);
+      }
+
+      var categoryMap = {};
+      products.forEach(function (p) {
+        var c = p.category || 'other';
+        if (!categoryMap[c]) {
+          categoryMap[c] = { count: 0, price: 0, stock: 0, rating: 0 };
+        }
+        categoryMap[c].count += 1;
+        categoryMap[c].price += Number(p.price || 0);
+        categoryMap[c].stock += Number(p.stock || 0);
+        categoryMap[c].rating += Number(p.rating || 0);
+      });
+
+      var categories = Object.keys(categoryMap)
+        .sort(function (a, b) { return categoryMap[b].count - categoryMap[a].count; })
+        .slice(0, 6);
+
+      var lineChart = document.getElementById('admin-line-chart');
+      if (lineChart && categories.length) {
+        lineChart.setAttribute('x-labels', JSON.stringify(categories));
+        lineChart.data = [
+          {
+            label: 'Avg Price ($)',
+            values: categories.map(function (c) {
+              var item = categoryMap[c];
+              return Math.round(item.price / item.count);
+            })
+          },
+          {
+            label: 'Avg Stock',
+            values: categories.map(function (c) {
+              var item = categoryMap[c];
+              return Math.round(item.stock / item.count);
+            })
+          }
+        ];
+      }
+
+      var deptMap = {};
+      users.forEach(function (u) {
+        var d = u.department || 'Unassigned';
+        deptMap[d] = (deptMap[d] || 0) + 1;
+      });
+
+      var donutChart = document.getElementById('admin-donut-chart');
+      if (donutChart) {
+        donutChart.data = Object.keys(deptMap)
+          .sort(function (a, b) { return deptMap[b] - deptMap[a]; })
+          .slice(0, 5)
+          .map(function (d) { return { label: d, value: deptMap[d] }; });
+      }
+
+      var qTotals = [0, 0, 0, 0];
+      carts.forEach(function (c) {
+        var qIndex = c.id % 4;
+        qTotals[qIndex] += Number(c.discountedTotal || 0);
+      });
+
+      var barChart = document.getElementById('admin-bar-chart');
+      if (barChart) {
+        barChart.data = [
+          { label: 'Q1', value: Math.round(qTotals[0]), color: '#42a5f5' },
+          { label: 'Q2', value: Math.round(qTotals[1]), color: '#66bb6a' },
+          { label: 'Q3', value: Math.round(qTotals[2]), color: '#ffa726' },
+          { label: 'Q4', value: Math.round(qTotals[3]), color: '#ef5350' }
+        ];
+      }
+
+      var avgRating = products.length
+        ? products.reduce(function (sum, p) { return sum + Number(p.rating || 0); }, 0) / products.length
+        : 0;
+      var avgDiscount = products.length
+        ? products.reduce(function (sum, p) { return sum + Number(p.discountPercentage || 0); }, 0) / products.length
+        : 0;
+      var avgStock = products.length
+        ? products.reduce(function (sum, p) { return sum + Number(p.stock || 0); }, 0) / products.length
+        : 0;
+
+      var radarChart = document.getElementById('admin-radar-chart');
+      if (radarChart) {
+        radarChart.setAttribute('axis-labels', JSON.stringify(['Delivery', 'Quality', 'Velocity', 'Collaboration', 'Ownership']));
+        radarChart.data = [
+          {
+            label: 'Operations',
+            values: [
+              Math.min(100, Math.round((avgStock / 120) * 100)),
+              Math.min(100, Math.round((avgRating / 5) * 100)),
+              Math.min(100, Math.round((carts.length / Math.max(1, users.length)) * 100)),
+              Math.min(100, Math.round((Object.keys(deptMap).length / 15) * 100)),
+              Math.min(100, Math.round((totalRevenue / 8000) * 100))
+            ],
+            color: '#42a5f5'
+          },
+          {
+            label: 'Growth',
+            values: [
+              Math.min(100, Math.round((avgDiscount / 20) * 100)),
+              Math.min(100, Math.round(conversionRate * 10)),
+              Math.min(100, Math.round((products.length / 120) * 100)),
+              Math.min(100, Math.round((activeUsers / Math.max(1, users.length)) * 100)),
+              Math.min(100, Math.round((qTotals[3] / Math.max(1, qTotals[0])) * 100))
+            ],
+            color: '#66bb6a'
+          }
+        ];
+      }
+
+      if (status) {
+        status.setAttribute('variant', 'success');
+        status.setAttribute('title', 'API Data Loaded');
+        status.textContent = 'Loaded ' + users.length + ' users, ' + products.length + ' products, and ' + carts.length + ' orders.';
+      }
+    })
+    .catch(function () {
+      if (status) {
+        status.setAttribute('variant', 'alert');
+        status.setAttribute('title', 'API Load Failed');
+        status.textContent = 'Could not load dashboard data from APIs. Showing fallback values.';
+      }
+    });
+}
+
+if (typeof initTab === 'function') {
+  initTab();
+}
+</script>

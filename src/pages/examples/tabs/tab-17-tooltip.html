@@ -1,0 +1,167 @@
+          <div class="row">
+            <div class="col-12">
+              <td-card>
+                <h2>Tooltip</h2>
+                <p><code>&lt;td-tooltip&gt;</code> shows a floating label when hovering or focusing any wrapped element.
+                  The float is appended to <code>document.body</code> so it escapes all <code>overflow: hidden</code>
+                  and shadow DOM stacking contexts.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Position variants</h3>
+                <p>Use <code>position</code> to control which side the tooltip appears on.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:1rem;">
+                  <td-tooltip label="Tooltip on the right" position="right">
+                    <td-button>Right (default)</td-button>
+                  </td-tooltip>
+                  <td-tooltip label="Tooltip on the left" position="left">
+                    <td-button>Left</td-button>
+                  </td-tooltip>
+                  <td-tooltip label="Tooltip on top" position="top">
+                    <td-button>Top</td-button>
+                  </td-tooltip>
+                  <td-tooltip label="Tooltip on the bottom" position="bottom">
+                    <td-button>Bottom</td-button>
+                  </td-tooltip>
+                </div>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>On any element</h3>
+                <p>Wrap any trigger element â€” buttons, links, icons, badges, inputs.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:1rem;align-items:center;">
+                  <td-tooltip label="A plain link" position="top">
+                    <a href="#" onclick="return false" style="color:var(--td-primary);font-weight:600;">Hover me</a>
+                  </td-tooltip>
+                  <td-tooltip label="Delete this item" position="top">
+                    <button
+                      style="background:var(--td-alert);color:#fff;border:none;border-radius:8px;padding:6px 14px;cursor:pointer;font:inherit;">Delete</button>
+                  </td-tooltip>
+                  <td-tooltip label="This input is required" position="right">
+                    <input type="text" placeholder="Required field"
+                      style="border:1px solid var(--td-primary);border-radius:8px;padding:6px 10px;font:inherit;background:var(--td-surface);color:var(--td-fg);" />
+                  </td-tooltip>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Disabled</h3>
+                <p>Add the <code>disabled</code> attribute to suppress the tooltip without changing the trigger.</p>
+                <div style="display:flex;gap:12px;margin-top:1rem;">
+                  <td-tooltip label="You won't see me" disabled>
+                    <td-button>No tooltip</td-button>
+                  </td-tooltip>
+                  <td-tooltip label="This one is active" position="right">
+                    <td-button>Active tooltip</td-button>
+                  </td-tooltip>
+                </div>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Max width</h3>
+                <p>Long labels wrap at the default 240px max-width. Use the <code>max-width</code> attribute to
+                  override.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:1rem;">
+                  <td-tooltip label="This is a longer descriptive tooltip that wraps at the default max width"
+                    position="top">
+                    <td-button>Default (240px)</td-button>
+                  </td-tooltip>
+                  <td-tooltip label="This tooltip allows more text before it wraps because max-width is wider"
+                    position="top" max-width="320px">
+                    <td-button>max-width 320px</td-button>
+                  </td-tooltip>
+                  <td-tooltip label="No wrapping here at all" position="top" max-width="none">
+                    <td-button>max-width none</td-button>
+                  </td-tooltip>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Usage</h3>
+                <td-code language="html">
+                  <template>
+                    
+                    <td-tooltip label="Save changes">
+                      <td-button>Save</td-button>
+                    </td-tooltip>
+
+                    
+                    <td-tooltip label="Opens in new tab" position="top">
+                      <a href="/docs">Docs</a>
+                    </td-tooltip>
+
+                    <td-tooltip label="Delete item" position="bottom">
+                      <button>Delete</button>
+                    </td-tooltip>
+
+                    
+                    <td-tooltip label="Hidden" disabled>
+                      <td-button>No tooltip</td-button>
+                    </td-tooltip>
+                  </template>
+                </td-code>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Attributes</h3>
+                <table style="width:100%;font-size:0.875rem;border-collapse:collapse;">
+                  <thead>
+                    <tr style="border-bottom:2px solid var(--td-border);">
+                      <th style="text-align:left;padding:6px 8px;">Attribute</th>
+                      <th style="text-align:left;padding:6px 8px;">Default</th>
+                      <th style="text-align:left;padding:6px 8px;">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="padding:6px 8px;"><code>label</code></td>
+                      <td style="padding:6px 8px;">â€”</td>
+                      <td style="padding:6px 8px;">Text shown in the tooltip</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:6px 8px;"><code>position</code></td>
+                      <td style="padding:6px 8px;"><code>right</code></td>
+                      <td style="padding:6px 8px;"><code>right</code> | <code>left</code> | <code>top</code> |
+                        <code>bottom</code></td>
+                    </tr>
+                    <tr>
+                      <td style="padding:6px 8px;"><code>max-width</code></td>
+                      <td style="padding:6px 8px;"><code>240px</code></td>
+                      <td style="padding:6px 8px;">CSS max-width of the float. Set to <code>none</code> to disable
+                        wrapping.</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:6px 8px;"><code>disabled</code></td>
+                      <td style="padding:6px 8px;">â€”</td>
+                      <td style="padding:6px 8px;">Boolean. Suppresses the tooltip</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <h3 style="margin-top:1.25rem;">Programmatic API</h3>
+                <td-code language="js">
+                  <template>
+                    const tip = document.querySelector('td-tooltip');
+
+                    tip.showAt(anchorEl, 'Label text', 'right');
+
+                    tip.hide();
+                  </template>
+                </td-code>
+              </td-card>
+            </div>
+          </div>

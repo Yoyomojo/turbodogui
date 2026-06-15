@@ -1,0 +1,91 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Tabs Component</h2>
+                <p>The tabs component provides a clean, accessible way to organize content across multiple tabs.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Basic Example</h2>
+                <p>A simple tabs component with three content sections:</p>
+                <td-tabs labels="Overview | Details | Settings" default-tab="0">
+                  <div slot="tab-0">
+                    <h3>Overview</h3>
+                    <p>This is the overview content. Click the other tabs to see their content.</p>
+                    <p>Each tab is independently accessible with keyboard navigation.</p>
+                  </div>
+                  <div slot="tab-1">
+                    <h3>Details</h3>
+                    <p>Here are the details. You can use arrow keys to navigate between tabs.</p>
+                    <p>Home and End keys jump to the first and last tabs respectively.</p>
+                  </div>
+                  <div slot="tab-2">
+                    <h3>Settings</h3>
+                    <p>Configuration options go here.</p>
+                    <p>All tabs emit a <code>tab-changed</code> event when activated.</p>
+                  </div>
+                </td-tabs>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Default Tab Example</h2>
+                <p>Set a different default tab using the <code>default-tab</code> attribute:</p>
+                <td-tabs labels="First | Second | Third" default-tab="1">
+                  <div slot="tab-0">
+                    <h3>First Tab</h3>
+                    <p>This tab is not active by default.</p>
+                  </div>
+                  <div slot="tab-1">
+                    <h3>Second Tab</h3>
+                    <p>This tab is set as the default and displays on page load.</p>
+                  </div>
+                  <div slot="tab-2">
+                    <h3>Third Tab</h3>
+                    <p>This tab can be activated by clicking.</p>
+                  </div>
+                </td-tabs>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Usage Code Example</h2>
+                <td-code language="html">
+                  <template>
+                    <td-tabs labels="Tab 1 | Tab 2 | Tab 3" default-tab="0">
+                      <div slot="tab-0">
+                        <h3>Tab 1 Content</h3>
+                        <p>First tab content goes here</p>
+                      </div>
+                      <div slot="tab-1">
+                        <h3>Tab 2 Content</h3>
+                        <p>Second tab content goes here</p>
+                      </div>
+                      <div slot="tab-2">
+                        <h3>Tab 3 Content</h3>
+                        <p>Third tab content goes here</p>
+                      </div>
+                    </td-tabs>
+                  </template>
+                </td-code>
+                <h3>Component Features</h3>
+                <ul>
+                  <li><strong>Labels:</strong> Pipe-separated string of tab labels</li>
+                  <li><strong>Default Tab:</strong> Index of the tab to show initially (default: 0)</li>
+                  <li><strong>Keyboard Navigation:</strong> Arrow keys, Home, End for accessibility</li>
+                  <li><strong>Events:</strong> Emits <code>tab-changed</code> event with active index</li>
+                  <li><strong>Slots:</strong> Use <code>slot="tab-N"</code> for each tab's content</li>
+                </ul>
+              </td-card>
+            </div>
+          </div>

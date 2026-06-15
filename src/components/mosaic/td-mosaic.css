@@ -1,0 +1,8 @@
+:host {
+  display: block;
+}
+
+.mosaic {
+  display: grid;
+  width: 100%;
+}

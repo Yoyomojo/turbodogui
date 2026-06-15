@@ -1,0 +1,125 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card stretch>
+                <h2>Drawer Component</h2>
+                <p>A slide-in panel that can appear from any edge of the viewport. Wraps content in a focusable
+                  overlay with an accessible close button. Use the <code>position</code> attribute to control
+                  which edge the drawer slides from. Left and right drawers are always full viewport height;
+                  top and bottom drawers span the full viewport width.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-lg-6">
+              <td-card stretch>
+                <h2>Position Variants</h2>
+                <p>Click each button to open a drawer from that edge:</p>
+                <div style="display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:1rem;">
+                  <td-button id="drawer-right-btn">Right (default)</td-button>
+                  <td-button id="drawer-left-btn" variant="secondary">Left</td-button>
+                  <td-button id="drawer-top-btn" variant="secondary">Top</td-button>
+                  <td-button id="drawer-bottom-btn" variant="secondary">Bottom</td-button>
+                </div>
+                <td-drawer id="drawer-right" title="Right Drawer">
+                  <p>This drawer slides in from the right. Default width is <code>320px</code>.</p>
+                </td-drawer>
+                <td-drawer id="drawer-left" position="left" title="Left Drawer">
+                  <p>This drawer slides in from the left.</p>
+                </td-drawer>
+                <td-drawer id="drawer-top" position="top" title="Top Drawer">
+                  <p>This drawer drops down from the top. Default height is <code>320px</code>.</p>
+                </td-drawer>
+                <td-drawer id="drawer-bottom" position="bottom" title="Bottom Drawer">
+                  <p>This drawer rises from the bottom.</p>
+                </td-drawer>
+              </td-card>
+            </div>
+            <div class="col-12 col-lg-6">
+              <td-card stretch>
+                <h2>Custom Size</h2>
+                <p>Use <code>width</code> for left/right drawers and <code>height</code> for top/bottom drawers:</p>
+                <div style="display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:1rem;">
+                  <td-button id="drawer-wide-btn" variant="secondary">Wide Right (500px)</td-button>
+                  <td-button id="drawer-tall-btn" variant="secondary">Tall Bottom (50vh)</td-button>
+                </div>
+                <td-drawer id="drawer-wide" title="Wide Drawer" width="500px">
+                  <p>This drawer is <code>500px</code> wide.</p>
+                </td-drawer>
+                <td-drawer id="drawer-tall" position="bottom" title="Tall Bottom Drawer" height="50vh">
+                  <p>This drawer takes up <code>50vh</code> of the screen height.</p>
+                </td-drawer>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Usage</h2>
+                <td-code language="html">
+                  <template>
+                    
+                    <td-button id="open-btn">Open Drawer</td-button>
+
+                    
+                    <td-drawer id="my-drawer" title="Settings" position="right" width="400px">
+                      <p>Drawer content goes here.</p>
+                    </td-drawer>
+
+                    <script>
+                      document.getElementById('open-btn')
+                        .addEventListener('click', () => {
+                          document.getElementById('my-drawer').open();
+                        });
+
+                      document.getElementById('my-drawer')
+                        .addEventListener('drawer-close', () => {
+                          console.log('drawer closed');
+                        });
+                    </script>
+                  </template>
+                </td-code>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>position:</strong> <code>right</code> (default) | <code>left</code> | <code>top</code> | <code>bottom</code></li>
+                  <li><strong>width:</strong> Panel width for left/right drawers (default <code>320px</code>)</li>
+                  <li><strong>height:</strong> Panel height for top/bottom drawers (default <code>320px</code>)</li>
+                  <li><strong>title:</strong> Header title text</li>
+                  <li><strong>open:</strong> Boolean  -  present when the drawer is visible</li>
+                </ul>
+                <h3>JS API</h3>
+                <ul>
+                  <li><code>drawer.open()</code>  -  opens the drawer</li>
+                  <li><code>drawer.close()</code>  -  closes the drawer</li>
+                </ul>
+                <h3>Events</h3>
+                <ul>
+                  <li><code>drawer-close</code>  -  fires when the drawer is dismissed (close button, overlay click, or Escape)</li>
+                </ul>
+              </td-card>
+            </div>
+          </div>
+
+<script type="module" data-tab-init="tab-6-drawer.ts">
+function initTab() {
+    const drawerPairs = [
+        ['drawer-right-btn', 'drawer-right'],
+        ['drawer-left-btn', 'drawer-left'],
+        ['drawer-top-btn', 'drawer-top'],
+        ['drawer-bottom-btn', 'drawer-bottom'],
+        ['drawer-wide-btn', 'drawer-wide'],
+        ['drawer-tall-btn', 'drawer-tall'],
+    ];
+    drawerPairs.forEach(function ([btnId, drawerId]) {
+        var btn = document.getElementById(btnId);
+        var drawer = document.getElementById(drawerId);
+        if (btn && drawer) {
+            btn.addEventListener('click', function () { drawer.open(); });
+        }
+    });
+}
+if (typeof initTab === "function") {
+    initTab();
+}
+</script>

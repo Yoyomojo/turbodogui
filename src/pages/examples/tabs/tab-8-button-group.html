@@ -1,0 +1,147 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Button Group Component</h2>
+                <p>Use <code>td-button-group</code> to keep related actions grouped in a single horizontal strip.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Grouped Actions</h2>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                  <td-button-group>
+                    <td-button>Save</td-button>
+                    <td-button>Review</td-button>
+                    <td-button>Delete</td-button>
+                  </td-button-group>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Pill Buttons</h2>
+                <p>Use the <code>pill</code> attribute when you want rounded outer edges on the first and last button.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                  <td-button-group pill>
+                    <td-button>Draft</td-button>
+                    <td-button>Publish</td-button>
+                    <td-button>Archive</td-button>
+                  </td-button-group>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Size Variants</h2>
+                <p>Button groups support all <code>td-button</code> sizes.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                  <td-button-group>
+                    <td-button size="small">Small</td-button>
+                    <td-button size="small">Small</td-button>
+                    <td-button size="small">Small</td-button>
+                  </td-button-group>
+
+                  <td-button-group>
+                    <td-button>Medium</td-button>
+                    <td-button>Medium</td-button>
+                    <td-button>Medium</td-button>
+                  </td-button-group>
+
+                  <td-button-group>
+                    <td-button size="large">Large</td-button>
+                    <td-button size="large">Large</td-button>
+                    <td-button size="large">Large</td-button>
+                  </td-button-group>
+
+                  <td-button-group>
+                    <td-button size="extra-large">Extra Large</td-button>
+                    <td-button size="extra-large">Extra Large</td-button>
+                    <td-button size="extra-large">Extra Large</td-button>
+                  </td-button-group>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Variants</h2>
+                <p>Button variants are applied on each <code>td-button</code> inside the group. Mix default, <code>success</code>, <code>warning</code>, and <code>alert</code> as needed for action priority.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-bottom: 1rem;">
+                  <td-button-group>
+                    <td-button>Default</td-button>
+                    <td-button variant="success">Success</td-button>
+                    <td-button variant="warning">Warning</td-button>
+                    <td-button variant="alert">Alert</td-button>
+                  </td-button-group>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Usage</h2>
+                <p>Use a button group for related actions in a single context. Keep button order intentional, and use <code>pill</code> when you want a fully rounded segmented control.</p>
+                <td-code language="html">
+                  <template>
+                    <td-button-group gap="0.5rem" justify="start" align="center">
+                      <td-button>Save</td-button>
+                      <td-button>Review</td-button>
+                      <td-button>Delete</td-button>
+                    </td-button-group>
+
+                    <td-button-group pill>
+                      <td-button>Draft</td-button>
+                      <td-button>Publish</td-button>
+                      <td-button>Archive</td-button>
+                    </td-button-group>
+
+                    <td-button-group>
+                      <td-button size="small">Small</td-button>
+                      <td-button size="small">Small</td-button>
+                      <td-button size="small">Small</td-button>
+                    </td-button-group>
+
+                    <td-button-group>
+                      <td-button>Medium</td-button>
+                      <td-button>Medium</td-button>
+                      <td-button>Medium</td-button>
+                    </td-button-group>
+
+                    <td-button-group>
+                      <td-button size="large">Large</td-button>
+                      <td-button size="large">Large</td-button>
+                      <td-button size="large">Large</td-button>
+                    </td-button-group>
+
+                    <td-button-group>
+                      <td-button size="extra-large">Extra Large</td-button>
+                      <td-button size="extra-large">Extra Large</td-button>
+                      <td-button size="extra-large">Extra Large</td-button>
+                    </td-button-group>
+                  </template>
+                </td-code>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>wrap:</strong> Boolean: allows horizontal groups to wrap onto multiple lines</li>
+                  <li><strong>gap:</strong> CSS gap value between items (default: <code>0.5rem</code>)</li>
+                  <li><strong>align:</strong> <code>start</code> | <code>center</code> | <code>end</code> | <code>stretch</code></li>
+                  <li><strong>justify:</strong> <code>start</code> | <code>center</code> | <code>end</code> | <code>between</code> | <code>around</code> | <code>evenly</code></li>
+                  <li><strong>full-width:</strong> Boolean: makes the group use full available width</li>
+                  <li><strong>pill:</strong> Boolean: fully rounds the left side of the first button and the right side of the last button</li>
+                </ul>
+              </td-card>
+            </div>
+          </div>

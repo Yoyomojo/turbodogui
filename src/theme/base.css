@@ -1,0 +1,245 @@
+@import "./base-theme.css";
+@import "./grid.css";
+@import "./nav.css";
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--td-bg);
+  color: var(--td-fg);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+html {
+  overflow-x: clip;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+}
+
+img,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+.app-shell {
+  width: 100%;
+  padding-block: 24px 40px;
+}
+
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  --topbar-height: 56px;
+}
+
+.app-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  height: var(--topbar-height);
+  padding: 0 16px;
+  background: var(--td-surface);
+  border-bottom: 1px solid var(--td-border);
+  flex-shrink: 0;
+}
+
+.topbar-start {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.topbar-end {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--td-fg);
+  font-weight: 700;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.topbar-logo-img {
+  height: 34px;
+  width: auto;
+  border: 2px solid var(--td-border);
+  border-radius: 6px;
+  padding: 2px;
+  flex-shrink: 0;
+}
+
+.topbar-title {
+  display: none;
+}
+
+@media (min-width: 480px) {
+  .topbar-title {
+    display: block;
+  }
+}
+
+.topbar-github {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--td-fg);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.875rem;
+  opacity: 0.8;
+  transition: opacity 150ms;
+}
+
+.topbar-github:hover { opacity: 1; }
+.topbar-github:focus-visible {
+  outline: 2px solid var(--td-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.topbar-github-label {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .topbar-github-label { display: block; }
+}
+
+.sidebar-brand-text {
+  font-weight: 700;
+  font-size: 0.9375rem;
+  color: var(--td-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.app-body {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+}
+
+.app-content {
+  flex: 1;
+  min-width: 0;
+  padding: 24px 16px 40px;
+  background: var(--td-bg);
+}
+
+@media (min-width: 768px) {
+  .app-content {
+    padding: 24px 24px 40px;
+  }
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.app-shell > * + * {
+  margin-top: 20px;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: clamp(1.75rem, 3vw, 2.4rem);
+  line-height: 1.1;
+}
+
+.app-header p {
+  margin: 6px 0 0;
+  color: var(--td-muted);
+  max-width: 62ch;
+}
+
+.app-panel,
+.app-stat {
+  height: 100%;
+}
+
+.app-panel {
+  background: var(--td-surface);
+  border: 1px solid var(--td-border);
+  border-radius: var(--td-radius);
+  padding: 18px;
+  box-shadow: var(--td-shadow);
+}
+
+.app-panel h3,
+.app-stat h3 {
+  margin-top: 0;
+}
+
+.app-grid-box {
+  display: grid;
+  place-items: center;
+  min-height: 88px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px dashed var(--td-border);
+  background: var(--td-surface-2);
+  font-weight: 700;
+  text-align: center;
+}
+
+.app-stat {
+  background: var(--td-surface);
+  border: 1px solid var(--td-border);
+  border-radius: var(--td-radius);
+  padding: 18px;
+}
+
+.app-stat strong {
+  display: block;
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+code {
+  background: var(--td-surface-2);
+  padding: 0.15rem 0.35rem;
+  border-radius: 8px;
+}
+
+@media (max-width: 767px) {
+  .app-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

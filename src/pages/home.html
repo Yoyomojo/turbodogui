@@ -1,0 +1,465 @@
+<div class="container">
+  <div class="row row--center" style="margin-top: 0.75rem;">
+    <div class="col-12 col-lg-12">
+      <td-card stretch>
+        <div style="display: flex; flex-direction: column; gap: 1.25rem; align-items: center; text-align: center;">
+          <img
+            src="/turbodog-td-logo.png"
+            alt="Turbodog UI logo"
+            style="max-width: 380px; width: 100%; height: auto;"
+          >
+          <p style="margin: 0; color: var(--td-muted); letter-spacing: 0.06em; text-transform: uppercase; font-weight: 700;">
+            TypeScript Web Components Starter
+          </p>
+          <h1 style="margin: 0; font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.1;">
+            Ship A Fast, Native UI Foundation
+          </h1>
+          <p style="margin: 0; max-width: 760px; color: var(--td-muted); font-size: 1.06rem; line-height: 1.7;">
+            Turbodog UI gives you a production-ready shell with native custom elements, a lightweight router, theming,
+            and a practical component library. Keep what you need, delete what you do not, and start building your own
+            product flow immediately.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem;">
+            <td-link href="https://github.com/Yoyomojo/turbodogui" new-window button>View GitHub</td-link>
+            <td-link href="https://github.com/Yoyomojo/turbodogui/issues" new-window button variant="warning">Report Issue</td-link>
+          </div>
+        </div>
+      </td-card>
+    </div>
+  </div>
+
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <td-card>
+        <h2>Core</h2>
+        <ul>
+          <li><strong>Web Components</strong>  -  every UI element is a native Custom Element with Shadow DOM
+            encapsulation, built in TypeScript</li>
+          <li><strong>Router</strong>  -  lightweight pathname-based router with dynamic route params, lifecycle
+            listeners, and SEO-friendly title/description support</li>
+          <li><strong>Theme system</strong>  -  light/dark mode via CSS custom properties with
+            <code>localStorage</code> persistence and system-preference detection</li>
+          <li><strong>HTTP helper</strong>  -  thin <code>fetch</code> wrapper with automatic JSON
+            serialisation/parsing, <code>Content-Type</code> injection, and non-2xx error throwing</li>
+          <li><strong>Responsive grid</strong>  -  mobile-first 12-column layout with <code>sm</code> (576 px),
+            <code>md</code> (768 px), <code>lg</code> (992 px), and <code>xl</code> (1200 px) breakpoints</li>
+          <li><strong>Zero runtime dependencies</strong>  -  dev tooling only: TypeScript <code>^5.6.3</code> and
+            Vite <code>^8.0.8</code></li>
+        </ul>
+      </td-card>
+    </div>
+  </div>
+
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <td-card>
+        <h2>App Shell</h2>
+        <p>The app uses a shared shell so navigation, theming, and layout stay consistent across all routes.</p>
+        <h3>Structure</h3>
+        <ul>
+          <li><strong>Top bar</strong> in <code>src/shared/app-shell.html</code> provides branding, Download from Github link, and theme toggle.</li>
+          <li><strong>Sidebar</strong> (<code>&lt;td-sidebar&gt;</code>) contains component and layout navigation entries.</li>
+          <li><strong>Main outlet</strong> (<code>#app-content</code>) is where route HTML is rendered.</li>
+        </ul>
+        <h3>Runtime Flow</h3>
+        <td-code language="typescript" filename="src/main.ts"><template>
+app.innerHTML = shellHtml;
+      initializeAppRoutes(contentEl);
+        </template></td-code>
+        <td-code language="typescript" filename="src/pages/app-routes.ts"><template>
+      router.register("/", async () => loadHomeHtml(), {
+        title: "Turbodog UI | Home"
+      });
+
+      router.start();
+        </template></td-code>
+        <p>Each route returns page markup, while the shell remains mounted once at startup.</p>
+        <h3>Why This Pattern</h3>
+        <ul>
+          <li><strong>Consistency:</strong> one navigation and layout frame for every page.</li>
+          <li><strong>Simplicity:</strong> routes only define page content, not shared chrome.</li>
+          <li><strong>Scalability:</strong> adding pages means registering a route and linking it in sidebar/nav.</li>
+        </ul>
+      </td-card>
+    </div>
+  </div>
+
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <td-card>
+        <h2>Use It As A Starter</h2>
+        <p>If you want a fresh app, keep the shell and the pieces you need, then remove the demo content you do not.
+          This repository is already wired so you can strip it down fast and build on top of it without touching the
+          core plumbing.</p>
+        <h3>Suggested cleanup</h3>
+        <ul>
+          <li>Delete <code>public/example-video/</code> if you do not need the sample media assets.</li>
+          <li>Remove example pages you are not using from <code>src/pages/examples/</code>.</li>
+          <li>Trim the component list in <code>src/pages/home.html</code> and the sidebar nav if you want a smaller app.</li>
+          <li>Keep <code>src/core/</code>, <code>src/shared/</code>, and the components you plan to reuse.</li>
+        </ul>
+        <h3>How to build on it quickly</h3>
+        <ul>
+          <li>Create a new HTML page in <code>src/pages/</code>.</li>
+          <li>Register the route in <code>src/pages/app-routes.ts</code>.</li>
+          <li>Build new UI with existing components, or add a component under <code>src/components/</code>.</li>
+          <li>Fetch data with the shared <code>http</code> helper and bind it into your route or component.</li>
+        </ul>
+      </td-card>
+    </div>
+  </div>
+
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <td-card>
+        <h2>Components</h2>
+        <p>Browse live examples and full API documentation on the <td-link href="/examples">Examples</td-link> page.</p>
+        <td-table
+          zebra
+          columns='[
+            {"key":"component","label":"Component"},
+            {"key":"description","label":"Description"}
+          ]'
+          data='[
+            {"component":"&lt;td-accordion&gt;","description":"Expandable/collapsible content sections with optional multi-open support and full keyboard navigation"},
+            {"component":"&lt;td-alert&gt;","description":"Dismissible status banners in info, success, warning, and alert variants with built-in icons"},
+            {"component":"&lt;td-breadcrumb&gt;","description":"Accessible page-trail navigation rendered as a ul list. Supports declarative li children, a JSON items attribute, and dynamic src/API population; separator is auto-injected between crumbs and configurable in all three modes"},
+            {"component":"&lt;td-bar-chart&gt;","description":"Vertical and horizontal bar chart with grouped multi-series mode, reference lines, line-series overlay, interactive legend, and auto-angling labels"},
+            {"component":"&lt;td-bubble-chart&gt;","description":"Multi-series bubble chart with auto-scaling X/Y axes, proportional bubble sizing, interactive legend, hover tooltips, and optional axis labels"},
+            {"component":"&lt;td-radar-chart&gt;","description":"Multi-series radar chart with configurable axis labels, interactive legend, hover tooltips, normalized score-style data, and optional remote src loading"},
+            {"component":"&lt;td-button&gt;","description":"Styled button with success, warning, and alert variants plus small, medium, large, and extra-large size options"},
+            {"component":"&lt;td-button-group&gt;","description":"Layout wrapper for grouping multiple td-button actions in a horizontal strip with configurable gap, alignment, wrapping, and optional pill ends"},
+            {"component":"&lt;td-card&gt;","description":"Surface container for grouping content; supports a stretch attribute for equal-height columns"},
+            {"component":"&lt;td-carousel&gt;","description":"Animated slideshow with dot indicators, prev/next arrows, autoplay, loop, touch swipe, and keyboard navigation"},
+            {"component":"&lt;td-checkbox&gt;","description":"Accessible styled checkbox with label, error state, and change event"},
+            {"component":"&lt;td-code&gt;","description":"Syntax-highlighted code block with language badge, optional filename label, and copy-to-clipboard button"},
+            {"component":"&lt;td-donut-chart&gt;","description":"Ring chart with configurable hole size, optional center label, interactive legend, and toggleable segments"},
+            {"component":"&lt;td-drawer&gt;","description":"Slide-in panel from any viewport edge (top, right, bottom, left) with configurable width/height, overlay backdrop, Escape key dismissal, and a drawer-close event"},
+            {"component":"&lt;td-file-input&gt;","description":"Drag-and-drop or click-to-upload file picker with single/multiple mode, accept-type and max-size filtering, size variants, and customizable drop-zone labels/content"},
+            {"component":"&lt;td-line-chart&gt;","description":"Multi-series line chart with per-point tooltips, toggleable legend, auto-angling x-axis labels, and optional value labels"},
+            {"component":"&lt;td-link&gt;","description":"Router-aware anchor that prevents full page reloads; optionally renders as a fully styled button-equivalent"},
+            {"component":"&lt;td-loader&gt;","description":"Full-screen or contained loading overlay with spinner and dots variants, configurable size/color, and show()/hide() API"},
+            {"component":"&lt;td-modal&gt;","description":"Centered dialog with focus trap, optional overlay/escape-key dismissal, configurable width, and a default content slot"},
+            {"component":"&lt;td-mosaic&gt; / &lt;td-mosaic-item&gt;","description":"CSS Grid photo mosaic with auto-square cells, configurable column count and gap, col-span/row-span spanning, and hover overlay"},
+            {"component":"&lt;td-multi-select&gt;","description":"Dropdown multi-select with size variants, pill badges, live search, Select/Deselect All, keyboard navigation, and JSON/HTML/JS option population"},
+            {"component":"&lt;td-pagination&gt;","description":"Page navigation control driven by total item count and page size; emits td-page-change with offset/limit ready for API queries"},
+            {"component":"&lt;td-pie-chart&gt;","description":"Pie chart with interactive legend, toggleable slices, optional percentage labels, and configurable legend position"},
+            {"component":"&lt;td-select&gt;","description":"Styled select wrapper with size variants, option groups, multiple selection, label, and change event"},
+            {"component":"&lt;td-sidebar&gt;","description":"Collapsible side-navigation with search filtering, section labels, badge counts, SVG icon support, and a responsive mobile drawer"},
+            {"component":"&lt;td-table&gt;","description":"Feature-rich data table with sorting, live search, CSV export, sticky header, scrollable body, nested column headers, cell rendering, row/cell highlighting, and editable cells"},
+            {"component":"&lt;td-tabs&gt;","description":"Tabbed content container with keyboard navigation (arrow keys, Home, End), scroll overflow arrows, and tab-changed event"},
+            {"component":"&lt;td-text-input&gt;","description":"Labelled text input with size variants, validation/error state, and full accessibility support"},
+            {"component":"&lt;td-textarea&gt;","description":"Labelled multi-line textarea with size variants, rows/resize controls, validation/error state, and accessibility support"},
+            {"component":"&lt;td-theme-toggle&gt;","description":"One-click light/dark theme toggle button"},
+            {"component":"&lt;td-tooltip&gt;","description":"Hover/focus tooltip anchored to any element with configurable position and max-width"},
+            {"component":"&lt;td-video-player&gt;","description":"Custom video player supporting direct files, Vimeo and YouTube embeds, drag-and-drop, keyboard shortcuts, fullscreen, and a timestamped share button"}
+          ]'>
+        </td-table>
+      </td-card>
+    </div>
+  </div>
+
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <td-card>
+        <h2>Getting Started</h2>
+        <p>Clone the repository and run the following commands:</p>
+        <td-code language="shell">
+npm install
+npm run dev
+        </td-code>
+      </td-card>
+    </div>
+  </div>
+
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <td-card>
+        <h2>Adding Routes</h2>
+        <p>Routes are registered in <code>src/pages/app-routes.ts</code> using the router. Each route maps a path to a page
+          and optional metadata.</p>
+        <h3>Register a Route</h3>
+        <td-code language="typescript" filename="src/pages/app-routes.ts"><template>
+import { router } from "../core/router";
+const loadMyPageHtml = () => import("./my-page.html?raw").then((module) => module.default);
+
+router.register("/my-page", async () => loadMyPageHtml(), {
+  title: "My Page",
+  description: "Description for SEO"
+});
+        </template></td-code>
+        <h3>Dynamic Route Parameters</h3>
+        <p>Routes support dynamic parameters using colon syntax <code>:param</code>:</p>
+        <td-code language="typescript" filename="src/pages/app-routes.ts"><template>
+      router.register("/users/:id", async (params) => {
+  return navHtml + `<h1>User ${params.id}</h1>`;
+}, {
+  title: "User Details"
+});
+        </template></td-code>
+        <p>Navigate to routes using the <code>router.navigate()</code> method or the <code>&lt;td-link&gt;</code>
+          component.</p>
+      </td-card>
+    </div>
+  </div>
+
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <td-card>
+        <h2>Creating Pages</h2>
+        <p>Pages are HTML files stored in <code>src/pages/</code> and imported as raw strings in <code>app-routes.ts</code>.
+        </p>
+        <h3>Create a Page File</h3>
+        <p>Create <code>src/pages/my-page.html</code>:</p>
+        <td-code language="html" filename="src/pages/my-page.html"><template>
+<div class="container app-shell">
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <td-card>
+        <h2>My Page</h2>
+        <p>Page content goes here</p>
+      </td-card>
+    </div>
+  </div>
+</div>
+        </template></td-code>
+        <h3>Import and Register</h3>
+        <p>In <code>src/pages/app-routes.ts</code>, lazy-load and register it:</p>
+        <td-code language="typescript" filename="src/pages/app-routes.ts"><template>
+      const loadMyPageHtml = () => import("./my-page.html?raw").then((module) => module.default);
+
+      router.register("/my-page", async () => loadMyPageHtml());
+        </template></td-code>
+      </td-card>
+    </div>
+  </div>
+
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <td-card>
+        <h2>API Calls</h2>
+        <p>The <code>http</code> helper in <code>src/core/http.ts</code> provides a lightweight fetch wrapper with
+          built-in JSON handling and error handling.</p>
+        <h3>Create an API Module</h3>
+        <p>Create <code>src/api/users-api.ts</code>:</p>
+        <td-code language="typescript" filename="src/api/users-api.ts">
+import { http } from "../core/http";
+
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+export const getUsers = () => http&lt;User[]&gt;("/api/users");
+export const getUser = (id: number) => http&lt;User&gt;(`/api/users/${id}`);
+export const createUser = (data: Omit&lt;User, "id"&gt;) =&gt;
+  http&lt;User&gt;("/api/users", {
+    method: "POST",
+    body: data
+  });
+        </td-code>
+        <h3>Using the HTTP Helper</h3>
+        <td-code language="typescript">
+const data = await http("/api/example");
+
+const users = await http&lt;User[]&gt;("/api/users");
+
+const result = await http("/api/data", {
+  method: "POST",
+  headers: { "Authorization": "Bearer token" },
+  body: { name: "John" }
+});
+        </td-code>
+      </td-card>
+    </div>
+  </div>
+
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <td-card>
+        <h2>Populating Pages with Data</h2>
+        <p>Since pages are rendered server-side in the route handler, fetch data before rendering the HTML:</p>
+        <h3>Fetch and Render Pattern</h3>
+        <td-code language="typescript" filename="src/pages/app-routes.ts">
+router.register("/users", async () =&gt; {
+  try {
+    const users = await getUsers();
+    const usersList = users
+      .map(u =&gt; `&lt;li&gt;${u.name} - ${u.email}&lt;/li&gt;`)
+      .join("");
+
+    return navHtml + `
+      &lt;div class="container"&gt;
+        &lt;ul&gt;${usersList}&lt;/ul&gt;
+      &lt;/div&gt;
+    `;
+  } catch (error) {
+    return navHtml + `
+      &lt;div class="container"&gt;
+        &lt;p&gt;Error loading users&lt;/p&gt;
+      &lt;/div&gt;
+    `;
+  }
+}, {
+  title: "Users",
+  description: "List of all users"
+});
+        </td-code>
+        <h3>Using Web Components for Dynamic Content</h3>
+        <p>For more complex, interactive pages, use Web Components:</p>
+        <td-code language="typescript" filename="src/pages/users-page.ts">
+import { UIComponent } from "../core/component";
+import { getUsers } from "../api/users-api";
+
+export class UsersPage extends UIComponent {
+  protected async render(): Promise&lt;void&gt; {
+    try {
+      const users = await getUsers();
+      this.root.innerHTML = `
+        &lt;ul&gt;
+          ${users.map(u =&gt; `&lt;li&gt;${u.name}&lt;/li&gt;`).join("")}
+        &lt;/ul&gt;
+      `;
+    } catch (error) {
+      this.root.innerHTML = `&lt;p&gt;Error loading users&lt;/p&gt;`;
+    }
+  }
+}
+
+customElements.define("users-page", UsersPage);
+        </td-code>
+      </td-card>
+    </div>
+  </div>
+
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <td-card>
+        <h2>Creating Web Components</h2>
+        <p>Extend the <code>UIComponent</code> base class to create reusable components. Place each component in its
+          own folder with a paired <code>.css</code> file  -  Vite's <code>?raw</code> import brings it in as a string
+          at build time so it lands inside the Shadow DOM.</p>
+        <h3>File structure</h3>
+        <td-code>
+src/components/my-component/
+  my-component.ts
+  my-component.css
+        </td-code>
+        <h3>my-component.css</h3>
+        <td-code language="css" filename="my-component.css">
+:host {
+  display: block;
+}
+
+.my-component {
+  padding: 1rem;
+  background: var(--td-surface);
+  color: var(--td-fg);
+  border-radius: var(--td-radius);
+}
+        </td-code>
+        <h3>my-component.ts</h3>
+        <td-code language="typescript" filename="my-component.ts">
+import { UIComponent } from "../../core/component";
+import styles from "./my-component.css?raw";
+
+export class MyComponent extends UIComponent {
+  static tag = "my-component";
+  static observedAttributes = ["label", "disabled"];
+
+  attributeChangedCallback() {
+    this.render();
+  }
+
+  protected render(): void {
+    const label = this.getAttribute("label") ?? "Default";
+    const disabled = this.hasAttribute("disabled");
+
+    this.root.innerHTML = `
+      ${this.css(styles)}
+      &lt;div class="my-component"&gt;
+        &lt;button ${disabled ? "disabled" : ""}&gt;${label}&lt;/button&gt;
+        &lt;slot&gt;&lt;/slot&gt;
+      &lt;/div&gt;
+    `;
+  }
+}
+
+customElements.define(MyComponent.tag, MyComponent);
+        </td-code>
+        <h3>Register in src/index.ts</h3>
+        <td-code language="typescript" filename="src/index.ts">
+import "./components/my-component/my-component";
+        </td-code>
+        <h3>Use in any page HTML</h3>
+        <td-code language="html"><template>
+<my-component label="Click me">
+  <p>Slotted content</p>
+</my-component>
+        </template></td-code>
+        <h3>Key points</h3>
+        <ul>
+          <li><code>?raw</code>  -  Vite import suffix that returns the file contents as a plain string</li>
+          <li><code>this.css(styles)</code>  -  wraps the string in a <code>&lt;style&gt;</code> tag scoped inside the
+            Shadow DOM</li>
+          <li><code>:host</code>  -  selects the custom element itself from within its own stylesheet</li>
+          <li><code>static observedAttributes</code>  -  list attributes that should trigger
+            <code>attributeChangedCallback</code> and re-render</li>
+          <li><code>&lt;slot&gt;</code>  -  projects child content from the light DOM into the Shadow DOM</li>
+        </ul>
+      </td-card>
+    </div>
+  </div>
+
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <td-card>
+        <h2>Environment Variables</h2>
+        <p>Vite loads <code>.env.development</code> during <code>npm run dev</code> and <code>.env.production</code>
+          during <code>npm run build</code>. Copy the example templates to get started:</p>
+        <td-code language="shell">
+cp .env.development.example .env.development
+cp .env.production.example .env.production
+        </td-code>
+        <p>All variables exposed to the client must be prefixed with <code>VITE_</code>:</p>
+        <h3>.env.development</h3>
+        <td-code filename=".env.development">
+VITE_APP_NAME=Turbodog UI
+VITE_API_URL=http://localhost:3000
+VITE_APP_ENV=development
+        </td-code>
+        <h3>.env.production</h3>
+        <td-code filename=".env.production">
+VITE_APP_NAME=Turbodog UI
+VITE_API_URL=https://api.example.com
+VITE_APP_ENV=production
+        </td-code>
+        <h3>Usage</h3>
+        <td-code language="typescript">
+const appName = import.meta.env.VITE_APP_NAME;
+const apiUrl = import.meta.env.VITE_API_URL;
+const env = import.meta.env.VITE_APP_ENV;
+        </td-code>
+        <p>Add new variables to <code>src/env.d.ts</code> to keep them typed.</p>
+      </td-card>
+    </div>
+  </div>
+
+  <div class="row row--center">
+    <div class="col-12 col-lg-12">
+      <td-card>
+        <h2>Theming</h2>
+        <p>The application uses CSS variables for theming. Colors are defined in <code>src/theme/base-theme.css</code>
+          and can be toggled between light and dark modes.</p>
+        <td-code language="typescript">
+import { initializeTheme, toggleTheme } from "./src/theme/theme";
+
+initializeTheme(); // Initialize on app start
+toggleTheme();     // Toggle between light/dark
+        </td-code>
+        <p>The selected theme is persisted in <code>localStorage</code> under the key <code>turbodogtd-theme</code>.</p>
+      </td-card>
+    </div>
+  </div>
+</div>

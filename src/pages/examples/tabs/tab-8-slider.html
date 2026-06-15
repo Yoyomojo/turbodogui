@@ -1,0 +1,91 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Slider Component</h2>
+                <p>An HTML slider with single-value and multi-point support, configurable min/max range, and drag lifecycle events.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Single Point</h3>
+                <td-slider id="slider-single" label="Volume" min="0" max="100" step="5" value="35"></td-slider>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Multi Point</h3>
+                <td-slider id="slider-multi" label="Price Range Markers" min="0" max="500" step="10" values="[80, 220, 430]"></td-slider>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h3>Defined Range</h3>
+                <td-slider id="slider-temperature" label="Temperature Stops" min="-20" max="60" step="1" values="[-5, 15, 40]"></td-slider>
+                <h3>Events</h3>
+                <ul>
+                  <li><strong>slider-start:</strong> Fires when drag/keyboard interaction starts</li>
+                  <li><strong>slider-input:</strong> Fires while a thumb is moving (in motion)</li>
+                  <li><strong>slider-stop:</strong> Fires when interaction ends</li>
+                  <li><strong>change:</strong> Fires after a stop/commit interaction</li>
+                </ul>
+                <p id="slider-events-log" style="font-size:0.9rem;color:var(--td-fg-muted);">Interact with a slider to see event output.</p>
+
+                <td-code language="html">
+                  <template>
+                    <td-slider
+                      label="Range"
+                      min="0"
+                      max="100"
+                      step="5"
+                      values="[20, 80]">
+                    </td-slider>
+                  </template>
+                </td-code>
+
+                <td-code language="js">
+                  <template>
+                    const slider = document.querySelector('td-slider');
+
+                    slider.addEventListener('slider-start', (e) => console.log('start', e.detail));
+                    slider.addEventListener('slider-input', (e) => console.log('moving', e.detail));
+                    slider.addEventListener('slider-stop', (e) => console.log('stop', e.detail));
+                    slider.addEventListener('change', (e) => console.log('change', e.detail));
+                  </template>
+                </td-code>
+              </td-card>
+            </div>
+          </div>
+
+<script type="module" data-tab-init="tab-8-slider.ts">
+function initTab() {
+    var sliders = document.querySelectorAll('td-slider');
+    var log = document.getElementById('slider-events-log');
+
+    sliders.forEach(function (slider) {
+        slider.addEventListener('slider-start', function (e) {
+            if (!log) return;
+            log.textContent = 'slider-start -> thumb #' + (e.detail.index + 1) + ', value=' + e.detail.value;
+        });
+
+        slider.addEventListener('slider-input', function (e) {
+            if (!log) return;
+            log.textContent = 'slider-input -> values=[' + e.detail.values.join(', ') + ']';
+        });
+
+        slider.addEventListener('slider-stop', function (e) {
+            if (!log) return;
+            log.textContent = 'slider-stop -> thumb #' + (e.detail.index + 1) + ', value=' + e.detail.value;
+        });
+    });
+}
+
+if (typeof initTab === 'function') {
+    initTab();
+}
+</script>

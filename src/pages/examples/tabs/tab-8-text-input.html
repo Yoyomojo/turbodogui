@@ -1,0 +1,61 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Text Input Component</h2>
+                <p>A versatile input component supporting multiple input types with consistent styling and validation states.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h2>Input Sizes</h2>
+                <p>Use the <code>size</code> attribute to control the input's visual size:</p>
+                <td-text-input type="text" label="Small" placeholder="size=small" size="small"></td-text-input>
+                <td-text-input type="text" label="Medium (default)" placeholder="size=medium"></td-text-input>
+                <td-text-input type="text" label="Large" placeholder="size=large" size="large"></td-text-input>
+                <td-text-input type="text" label="Extra Large" placeholder="size=extra-large" size="extra-large"></td-text-input>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h2>Input Types</h2>
+                <p>The same component works with different HTML input types for different purposes:</p>
+                <td-text-input type="text" label="Text Input" placeholder="Standard text input"></td-text-input>
+                <td-text-input type="email" label="Email Input" placeholder="name@example.com"></td-text-input>
+                <td-text-input type="password" label="Password Input" placeholder="Enter your password"></td-text-input>
+                <td-text-input type="tel" label="Telephone Input" placeholder="(555) 123-4567"></td-text-input>
+                <td-text-input type="number" label="Number Input" placeholder="42"></td-text-input>
+                <td-text-input type="url" label="URL Input" placeholder="https://example.com"></td-text-input>
+                <td-text-input type="search" label="Search Input" placeholder="Search query"></td-text-input>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Input States</h2>
+                <p>Inputs can display different states:</p>
+                <td-text-input type="text" label="Normal State" placeholder="This is a normal input"></td-text-input>
+                <td-text-input type="text" label="Disabled Input" placeholder="This input is disabled" disabled></td-text-input>
+                <td-text-input type="text" label="Error State" placeholder="This input has an error" error></td-text-input>
+                <td-code language="html">
+                  <template>
+                    <td-text-input type="email" label="Email Address" placeholder="Enter your email" size="large" disabled error>
+                    </td-text-input>
+                  </template>
+                </td-code>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>type:</strong> HTML input type (text, email, password, tel, number, url, search, etc.)</li>
+                  <li><strong>label:</strong> Display label for the input</li>
+                  <li><strong>placeholder:</strong> Placeholder text</li>
+                  <li><strong>size:</strong> <code>small</code> | <code>medium</code> | <code>large</code> | <code>extra-large</code> (default: <code>medium</code>)</li>
+                  <li><strong>disabled:</strong> Boolean attribute to disable the input</li>
+                  <li><strong>error:</strong> Boolean attribute to show error state</li>
+                </ul>
+              </td-card>
+            </div>
+          </div>

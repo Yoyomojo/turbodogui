@@ -1,0 +1,115 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Accordion Component</h2>
+                <p>Create expandable sections of content with smooth animations and keyboard accessibility.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Basic Accordion</h2>
+                <p>A simple accordion with three collapsible items:</p>
+                <td-accordion items="3" item-0-title="Section One" item-1-title="Section Two"
+                  item-2-title="Section Three">
+                  <div slot="item-0">
+                    <p>This is the content for the first section. Click to expand or collapse.</p>
+                    <p>You can include any HTML content here.</p>
+                  </div>
+                  <div slot="item-1">
+                    <p>This is the content for the second section.</p>
+                    <p>Sections can contain multiple paragraphs and other elements.</p>
+                  </div>
+                  <div slot="item-2">
+                    <p>This is the content for the third section.</p>
+                    <p>Use arrow keys to navigate between sections.</p>
+                  </div>
+                </td-accordion>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Multiple Items Open</h2>
+                <p>Set <code>allow-multiple</code> to allow more than one section to be open at a time:</p>
+                <td-accordion items="3" allow-multiple item-0-title="Features" item-1-title="Pricing"
+                  item-2-title="Support">
+                  <div slot="item-0">
+                    <p>Smooth animations and transitions</p>
+                    <p>Keyboard navigation support</p>
+                    <p>Flexible content slots</p>
+                  </div>
+                  <div slot="item-1">
+                    <p>Free tier available</p>
+                    <p>Professional plans starting at $9/month</p>
+                  </div>
+                  <div slot="item-2">
+                    <p>24/7 customer support</p>
+                    <p>Email and live chat available</p>
+                  </div>
+                </td-accordion>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>FAQ Example</h2>
+                <p>A common use case for accordions: frequently asked questions:</p>
+                <td-accordion items="3" item-0-title="How do I get started?" item-1-title="What features are included?"
+                  item-2-title="Can I cancel anytime?">
+                  <div slot="item-0">
+                    <p>Getting started is easy! Simply sign up for an account and start using our services immediately.
+                    </p>
+                  </div>
+                  <div slot="item-1">
+                    <p>Our service includes unlimited access to all core features, priority support, and regular
+                      updates.</p>
+                  </div>
+                  <div slot="item-2">
+                    <p>Yes, you can cancel your subscription at any time with no questions asked.</p>
+                  </div>
+                </td-accordion>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Usage Code Example</h2>
+                <td-code language="html">
+                  <template>
+                    <td-accordion items="3" item-0-title="First Item" item-1-title="Second Item"
+                      item-2-title="Third Item" allow-multiple>
+                      <div slot="item-0">
+                        <p>Content for first item</p>
+                      </div>
+                      <div slot="item-1">
+                        <p>Content for second item</p>
+                      </div>
+                      <div slot="item-2">
+                        <p>Content for third item</p>
+                      </div>
+                    </td-accordion>
+                  </template>
+                </td-code>
+                <h3>Component Features</h3>
+                <ul>
+                  <li><strong>Items:</strong> Number of accordion sections</li>
+                  <li><strong>Item Titles:</strong> Use <code>item-N-title</code> attribute for each section title</li>
+                  <li><strong>Allow Multiple:</strong> Boolean attribute to allow multiple sections open simultaneously
+                  </li>
+                  <li><strong>Keyboard Navigation:</strong> Arrow keys to navigate, Home/End for first/last items</li>
+                  <li><strong>Accessibility:</strong> Full ARIA roles and labels for screen readers</li>
+                  <li><strong>Smooth Animations:</strong> CSS transitions for expand/collapse</li>
+                  <li><strong>Events:</strong> Emits <code>accordion-toggle</code> event with active index</li>
+                </ul>
+              </td-card>
+            </div>
+          </div>

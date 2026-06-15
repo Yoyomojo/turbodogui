@@ -1,0 +1,71 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Textarea Component</h2>
+                <p>A multi-line input component with size variants, validation states, and resize control.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h2>Textarea Sizes</h2>
+                <p>Use the <code>size</code> attribute to control textarea size:</p>
+                <td-textarea label="Small" placeholder="Small textarea" size="small"></td-textarea>
+                <td-textarea label="Medium (default)" placeholder="Medium textarea"></td-textarea>
+                <td-textarea label="Large" placeholder="Large textarea" size="large"></td-textarea>
+                <td-textarea label="Extra Large" placeholder="Extra large textarea" size="extra-large"></td-textarea>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h2>Rows and Resize</h2>
+                <p>Control visible lines with <code>rows</code> and user resizing with <code>resize</code>.</p>
+                <td-textarea label="Rows 3" rows="3" placeholder="rows=3"></td-textarea>
+                <td-textarea label="Rows 8" rows="8" placeholder="rows=8"></td-textarea>
+                <td-textarea label="No Resize" resize="none" placeholder="resize=none"></td-textarea>
+                <td-textarea label="Horizontal Resize" resize="horizontal" placeholder="resize=horizontal"></td-textarea>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Textarea States</h2>
+                <p>Textareas support normal, disabled, and error states:</p>
+                <td-textarea label="Normal" placeholder="Describe your request"></td-textarea>
+                <td-textarea label="Required" required placeholder="This field is required"></td-textarea>
+                <td-textarea label="Disabled" disabled value="This textarea is disabled"></td-textarea>
+                <td-textarea label="Error" error placeholder="This textarea has an error"></td-textarea>
+
+                <td-code language="html">
+                  <template>
+                    <td-textarea
+                      label="Message"
+                      name="message"
+                      size="large"
+                      rows="6"
+                      resize="vertical"
+                      required
+                    ></td-textarea>
+                  </template>
+                </td-code>
+
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>label:</strong> Display label for the textarea</li>
+                  <li><strong>placeholder:</strong> Placeholder text</li>
+                  <li><strong>value:</strong> Initial textarea value</li>
+                  <li><strong>name:</strong> Form field name</li>
+                  <li><strong>size:</strong> <code>small</code> | <code>medium</code> | <code>large</code> | <code>extra-large</code> (default: <code>medium</code>)</li>
+                  <li><strong>rows:</strong> Number of visible text lines (default: <code>4</code>)</li>
+                  <li><strong>resize:</strong> CSS resize mode (default: <code>vertical</code>)</li>
+                  <li><strong>required:</strong> Boolean attribute to require input</li>
+                  <li><strong>disabled:</strong> Boolean attribute to disable the textarea</li>
+                  <li><strong>error:</strong> Boolean attribute to show error state</li>
+                </ul>
+              </td-card>
+            </div>
+          </div>

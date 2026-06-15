@@ -1,0 +1,185 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>File Input Component</h2>
+                <p>Upload files by dragging onto the drop zone or clicking to browse.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Single File Mode</h3>
+                <p>Accepts one file at a time.</p>
+                <td-file-input id="file-input-default" label="Upload Attachment" mode="single"></td-file-input>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Multiple File Mode</h3>
+                <p>Accepts multiple files in one drop/select action.</p>
+                <td-file-input id="file-input-images" label="Upload Images" accept="image/*" multiple max-size="5MB"></td-file-input>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h3>Allowed Types: PDF, Excel, Word</h3>
+                <p>This uploader accepts only PDF, Excel, and Word documents.</p>
+                <td-file-input
+                  id="file-input-documents-only"
+                  label="Upload Document"
+                  mode="single"
+                  accept=".pdf,.xls,.xlsx,.doc,.docx,application/pdf,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                </td-file-input>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Size Variants</h3>
+                <td-file-input label="Small Upload" size="small"></td-file-input>
+                <td-file-input label="Medium Upload" size="medium"></td-file-input>
+                <td-file-input label="Large Upload" size="large"></td-file-input>
+                <td-file-input label="Extra Large Upload" size="extra-large"></td-file-input>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Custom Labels and Content</h3>
+                <td-file-input
+                  id="file-input-custom-labels"
+                  label="Import Asset"
+                  size="large"
+                  accept="image/*,.svg"
+                  max-size="3MB"
+                  drop-title="Drop creative assets"
+                  drop-subtitle="or click to pick files"
+                  accepted-label="Allowed formats"
+                  max-size-label="Upload limit"
+                  no-files-label="Nothing uploaded yet">
+                </td-file-input>
+
+                <td-file-input id="file-input-custom-content" label="Portfolio Upload" mode="multiple" max-size="8MB">
+                  <div slot="content">
+                    <strong style="font-size:1.05em;">Drop portfolio files</strong>
+                    <span style="display:block;color:var(--td-fg-muted);margin-top:0.25rem;">PDF, PNG, JPG, MP4</span>
+                    <span style="display:block;color:var(--td-fg-muted);margin-top:0.25rem;">Click to browse or drag here</span>
+                  </div>
+                </td-file-input>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h3>Usage</h3>
+                <td-code language="html">
+                  <template>
+                    <td-file-input label="Upload File"></td-file-input>
+                    <td-file-input label="Upload Images" accept="image/*" multiple max-size="5MB"></td-file-input>
+                    <td-file-input label="Upload Documents" accept=".pdf,.doc,.docx" max-size="10485760"></td-file-input>
+                    <td-file-input label="Upload PDF/Excel/Word" accept=".pdf,.xls,.xlsx,.doc,.docx"></td-file-input>
+                    <td-file-input label="Small Upload" size="small"></td-file-input>
+                    <td-file-input label="Large Upload" size="large"></td-file-input>
+                    <td-file-input label="Custom Text" drop-title="Drop files" drop-subtitle="or browse" accepted-label="Types"></td-file-input>
+                    <td-file-input label="Custom Content">
+                      <div slot="content">Any custom HTML content</div>
+                    </td-file-input>
+                  </template>
+                </td-code>
+
+                <td-code language="js">
+                  <template>
+                    const uploader = document.querySelector('td-file-input');
+
+                    uploader.addEventListener('change', (e) => {
+                      console.log('Accepted files:', e.detail.files);
+                    });
+
+                    uploader.addEventListener('file-reject', (e) => {
+                      console.log('Rejected by type:', e.detail.rejectedByType);
+                      console.log('Rejected by size:', e.detail.rejectedBySize);
+                    });
+                  </template>
+                </td-code>
+
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>label:</strong> Text label above the upload area</li>
+                  <li><strong>size:</strong> <code>small</code> | <code>medium</code> | <code>large</code> |
+                    <code>extra-large</code> (default: <code>medium</code>)</li>
+                  <li><strong>accept:</strong> Allowed file types (<code>image/*</code>, <code>.pdf,.docx</code>,
+                    <code>application/pdf</code>). Default: <code>*/*</code> (all types)</li>
+                  <li><strong>mode:</strong> <code>single</code> | <code>multiple</code> (optional explicit selection mode)</li>
+                  <li><strong>multiple:</strong> Boolean - allows selecting more than one file (default is single)</li>
+                  <li><strong>max-size:</strong> Maximum size per file. Supports bytes (for example
+                    <code>1048576</code>) or units (<code>500KB</code>, <code>5MB</code>, <code>1GB</code>)</li>
+                  <li><strong>drop-title:</strong> Custom heading text inside the drop zone</li>
+                  <li><strong>drop-subtitle:</strong> Custom helper text under the heading</li>
+                  <li><strong>accepted-label:</strong> Prefix text for accepted file type display</li>
+                  <li><strong>max-size-label:</strong> Prefix text for max size display</li>
+                  <li><strong>no-files-label:</strong> Text shown when no file is selected</li>
+                  <li><strong>disabled:</strong> Boolean - disables click and drag/drop interaction</li>
+                </ul>
+
+                <h3>Slots</h3>
+                <ul>
+                  <li><strong>content:</strong> Replace the default drop-zone copy with custom markup via
+                    <code>slot="content"</code></li>
+                </ul>
+
+                <h3>Events</h3>
+                <ul>
+                  <li><strong>change:</strong> Fires after selection with
+                    <code>detail: { files: File[], names: string[] }</code></li>
+                  <li><strong>file-reject:</strong> Fires when files are filtered out by type or size</li>
+                </ul>
+
+                <p id="file-input-events-log" style="font-size:0.9rem;color:var(--td-fg-muted);">Select files to see event output.</p>
+              </td-card>
+            </div>
+          </div>
+
+<script type="module" data-tab-init="tab-8-file-input.ts">
+function initTab() {
+    var fileInputs = document.querySelectorAll('td-file-input');
+    var log = document.getElementById('file-input-events-log');
+
+    fileInputs.forEach(function (input) {
+        input.addEventListener('change', function (e) {
+            if (!log) return;
+            var names = e.detail && e.detail.names ? e.detail.names : [];
+            log.textContent = names.length
+                ? 'change -> accepted: ' + names.join(', ')
+                : 'change -> no files accepted';
+        });
+
+        input.addEventListener('file-reject', function (e) {
+            if (!log) return;
+            var rejectedType = e.detail && e.detail.rejectedByType ? e.detail.rejectedByType : [];
+            var rejectedSize = e.detail && e.detail.rejectedBySize ? e.detail.rejectedBySize : [];
+            var messages = [];
+            if (rejectedType.length) {
+                messages.push('type: ' + rejectedType.join(', '));
+            }
+            if (rejectedSize.length) {
+                messages.push('size: ' + rejectedSize.join(', '));
+            }
+            log.textContent = messages.length
+                ? 'file-reject -> ' + messages.join(' | ')
+                : 'file-reject -> no details';
+        });
+    });
+}
+
+if (typeof initTab === 'function') {
+    initTab();
+}
+</script>

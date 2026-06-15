@@ -1,0 +1,117 @@
+:host {
+  display: block;
+}
+
+.button-group {
+  display: inline-flex;
+  gap: var(--td-button-group-gap, 0.5rem);
+}
+
+.button-group.horizontal {
+  flex-direction: row;
+  gap: 0;
+}
+
+.button-group.wrap {
+  flex-wrap: wrap;
+  gap: var(--td-button-group-gap, 0.5rem);
+}
+
+.button-group.no-wrap {
+  flex-wrap: nowrap;
+}
+
+.button-group.full-width {
+  display: flex;
+  width: 100%;
+}
+
+.button-group.align-start {
+  align-items: flex-start;
+}
+
+.button-group.align-center {
+  align-items: center;
+}
+
+.button-group.align-end {
+  align-items: flex-end;
+}
+
+.button-group.align-stretch {
+  align-items: stretch;
+}
+
+.button-group.justify-start {
+  justify-content: flex-start;
+}
+
+.button-group.justify-center {
+  justify-content: center;
+}
+
+.button-group.justify-end {
+  justify-content: flex-end;
+}
+
+.button-group.justify-between {
+  justify-content: space-between;
+}
+
+.button-group.justify-around {
+  justify-content: space-around;
+}
+
+.button-group.justify-evenly {
+  justify-content: space-evenly;
+}
+
+.button-group.horizontal.no-wrap ::slotted(td-button:not(:first-child)) {
+  margin-left: -1px;
+}
+
+.button-group.horizontal.no-wrap ::slotted(td-button:first-child:not(:last-child)) {
+  --td-button-radius-small: 6px 0 0 6px;
+  --td-button-radius-medium: 12px 0 0 12px;
+  --td-button-radius-large: 14px 0 0 14px;
+  --td-button-radius-extra-large: 16px 0 0 16px;
+}
+
+.button-group.horizontal.no-wrap ::slotted(td-button:last-child:not(:first-child)) {
+  --td-button-radius-small: 0 6px 6px 0;
+  --td-button-radius-medium: 0 12px 12px 0;
+  --td-button-radius-large: 0 14px 14px 0;
+  --td-button-radius-extra-large: 0 16px 16px 0;
+}
+
+.button-group.horizontal.no-wrap ::slotted(td-button:not(:first-child):not(:last-child)) {
+  --td-button-radius-small: 0;
+  --td-button-radius-medium: 0;
+  --td-button-radius-large: 0;
+  --td-button-radius-extra-large: 0;
+}
+
+.button-group.horizontal.no-wrap.pill ::slotted(td-button:first-child:not(:last-child)) {
+  --td-button-radius-small: 9999px 0 0 9999px;
+  --td-button-radius-medium: 9999px 0 0 9999px;
+  --td-button-radius-large: 9999px 0 0 9999px;
+  --td-button-radius-extra-large: 9999px 0 0 9999px;
+}
+
+.button-group.horizontal.no-wrap.pill ::slotted(td-button:last-child:not(:first-child)) {
+  --td-button-radius-small: 0 9999px 9999px 0;
+  --td-button-radius-medium: 0 9999px 9999px 0;
+  --td-button-radius-large: 0 9999px 9999px 0;
+  --td-button-radius-extra-large: 0 9999px 9999px 0;
+}
+
+::slotted(td-button[full-width]) {
+  min-width: 0;
+}
+
+@media (max-width: 640px) {
+  .button-group:not(.wrap) {
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+}

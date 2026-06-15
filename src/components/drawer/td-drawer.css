@@ -1,0 +1,149 @@
+:host {
+  display: contents;
+}
+
+
+
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 9000;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 250ms ease, visibility 250ms ease;
+}
+
+:host([open]) .drawer-overlay {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+
+
+.drawer-panel {
+  position: fixed;
+  background: var(--td-surface);
+  color: var(--td-fg);
+  border: 1px solid var(--td-border);
+  box-shadow: 0 8px 40px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9001;
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:host([open]) .drawer-panel {
+  transform: translate(0, 0);
+}
+
+
+
+.drawer-panel[data-position="right"] {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: var(--_drawer-width, 320px);
+  max-width: 100vw;
+  transform: translateX(100%);
+}
+
+.drawer-panel[data-position="left"] {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--_drawer-width, 320px);
+  max-width: 100vw;
+  transform: translateX(-100%);
+}
+
+.drawer-panel[data-position="top"] {
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--_drawer-height, 320px);
+  max-height: 100vh;
+  transform: translateY(-100%);
+}
+
+.drawer-panel[data-position="bottom"] {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--_drawer-height, 320px);
+  max-height: 100vh;
+  transform: translateY(100%);
+}
+
+
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--td-border);
+  flex-shrink: 0;
+}
+
+.drawer-title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.3;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+
+.drawer-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--td-muted);
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+
+.drawer-close:hover {
+  background: var(--td-surface-2);
+  border-color: var(--td-border);
+  color: var(--td-fg);
+}
+
+.drawer-close:focus-visible {
+  outline: 2px solid var(--td-primary);
+  outline-offset: 2px;
+}
+
+
+
+.drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer-overlay,
+  .drawer-panel {
+    transition: none;
+  }
+}

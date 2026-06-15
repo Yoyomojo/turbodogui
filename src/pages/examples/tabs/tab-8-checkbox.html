@@ -1,0 +1,48 @@
+          <div class="row">
+            <div class="col-12 col-lg-6">
+              <td-card stretch>
+                <h2>Checkbox Component</h2>
+                <p>A styled checkbox with label, states, and accessible error handling.</p>
+                <h3>States</h3>
+                <td-checkbox label="Default checkbox" name="cb1"></td-checkbox>
+                <td-checkbox label="Checked by default" name="cb2" checked></td-checkbox>
+                <td-checkbox label="Disabled" name="cb3" disabled></td-checkbox>
+                <td-checkbox label="Disabled &amp; checked" name="cb4" disabled checked></td-checkbox>
+                <td-checkbox label="Error state" name="cb5" error></td-checkbox>
+                <td-checkbox label="Required field" name="cb6" required></td-checkbox>
+              </td-card>
+            </div>
+            <div class="col-12 col-lg-6">
+              <td-card stretch>
+                <h2>Checkbox Usage</h2>
+                <td-code language="html">
+                  <template>
+                    <td-checkbox label="Accept terms and conditions" name="terms" required>
+                    </td-checkbox>
+                  </template>
+                </td-code>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>label:</strong> Text label displayed beside the checkbox</li>
+                  <li><strong>name:</strong> Form field name</li>
+                  <li><strong>value:</strong> Submitted value when checked (default: <code>on</code>)</li>
+                  <li><strong>checked:</strong> Boolean - pre-checked state</li>
+                  <li><strong>disabled:</strong> Boolean - disables interaction</li>
+                  <li><strong>required:</strong> Boolean - marks field as required</li>
+                  <li><strong>error:</strong> Boolean - shows error state and message</li>
+                </ul>
+                <h3>Events</h3>
+                <p><code>change</code> - fires on toggle: <code>detail: &#123; checked: boolean, value: string &#125;</code></p>
+                <h3>JS Properties</h3>
+                <td-code language="js">
+                  <template>
+                    const cb = document.querySelector('td-checkbox');
+                    cb.checked = true;
+                    cb.addEventListener('change', e => {
+                    console.log(e.detail.checked, e.detail.value);
+                    });
+                  </template>
+                </td-code>
+              </td-card>
+            </div>
+          </div>

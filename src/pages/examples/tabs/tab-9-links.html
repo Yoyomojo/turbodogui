@@ -1,0 +1,130 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Link Component</h2>
+                <p>The <code>&lt;td-link&gt;</code> component provides SPA-friendly navigation using the router, with
+                  optional support for new-window external links.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Route Links</h2>
+                <p>Internal links navigate via the router: no full page reload:</p>
+                <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;">
+                  <td-link href="/">Home</td-link>
+                  <td-link href="/examples">Examples</td-link>
+                  <td-link to="/" label="Home (using 'to')"></td-link>
+                  <td-tooltip label="Go to the home page" position="bottom">
+                    <td-link href="/">Home with tooltip</td-link>
+                  </td-tooltip>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>New Window Links</h2>
+                <p>Add the <code>new-window</code> attribute to open in a new tab with
+                  <code>target="_blank" rel="noopener noreferrer"</code> automatically applied:
+                </p>
+                <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center;">
+                  <td-link href="https://github.com/Yoyomojo/turbodogui" new-window>GitHub</td-link>
+                  <td-link href="https://turbodogui.com" new-window title="View the live site">turbodogui.com</td-link>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Button Links</h2>
+                <p>Add the <code>button</code> attribute to render the link styled identically to
+                  <code>&lt;td-button&gt;</code>. Supports the same <code>variant</code> and <code>disabled</code>
+                  attributes. The element still navigates via the router.
+                </p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                  <td-link href="/" button>Home</td-link>
+                  <td-link href="/examples" button variant="success">Examples</td-link>
+                  <td-link href="/examples" button variant="warning">Warning</td-link>
+                  <td-link href="/examples" button variant="alert">Alert</td-link>
+                  <td-link href="/examples" button disabled>Disabled</td-link>
+                  <td-link href="https://github.com/Yoyomojo/turbodogui-rc" button new-window title="Download from Github"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px;margin-right:5px" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>Download from Github</td-link>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Link Sizes</h2>
+                <p>The <code>size</code> attribute controls the padding and font size of button-styled links. Available
+                  sizes: <code>small</code>, <code>medium</code> (default), <code>large</code>,
+                  <code>extra-large</code>. Only applies when the <code>button</code> attribute is present.
+                </p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                  <td-link href="/" button size="small">Small</td-link>
+                  <td-link href="/" button size="medium">Medium</td-link>
+                  <td-link href="/" button size="large">Large</td-link>
+                  <td-link href="/" button size="extra-large">Extra Large</td-link>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Usage Code Example</h2>
+                <td-code language="html">
+                  <template>
+                    
+                    <td-link href="/examples">Examples</td-link>
+
+                    
+                    <td-link to="/about" label="About"></td-link>
+
+                    
+                    <td-tooltip label="Go to the home page" position="bottom">
+                      <td-link href="/">Home</td-link>
+                    </td-tooltip>
+
+                    
+                    <td-link href="https://github.com/Yoyomojo/turbodogui-rc" new-window
+                      title="Download from Github">Download from Github</td-link>
+
+                    
+                    <td-link href="/examples" button>Examples</td-link>
+
+                    
+                    <td-link href="/examples" button variant="success">Go</td-link>
+
+                    
+                    <td-link href="/examples" button disabled>Disabled</td-link>
+                  </template>
+                </td-code>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>href / to:</strong> Route path or URL</li>
+                  <li><strong>label:</strong> Link text (falls back to element text content)</li>
+                  <li><strong>new-window:</strong> Opens in a new tab with
+                    <code>target="_blank" rel="noopener noreferrer"</code>: router is bypassed
+                  </li>
+                  <li><strong>button:</strong> Boolean: renders as a button-styled anchor</li>
+                  <li><strong>size:</strong> <code>small</code> | <code>medium</code> | <code>large</code> |
+                    <code>extra-large</code>: controls padding and font size (button mode only, default
+                    <code>medium</code>)</li>
+                  <li><strong>variant:</strong> <code>success</code> | <code>warning</code> | <code>alert</code>:
+                    applies variant colour (button mode only)</li>
+                  <li><strong>disabled:</strong> Boolean: disables navigation and applies disabled styles (button mode
+                    only)</li>
+                </ul>
+              </td-card>
+            </div>
+          </div>

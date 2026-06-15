@@ -1,0 +1,38 @@
+:host {
+  display: block;
+}
+
+:host([stretch]) {
+  display: flex;
+  height: 100%;
+}
+
+:host([stretch]) .card {
+  flex: 1;
+  box-sizing: border-box;
+}
+
+  .card {
+    background: var(--td-surface);
+    color: var(--td-fg);
+    border: 1px solid var(--td-border);
+    border-radius: var(--td-radius);
+    padding: 20px;
+    box-shadow: var(--td-shadow);
+    min-width: 0;
+  }
+
+  ::slotted(h1),
+  ::slotted(h2),
+  ::slotted(h3),
+  ::slotted(p) {
+    margin-top: 0;
+  }
+
+  ::slotted(code),
+  ::slotted(pre) {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: pre-wrap;
+  }

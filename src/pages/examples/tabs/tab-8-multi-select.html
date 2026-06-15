@@ -1,0 +1,213 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card stretch>
+                <h2>Multi-Select Component</h2>
+                <p>A checkbox-based multi-select list. Add the <code>search</code> attribute to show a live search field above the options.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h2>Basic Multi-Select</h2>
+                <p>A scrollable list of checkbox options. Selected values are returned as an array via the <code>change</code> event.</p>
+                <td-multi-select label="Favorite Fruits" select-all options='[
+                    {"value":"apple","label":"Apple"},
+                    {"value":"banana","label":"Banana"},
+                    {"value":"cherry","label":"Cherry"},
+                    {"value":"grape","label":"Grape"},
+                    {"value":"mango","label":"Mango"},
+                    {"value":"orange","label":"Orange"},
+                    {"value":"peach","label":"Peach"},
+                    {"value":"strawberry","label":"Strawberry"}
+                  ]'>
+                </td-multi-select>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h2>HTML-Populated Multi-Select</h2>
+                <p>Define options directly with HTML <code>&lt;option&gt;</code> and <code>&lt;optgroup&gt;</code> children.</p>
+                <td-multi-select label="Frameworks" search select-all>
+                  <optgroup label="Frontend">
+                    <option value="react">React</option>
+                    <option value="vue">Vue</option>
+                    <option value="svelte">Svelte</option>
+                  </optgroup>
+                  <optgroup label="Backend">
+                    <option value="express">Express</option>
+                    <option value="fastify">Fastify</option>
+                    <option value="nest">NestJS</option>
+                  </optgroup>
+                </td-multi-select>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h2>Multi-Select with Search</h2>
+                <p>Add the <code>search</code> attribute to render a live search input above the options list.</p>
+                <td-multi-select label="Programming Languages" search select-all
+                  search-placeholder="Search languages..." options='[
+                    {"value":"ts","label":"TypeScript"},
+                    {"value":"js","label":"JavaScript"},
+                    {"value":"py","label":"Python"},
+                    {"value":"go","label":"Go"},
+                    {"value":"rs","label":"Rust"},
+                    {"value":"java","label":"Java"},
+                    {"value":"cs","label":"C#"},
+                    {"value":"cpp","label":"C++"},
+                    {"value":"swift","label":"Swift"},
+                    {"value":"kotlin","label":"Kotlin"},
+                    {"value":"rb","label":"Ruby"},
+                    {"value":"php","label":"PHP"}
+                  ]' value='["ts","py"]'>
+                </td-multi-select>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h2>API-Populated Multi-Select</h2>
+                <p>Options loaded dynamically from an API.</p>
+                <td-multi-select id="multi-select-api" label="Product Categories" search select-all
+                  search-placeholder="Filter categories...">
+                </td-multi-select>
+                <p id="multi-select-api-status"
+                  style="margin-top:0.75rem; font-size:0.875rem; color: var(--td-fg-muted); display:none;"></p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card stretch>
+                <h2>Multi-Select Sizes</h2>
+                <p>Multi-select supports the same size options as text inputs and buttons.</p>
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                  <td-multi-select label="Small" size="small" options='[
+                    {"value":"a","label":"Option A"},
+                    {"value":"b","label":"Option B"}
+                  ]' value='["a"]'>
+                  </td-multi-select>
+                  <td-multi-select label="Medium" size="medium" options='[
+                    {"value":"a","label":"Option A"},
+                    {"value":"b","label":"Option B"}
+                  ]' value='["a"]'>
+                  </td-multi-select>
+                  <td-multi-select label="Large" size="large" options='[
+                    {"value":"a","label":"Option A"},
+                    {"value":"b","label":"Option B"}
+                  ]' value='["a"]'>
+                  </td-multi-select>
+                  <td-multi-select label="Extra Large" size="extra-large" options='[
+                    {"value":"a","label":"Option A"},
+                    {"value":"b","label":"Option B"}
+                  ]' value='["a"]'>
+                  </td-multi-select>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card stretch>
+                <h2>Multi-Select Usage</h2>
+                <p><strong>Static (HTML attributes):</strong></p>
+                <td-code language="html">
+                  <template>
+                    <td-multi-select label="Choose Items" size="medium" search search-placeholder="Search..."
+                      options='[{"value":"a","label":"Option A"},{"value":"b","label":"Option B"}]' value='["a"]'>
+                    </td-multi-select>
+
+                    <td-multi-select label="Frameworks" search select-all>
+                      <optgroup label="Frontend">
+                        <option value="react">React</option>
+                        <option value="vue">Vue</option>
+                      </optgroup>
+                      <optgroup label="Backend">
+                        <option value="express">Express</option>
+                      </optgroup>
+                    </td-multi-select>
+                  </template>
+                </td-code>
+                <p><strong>Dynamic (JS properties):</strong></p>
+                <td-code language="js">
+                  <template>
+                    const ms = document.querySelector('td-multi-select');
+                    ms.options = [{ value: 'a', label: 'Option A' }, { value: 'b', label: 'Option B' }];
+                    ms.value = ['a'];
+                    ms.addEventListener('change', e => console.log(e.detail.value));
+                  </template>
+                </td-code>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>label:</strong> Display label above the list</li>
+                  <li><strong>size:</strong> <code>small</code> | <code>medium</code> | <code>large</code> | <code>extra-large</code> (default: <code>medium</code>)</li>
+                  <li><strong>options:</strong> JSON array of <code>{ value, label }</code> objects (optional if HTML <code>&lt;option&gt;</code> children are provided)</li>
+                  <li><strong>value:</strong> JSON array of initially selected values</li>
+                  <li><strong>search:</strong> Boolean - shows a search input above the options</li>
+                  <li><strong>search-placeholder:</strong> Placeholder text for the search input (default: "Search...")</li>
+                  <li><strong>select-all:</strong> Boolean - adds a Select all / Deselect all row at the top of the list</li>
+                  <li><strong>placeholder:</strong> Trigger placeholder text when nothing is selected. Falls back to <code>label</code> if not set.</li>
+                  <li><strong>Options:</strong> Supports HTML <code>&lt;option&gt;</code> and <code>&lt;optgroup&gt;</code> children as an alternative to the <code>options</code> JSON attribute.</li>
+                </ul>
+                <h3>Events</h3>
+                <ul>
+                  <li><strong>change:</strong> Fires on every toggle. <code>detail.value</code> is the full array of currently selected values.</li>
+                </ul>
+                <h3>JS properties</h3>
+                <ul>
+                  <li><code>options</code>: get/set the options array</li>
+                  <li><code>value</code>: get/set the selected values array</li>
+                </ul>
+              </td-card>
+            </div>
+          </div>
+
+<script type="module" data-tab-init="tab-8-multi-selects.ts">
+function initTab() {
+    var multiSelectApi = document.getElementById('multi-select-api');
+    var msStatus = document.getElementById('multi-select-api-status');
+    if (multiSelectApi) {
+        fetch('https://dummyjson.com/products?limit=100&select=category')
+            .then(function (r) { return r.json(); })
+            .then(function (res) {
+            var seen = {};
+            var categories = res.products
+                .map(function (p) { return p.category; })
+                .filter(function (c) {
+                if (seen[c])
+                    return false;
+                seen[c] = true;
+                return true;
+            })
+                .sort();
+            multiSelectApi.options = categories.map(function (c) { return { value: c, label: c }; });
+            if (msStatus) {
+                msStatus.textContent = categories.length + ' categories loaded from dummyjson.com';
+                msStatus.style.display = 'block';
+            }
+        })
+            .catch(function () {
+            if (msStatus) {
+                msStatus.textContent = 'Failed to load categories.';
+                msStatus.style.display = 'block';
+            }
+        });
+        multiSelectApi.addEventListener('change', function (e) {
+            var selected = e.detail.value;
+            if (msStatus) {
+                msStatus.textContent = selected.length > 0 ? 'Selected: ' + selected.join(', ') : 'No categories selected.';
+                msStatus.style.display = 'block';
+            }
+        });
+    }
+}
+if (typeof initTab === "function") {
+    initTab();
+}
+</script>

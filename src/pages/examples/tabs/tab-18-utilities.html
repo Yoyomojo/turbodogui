@@ -1,0 +1,252 @@
+          <div class="row">
+            <div class="col-12">
+              <td-card>
+                <h2>Utility Components</h2>
+                <p>Foundational components used throughout the library: <code>&lt;td-card&gt;</code> for surface
+                  containers, <code>&lt;td-code&gt;</code> for syntax-highlighted code blocks, and
+                  <code>&lt;td-theme-toggle&gt;</code> for switching between light and dark mode.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <td-card>
+                <h3 style="margin:0;">&lt;td-card&gt;</h3>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-4">
+              <td-card stretch>
+                <h3>Default card</h3>
+                <p>A surface container with a border, background and shadow. Drop any content inside.</p>
+                <td-button>Action</td-button>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-4">
+              <td-card stretch>
+                <h3>With a list</h3>
+                <ul>
+                  <li>Item one</li>
+                  <li>Item two</li>
+                  <li>Item three</li>
+                </ul>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-4">
+              <td-card stretch>
+                <h3>stretch attribute</h3>
+                <p>Add <code>stretch</code> to make the card fill the full column height inside a flex/grid row.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Usage</h3>
+                <td-code language="html">
+                  <template>
+                    
+                    <td-card>
+                      <h3>Title</h3>
+                      <p>Any content goes here.</p>
+                    </td-card>
+
+                    
+                    <td-card stretch>
+                      <h3>Full-height card</h3>
+                    </td-card>
+                  </template>
+                </td-code>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Attributes</h3>
+                <table style="width:100%;font-size:0.875rem;border-collapse:collapse;">
+                  <thead>
+                    <tr style="border-bottom:2px solid var(--td-border);">
+                      <th style="text-align:left;padding:6px 8px;">Attribute</th>
+                      <th style="text-align:left;padding:6px 8px;">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="padding:6px 8px;"><code>stretch</code></td>
+                      <td style="padding:6px 8px;">Boolean. Sets <code>display:flex; height:100%</code> on
+                        <code>:host</code> so the card fills its container's height.</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <h3 style="margin-top:1.25rem;">CSS custom properties</h3>
+                <p>Inherits the global token set â€” no card-specific variables. Key tokens used:</p>
+                <table style="width:100%;font-size:0.875rem;border-collapse:collapse;">
+                  <thead>
+                    <tr style="border-bottom:2px solid var(--td-border);">
+                      <th style="text-align:left;padding:6px 8px;">Token</th>
+                      <th style="text-align:left;padding:6px 8px;">Role</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="padding:6px 8px;"><code>--td-surface</code></td>
+                      <td style="padding:6px 8px;">Background colour</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:6px 8px;"><code>--td-border</code></td>
+                      <td style="padding:6px 8px;">Border colour</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:6px 8px;"><code>--td-radius</code></td>
+                      <td style="padding:6px 8px;">Corner radius</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:6px 8px;"><code>--td-shadow</code></td>
+                      <td style="padding:6px 8px;">Box shadow</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <td-card>
+                <h3 style="margin:0;">&lt;td-code&gt;</h3>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>HTML block (via &lt;template&gt;)</h3>
+                <td-code language="html">
+                  <template>
+                    <td-card>
+                      <h3>Hello</h3>
+                      <p>Any <strong>content</strong> here.</p>
+                    </td-card>
+                  </template>
+                </td-code>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>JS block with filename</h3>
+                <td-code language="js" filename="main.ts">
+                  <template>
+                    import { router } from "./core/router";
+
+                    router.register("/", () => homeHtml, {
+                    title: "Home",
+                    });
+                  </template>
+                </td-code>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Usage: &lt;template&gt; child (recommended)</h3>
+                <td-code language="html">
+                  <template>
+                    <td-code language="html">
+                      <template>
+                        <td-card>
+                          <p>Markup is preserved exactly.</p>
+                        </td-card>
+                      </template>
+                    </td-code>
+
+                    
+                    <td-code language="js" filename="app.ts">
+                      <template>
+                        console.log("hello");
+                      </template>
+                    </td-code>
+                  </template>
+                </td-code>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Usage: JS property setter</h3>
+                <td-code language="js">
+                  <template>
+                    const block = document.querySelector('td-code');
+                    block.code = `const x = 1;\nconsole.log(x);`;
+                  </template>
+                </td-code>
+                <h3 style="margin-top:1.25rem;">Attributes</h3>
+                <table style="width:100%;font-size:0.875rem;border-collapse:collapse;">
+                  <thead>
+                    <tr style="border-bottom:2px solid var(--td-border);">
+                      <th style="text-align:left;padding:6px 8px;">Attribute</th>
+                      <th style="text-align:left;padding:6px 8px;">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="padding:6px 8px;"><code>language</code></td>
+                      <td style="padding:6px 8px;">Badge label shown top-right (e.g. <code>html</code>, <code>js</code>,
+                        <code>css</code>)</td>
+                    </tr>
+                    <tr>
+                      <td style="padding:6px 8px;"><code>filename</code></td>
+                      <td style="padding:6px 8px;">Optional file name shown in the header bar</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <td-card>
+                <h3 style="margin:0;">&lt;td-theme-toggle&gt;</h3>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-4">
+              <td-card stretch>
+                <h3>Live demo</h3>
+                <p>The button in the top-right of the app is a <code>&lt;td-theme-toggle&gt;</code>. You can also embed
+                  one anywhere:</p>
+                <td-theme-toggle></td-theme-toggle>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-8">
+              <td-card stretch>
+                <h3>Usage</h3>
+                <td-code language="html">
+                  <template>
+                    
+                    <td-theme-toggle></td-theme-toggle>
+                  </template>
+                </td-code>
+                <p style="margin-top:1rem;">Reads the current theme from <code>localStorage</code> via
+                  <code>getTheme()</code> and calls <code>toggleTheme()</code> on click. The host
+                  <code>&lt;html&gt;</code> element receives a <code>data-theme="dark"</code> attribute which drives all
+                  CSS custom-property values defined in <code>src/theme/base-theme.css</code>.</p>
+                <td-code language="js">
+                  <template>
+                    import { getTheme, toggleTheme, initializeTheme } from "./theme/theme";
+
+                    initializeTheme(); // call once on app start â€” restores saved preference
+                    const current = getTheme(); // "light" | "dark"
+                    toggleTheme(); // flips and persists to localStorage
+                  </template>
+                </td-code>
+              </td-card>
+            </div>
+          </div>

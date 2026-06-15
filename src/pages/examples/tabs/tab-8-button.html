@@ -1,0 +1,95 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Button Component</h2>
+                <p>Versatile button component supporting different types, variants, and states.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Button Types</h2>
+                <p>Buttons support different HTML types for form interactions:</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                  <td-button type="button">Button</td-button>
+                  <td-button type="submit">Submit</td-button>
+                  <td-button type="reset">Reset</td-button>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Button Sizes</h2>
+                <p>Use the <code>size</code> attribute to control the button's visual size:</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                  <td-button size="small">Small</td-button>
+                  <td-button>Medium</td-button>
+                  <td-button size="large">Large</td-button>
+                  <td-button size="extra-large">Extra Large</td-button>
+                </div>
+                <p>Use variants to convey different actions or states:</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                  <td-button type="button">Default</td-button>
+                  <td-button variant="success">Success</td-button>
+                  <td-button variant="warning">Warning</td-button>
+                  <td-button variant="alert">Alert</td-button>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Button Variants</h2>
+                <p>Buttons can display different states:</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap; flex-direction: column;">
+                  <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <td-button type="button">Enabled</td-button>
+                    <td-button type="button" disabled>Disabled</td-button>
+                  </div>
+                  <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <td-button variant="success">Success</td-button>
+                    <td-button variant="success" disabled>Success Disabled</td-button>
+                  </div>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Button Usage</h2>
+                <td-code language="html">
+                  <template>
+                    <td-button type="button" variant="success" size="large" disabled>
+                      Click Me
+                    </td-button>
+                  </template>
+                </td-code>
+                <h2>Full Width</h2>
+                <p>Add the <code>full-width</code> boolean attribute to make the button fill its parent container:</p>
+                <td-button full-width>Full Width Button</td-button>
+                <td-code language="html">
+                  <template>
+                    <td-button full-width>Full Width Button</td-button>
+                  </template>
+                </td-code>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>type:</strong> HTML button type (button, submit, reset, default: button)</li>
+                  <li><strong>variant:</strong> Visual style (success, warning, alert, or default/primary)</li>
+                  <li><strong>size:</strong> <code>small</code> | <code>medium</code> | <code>large</code> | <code>extra-large</code> (default: <code>medium</code>)</li>
+                  <li><strong>disabled:</strong> Boolean attribute to disable the button</li>
+                  <li><strong>full-width:</strong> Boolean attribute to make the button fill 100% of its parent</li>
+                  <li><strong>label:</strong> Alternative way to set button text (uses textContent if not provided)</li>
+                </ul>
+              </td-card>
+            </div>
+          </div>

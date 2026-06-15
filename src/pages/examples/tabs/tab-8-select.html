@@ -1,0 +1,98 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Select Component</h2>
+                <p>A styled wrapper around the native select element with custom styling.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h2>Basic Select</h2>
+                <p>Select from a list of options:</p>
+                <td-select label="Favorite Fruit" name="fruit" value="orange">
+                  <option value="apple">Apple</option>
+                  <option value="banana">Banana</option>
+                  <option value="orange">Orange</option>
+                  <option value="grape">Grape</option>
+                  <option value="strawberry">Strawberry</option>
+                  <option value="mango">Mango</option>
+                </td-select>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h2>Select with Grouping</h2>
+                <p>Organize options into logical groups:</p>
+                <td-select label="Programming Language" name="language" value="ts">
+                  <optgroup label="Web">
+                    <option value="js">JavaScript</option>
+                    <option value="ts">TypeScript</option>
+                    <option value="html">HTML/CSS</option>
+                  </optgroup>
+                  <optgroup label="Backend">
+                    <option value="py">Python</option>
+                    <option value="go">Go</option>
+                    <option value="rs">Rust</option>
+                  </optgroup>
+                </td-select>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Select Sizes</h2>
+                <p>Select supports the same size options as text inputs and buttons.</p>
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                  <td-select label="Small" size="small" value="one">
+                    <option value="one">Option One</option>
+                    <option value="two">Option Two</option>
+                  </td-select>
+                  <td-select label="Medium" size="medium" value="one">
+                    <option value="one">Option One</option>
+                    <option value="two">Option Two</option>
+                  </td-select>
+                  <td-select label="Large" size="large" value="one">
+                    <option value="one">Option One</option>
+                    <option value="two">Option Two</option>
+                  </td-select>
+                  <td-select label="Extra Large" size="extra-large" value="one">
+                    <option value="one">Option One</option>
+                    <option value="two">Option Two</option>
+                  </td-select>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Select Usage</h2>
+                <td-code language="html">
+                  <template>
+                    <td-select label="Choose Option" name="options" size="medium" value="default">
+                      <option value="default">Select an option</option>
+                      <option value="one">Option One</option>
+                      <option value="two">Option Two</option>
+                      <optgroup label="Group">
+                        <option value="grouped">Grouped Option</option>
+                      </optgroup>
+                    </td-select>
+                  </template>
+                </td-code>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>label:</strong> Display label for the select</li>
+                  <li><strong>name:</strong> Form field name</li>
+                  <li><strong>size:</strong> <code>small</code> | <code>medium</code> | <code>large</code> | <code>extra-large</code> (default: <code>medium</code>)</li>
+                  <li><strong>value:</strong> Initial selected value</li>
+                  <li><strong>Options:</strong> Use standard HTML &lt;option&gt; and &lt;optgroup&gt; elements</li>
+                </ul>
+              </td-card>
+            </div>
+          </div>
