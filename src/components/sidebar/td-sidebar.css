@@ -266,8 +266,15 @@
 .sidebar.collapsed .nav-label {
   opacity: 0;
   width: 0;
+  flex: none;
   overflow: hidden;
   pointer-events: none;
+}
+
+.sidebar.collapsed .nav-item {
+  justify-content: center;
+  padding: 0;
+  gap: 0;
 }
 
 
@@ -286,6 +293,7 @@
 .sidebar.collapsed .nav-badge {
   opacity: 0;
   width: 0;
+  padding: 0;
   overflow: hidden;
   pointer-events: none;
 }
