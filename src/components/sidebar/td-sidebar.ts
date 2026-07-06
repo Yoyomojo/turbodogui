@@ -76,6 +76,7 @@ const ROUTE_KEY_MAP: Record<string, string> = {
     "/examples/layouts/dashboard": "layout-dashboard",
     "/examples/layouts/admin-panel": "layout-admin-panel",
     "/examples/layouts/user-dashboard": "layout-admin-panel",
+    "/examples/layouts/verify": "layout-verify",
 };
 export interface SidebarItem {
     key: string;
@@ -655,6 +656,10 @@ export class UISidebar extends UIComponent {
             }
             if (key === "layout-admin-panel" || key === "layout-user-dashboard") {
                 router.navigate("/examples/layouts/admin-panel");
+                return;
+            }
+            if (key === "layout-verify") {
+                router.navigate("/examples/layouts/verify");
                 return;
             }
             if (key.startsWith("tab-")) {

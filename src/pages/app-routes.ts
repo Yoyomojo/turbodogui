@@ -211,6 +211,17 @@ export const adminPanelRoute: RouteRegistration = {
   loadHtml: () => import("./examples/layouts/user-dashboard/user-dashboard.html?raw").then((module) => module.default),
 };
 
+export const verifyRoute: RouteRegistration = {
+  path: "/examples/layouts/verify",
+  name: "Verification Code",
+  title: "Turbodog UI | Verification Code",
+  description: "Verification code input layout example",
+  loadHtml: () => import("./examples/layouts/verify/verify.html?raw").then((module) => module.default),
+  onMount: () => {
+    void import("./examples/layouts/verify/verify").then((module) => module.initVerifyPage());
+  },
+};
+
 export function initializeAppRoutes(contentEl: HTMLElement): void {
   let routeRenderToken = 0;
   router.addListener(async () => {
@@ -329,6 +340,12 @@ export function initializeAppRoutes(contentEl: HTMLElement): void {
     title: adminPanelRoute.title,
     description: adminPanelRoute.description,
     onMount: adminPanelRoute.onMount,
+  });
+
+  router.register(verifyRoute.path, async () => verifyRoute.loadHtml(), {
+    title: verifyRoute.title,
+    description: verifyRoute.description,
+    onMount: verifyRoute.onMount,
   });
 
   // Backward-compatible alias for the old user dashboard path.

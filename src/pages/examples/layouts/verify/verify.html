@@ -1,0 +1,68 @@
+<style>
+  .otp-field {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 3.75rem;
+    padding: 0;
+    margin-bottom: 0;
+  }
+
+  .otp-field::part(input) {
+    text-align: center;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+    font-size: 1.375rem;
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+
+  .otp-field[error]::part(input) {
+    border-color: var(--td-alert);
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.14);
+  }
+</style>
+
+<div class="verify-layout">
+  <div class="container">
+    <div class="row" style="justify-content: center; padding-top: 4rem;">
+      <div class="col-12 col-sm-10 col-md-7 col-lg-5 col-xl-4">
+
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <img src="/turbodog-td-logo.png" alt="Turbodog UI" style="max-width: 160px; width: 100%; height: auto; display: block; margin: 0 auto;">
+        </div>
+
+        <td-card>
+          <div style="padding: 0.5rem 0.25rem;">
+            <h1 style="font-size: 1.5rem; margin-bottom: 0.25rem; text-align: center;">Verify your identity</h1>
+            <p style="color: var(--td-muted); margin-top: 0; margin-bottom: 2rem; text-align: center;">
+              Enter the 6-digit code sent to your email
+            </p>
+
+            <form id="verify-form" novalidate>
+              <div id="otp-inputs" style="display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1.75rem;">
+                <td-text-input class="otp-field" type="number" size="large" name="otp-0" placeholder=""></td-text-input>
+                <td-text-input class="otp-field" type="number" size="large" name="otp-1" placeholder=""></td-text-input>
+                <td-text-input class="otp-field" type="number" size="large" name="otp-2" placeholder=""></td-text-input>
+                <td-text-input class="otp-field" type="number" size="large" name="otp-3" placeholder=""></td-text-input>
+                <td-text-input class="otp-field" type="number" size="large" name="otp-4" placeholder=""></td-text-input>
+                <td-text-input class="otp-field" type="number" size="large" name="otp-5" placeholder=""></td-text-input>
+              </div>
+
+              <td-button type="submit" size="large" full-width>Verify Code</td-button>
+            </form>
+
+            <p style="text-align: center; color: var(--td-muted); margin-top: 1.75rem; margin-bottom: 0; font-size: 0.9rem;">
+              Didn't receive the code?
+              <td-link id="resend-link" href="#" label="Resend"></td-link>
+            </p>
+          </div>
+        </td-card>
+
+        <p style="text-align: center; color: var(--td-muted); margin-top: 1.25rem; font-size: 0.9rem;">
+          <td-link to="/examples/layouts/login" label="← Back to login"></td-link>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</div>
