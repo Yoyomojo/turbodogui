@@ -1,0 +1,199 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Date Picker Component</h2>
+                <p>A fully accessible, keyboard-navigable date picker built as a custom element. Supports size variants, validation states, min/max constraints, and form submission via a hidden input.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h2>Sizes</h2>
+                <p>Use the <code>size</code> attribute to control the picker's visual size:</p>
+                <td-date-picker label="Small" size="small" placeholder="Pick a date"></td-date-picker>
+                <td-date-picker label="Medium (default)" placeholder="Pick a date"></td-date-picker>
+                <td-date-picker label="Large" size="large" placeholder="Pick a date"></td-date-picker>
+                <td-date-picker label="Extra Large" size="extra-large" placeholder="Pick a date"></td-date-picker>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h2>States</h2>
+                <p>Date pickers support the same states as other form fields:</p>
+                <td-date-picker label="Default" placeholder="Select a date"></td-date-picker>
+                <td-date-picker label="With pre-selected value" value="2025-12-25"></td-date-picker>
+                <td-date-picker label="Disabled" placeholder="Select a date" disabled></td-date-picker>
+                <td-date-picker label="Required" placeholder="Select a date" required></td-date-picker>
+                <td-date-picker label="Error state" placeholder="Select a date" error></td-date-picker>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Display Formats</h2>
+                <p>Use the <code>display-format</code> attribute to control how the selected date appears in the input field. The underlying <code>value</code> and the <code>change</code> event always use <code>YYYY-MM-DD</code>. All pickers below share the value <code>2026-07-14</code>.</p>
+                <div class="row" style="margin-top: 0.5rem;">
+                  <div class="col-12 col-md-6 col-lg-4">
+                    <td-date-picker label="U.S. — MM/DD/YYYY → 07/14/2026" value="2026-07-14" display-format="MM/DD/YYYY"></td-date-picker>
+                    <td-date-picker label="U.S. short — MM/DD/YY → 07/14/26" value="2026-07-14" display-format="MM/DD/YY"></td-date-picker>
+                    <td-date-picker label="European — DD/MM/YYYY → 14/07/2026" value="2026-07-14" display-format="DD/MM/YYYY"></td-date-picker>
+                    <td-date-picker label="ISO — YYYY-MM-DD → 2026-07-14" value="2026-07-14" display-format="YYYY-MM-DD"></td-date-picker>
+                  </div>
+                  <div class="col-12 col-md-6 col-lg-4">
+                    <td-date-picker label="Long (default) — July 14, 2026" value="2026-07-14" display-format="MMMM D, YYYY"></td-date-picker>
+                    <td-date-picker label="Long + ordinal day — July 14th, 2026" value="2026-07-14" display-format="MMMM Do, YYYY"></td-date-picker>
+                    <td-date-picker label="Short month — Jul 14, 2026" value="2026-07-14" display-format="MMM D, YYYY"></td-date-picker>
+                    <td-date-picker label="Short month, padded day — Jul 14, 2026" value="2026-07-14" display-format="MMM DD, YYYY"></td-date-picker>
+                  </div>
+                  <div class="col-12 col-md-6 col-lg-4">
+                    <td-date-picker label="Day first — 14 July 2026" value="2026-07-14" display-format="D MMMM YYYY"></td-date-picker>
+                    <td-date-picker label="Day first + ordinal — 14th July 2026" value="2026-07-14" display-format="Do MMMM YYYY"></td-date-picker>
+                    <td-date-picker label="Full weekday — Tuesday, July 14th, 2026" value="2026-07-14" display-format="dddd, MMMM Do, YYYY"></td-date-picker>
+                    <td-date-picker label="Short weekday — Tue, Jul 14" value="2026-07-14" display-format="ddd, MMM D"></td-date-picker>
+                  </div>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h2>Min / Max Constraints</h2>
+                <p>Use <code>min</code> and <code>max</code> (ISO 8601 date strings) to restrict selectable dates. Disabled dates are shown faded and cannot be selected.</p>
+                <td-date-picker
+                  label="This month only"
+                  id="constrained-picker"
+                  placeholder="Pick a date this month"
+                ></td-date-picker>
+                <script>
+                  (function() {
+                    const picker = document.getElementById('constrained-picker');
+                    if (picker) {
+                      const now = new Date();
+                      const y = now.getFullYear();
+                      const m = String(now.getMonth() + 1).padStart(2, '0');
+                      const lastDay = new Date(y, now.getMonth() + 1, 0).getDate();
+                      picker.setAttribute('min', y + '-' + m + '-01');
+                      picker.setAttribute('max', y + '-' + m + '-' + lastDay);
+                    }
+                  })();
+                </script>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h2>Change Event</h2>
+                <p>Listen to the <code>change</code> event to react to date selection. The event detail includes the ISO 8601 <code>value</code>:</p>
+                <td-date-picker label="Pick a date" id="event-picker" placeholder="Select to see output"></td-date-picker>
+                <p id="event-output" style="font-size:0.875rem; color: var(--td-muted);">No date selected yet.</p>
+                <script>
+                  (function() {
+                    const picker = document.getElementById('event-picker');
+                    const output = document.getElementById('event-output');
+                    if (picker && output) {
+                      picker.addEventListener('change', function(e) {
+                        output.textContent = 'Selected: ' + e.detail.value;
+                        output.style.color = 'var(--td-success)';
+                      });
+                    }
+                  })();
+                </script>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Usage</h2>
+                <td-code language="html">
+                  <template>
+                    <!-- Basic usage -->
+                    <td-date-picker label="Date of Birth" name="dob" placeholder="Select a date"></td-date-picker>
+
+                    <!-- Pre-selected value -->
+                    <td-date-picker label="Appointment" value="2025-12-25"></td-date-picker>
+
+                    <!-- Custom display format (value stays YYYY-MM-DD internally) -->
+                    <td-date-picker display-format="MM/DD/YYYY"></td-date-picker>
+                    <td-date-picker display-format="DD/MM/YYYY"></td-date-picker>
+                    <td-date-picker display-format="MMMM Do, YYYY"></td-date-picker>
+                    <td-date-picker display-format="dddd, MMMM D, YYYY"></td-date-picker>
+                    <td-date-picker display-format="ddd MMM DD, YYYY"></td-date-picker>
+
+                    <!-- With constraints -->
+                    <td-date-picker label="Available Dates" min="2025-01-01" max="2025-12-31"></td-date-picker>
+
+                    <!-- Size variants -->
+                    <td-date-picker size="small"></td-date-picker>
+                    <td-date-picker size="medium"></td-date-picker>
+                    <td-date-picker size="large"></td-date-picker>
+                    <td-date-picker size="extra-large"></td-date-picker>
+
+                    <!-- States -->
+                    <td-date-picker disabled></td-date-picker>
+                    <td-date-picker required></td-date-picker>
+                    <td-date-picker error></td-date-picker>
+                  </template>
+                </td-code>
+                <td-code language="javascript">
+                  <template>
+                    // Listen for change events
+                    // e.detail.value is always YYYY-MM-DD regardless of display-format
+                    const picker = document.querySelector('td-date-picker');
+                    picker.addEventListener('change', (e) => {
+                      console.log('Selected ISO date:', e.detail.value); // e.g. "2025-12-25"
+                    });
+
+                    // Programmatic API
+                    picker.getValue();             // returns current ISO date string
+                    picker.setValue('2025-06-15'); // sets a new date
+                    picker.clear();                // clears the selection
+                  </template>
+                </td-code>
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>label:</strong> Label text displayed above the picker</li>
+                  <li><strong>name:</strong> Name for form submission (hidden input)</li>
+                  <li><strong>value:</strong> Selected date in <code>YYYY-MM-DD</code> format</li>
+                  <li><strong>placeholder:</strong> Placeholder text when no date is selected</li>
+                  <li><strong>display-format:</strong> How the selected date is shown in the input field (default: <code>MMMM D, YYYY</code>). The stored <code>value</code> and <code>change</code> event are always <code>YYYY-MM-DD</code>.</li>
+                  <li><strong>size:</strong> <code>small</code> | <code>medium</code> | <code>large</code> | <code>extra-large</code> (default: <code>medium</code>)</li>
+                  <li><strong>min:</strong> Earliest selectable date (<code>YYYY-MM-DD</code>)</li>
+                  <li><strong>max:</strong> Latest selectable date (<code>YYYY-MM-DD</code>)</li>
+                  <li><strong>disabled:</strong> Disables the picker</li>
+                  <li><strong>required:</strong> Marks the field as required</li>
+                  <li><strong>error:</strong> Shows the error state with a red border</li>
+                </ul>
+                <h3>Format Tokens</h3>
+                <table>
+                  <thead><tr><th>Token</th><th>Output</th><th>Example</th></tr></thead>
+                  <tbody>
+                    <tr><td><code>YYYY</code></td><td>4-digit year</td><td>2026</td></tr>
+                    <tr><td><code>YY</code></td><td>2-digit year</td><td>26</td></tr>
+                    <tr><td><code>MMMM</code></td><td>Full month name</td><td>January</td></tr>
+                    <tr><td><code>MMM</code></td><td>Short month name</td><td>Jan</td></tr>
+                    <tr><td><code>MM</code></td><td>2-digit month</td><td>01</td></tr>
+                    <tr><td><code>M</code></td><td>Month (no leading zero)</td><td>1</td></tr>
+                    <tr><td><code>dddd</code></td><td>Full weekday name</td><td>Monday</td></tr>
+                    <tr><td><code>ddd</code></td><td>Short weekday name</td><td>Mon</td></tr>
+                    <tr><td><code>DD</code></td><td>2-digit day, zero-padded</td><td>06</td></tr>
+                    <tr><td><code>Do</code></td><td>Day with ordinal suffix (1st, 2nd, 3rd, 4th…)</td><td>14th</td></tr>
+                    <tr><td><code>D</code></td><td>Day, no leading zero</td><td>6</td></tr>
+                  </tbody>
+                </table>
+                <h3>Keyboard Navigation</h3>
+                <ul>
+                  <li><kbd>Enter</kbd> / <kbd>Space</kbd> / <kbd>↓</kbd> on the input — opens the calendar</li>
+                  <li><kbd>Arrow keys</kbd> — move focus between days</li>
+                  <li><kbd>Enter</kbd> / <kbd>Space</kbd> on a day — selects it</li>
+                  <li><kbd>Escape</kbd> — closes the calendar without selecting</li>
+                </ul>
+              </td-card>
+            </div>
+          </div>

@@ -168,6 +168,11 @@ export const exampleTabRoutes: LazyRouteDefinition[] = [
     name: "Textarea",
     loadHtml: () => import("./examples/tabs/tab-20-textarea.html?raw").then((module) => module.default),
   },
+  {
+    path: "/examples/date-picker",
+    name: "Date Picker",
+    loadHtml: () => import("./examples/tabs/tab-21-date-picker.html?raw").then((module) => module.default),
+  },
 ];
 
 export const loginRoute: RouteRegistration = {

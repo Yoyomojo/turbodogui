@@ -78,6 +78,7 @@ Benefits of this pattern:
 | `<td-carousel>` | Animated slideshow with dot indicators, prev/next arrows, autoplay, loop, touch swipe, and keyboard navigation |
 | `<td-checkbox>` | Accessible styled checkbox with label, error state, and `change` event |
 | `<td-code>` | Syntax-highlighted code block with language badge, optional filename label, and copy-to-clipboard button |
+| `<td-date-picker>` | Accessible calendar date picker with size variants, min/max constraints, keyboard navigation, error state, and a `change` event carrying the ISO 8601 value |
 | `<td-donut-chart>` | Ring chart with configurable hole size, optional center label, interactive legend, and toggleable segments |
 | `<td-drawer>` | Slide-in panel from any viewport edge (`top`, `right`, `bottom`, `left`) with configurable `width`/`height`, overlay backdrop, Escape key dismissal, and `drawer-close` event |
 | `<td-file-input>` | Drag-and-drop or click-to-upload file input with single/multiple mode, type filtering, max file size validation, size variants, and customizable drop-zone labels/content |
@@ -280,6 +281,109 @@ A styled input field with label, size variants, validation states, and accessibi
 | `medium`      | 2.75rem | 1rem       | Default: standard forms        |
 | `large`       | 3.25rem | 1.125rem   | Prominent inputs, hero search   |
 | `extra-large` | 4rem    | 1.375rem   | Display-scale inputs            |
+
+---
+
+### `<td-date-picker>`
+
+A fully accessible calendar date picker built as a native Custom Element. Opens a month-view popup with keyboard navigation, supports `min`/`max` date constraints, configurable display formats, all four size variants, and form integration via a hidden `<input>` with the ISO 8601 value.
+
+Try it in the examples app: `/examples/date-picker`.
+
+```html
+<!-- Basic -->
+<td-date-picker label="Date of Birth" name="dob" placeholder="Select a date"></td-date-picker>
+
+<!-- Pre-selected value -->
+<td-date-picker label="Appointment" value="2025-12-25"></td-date-picker>
+
+<!-- Custom display formats (stored/emitted value stays YYYY-MM-DD) -->
+<td-date-picker display-format="MM/DD/YYYY"></td-date-picker>
+<td-date-picker display-format="DD/MM/YYYY"></td-date-picker>
+<td-date-picker display-format="MMMM Do, YYYY"></td-date-picker>
+<td-date-picker display-format="dddd, MMMM D, YYYY"></td-date-picker>
+<td-date-picker display-format="ddd MMM DD, YYYY"></td-date-picker>
+
+<!-- Date range constraint -->
+<td-date-picker label="Available Dates" min="2025-01-01" max="2025-12-31"></td-date-picker>
+
+<!-- States -->
+<td-date-picker disabled></td-date-picker>
+<td-date-picker required></td-date-picker>
+<td-date-picker error></td-date-picker>
+```
+
+Listen to selection changes:
+
+```js
+// e.detail.value is always YYYY-MM-DD regardless of display-format
+const picker = document.querySelector('td-date-picker');
+picker.addEventListener('change', (e) => {
+  console.log('ISO date:', e.detail.value); // e.g. "2025-12-25"
+});
+
+// Programmatic API
+picker.getValue();             // → current ISO date string or ""
+picker.setValue('2025-06-15'); // sets and re-renders
+picker.clear();                // clears the selection
+```
+
+| Attribute        | Type    | Values                                           | Default         |
+|------------------|---------|--------------------------------------------------|-----------------|
+| `label`          | string  | any                                              |                 |
+| `name`           | string  | any                                              | `""`            |
+| `value`          | string  | `YYYY-MM-DD`                                     | `""`            |
+| `placeholder`    | string  | any                                              | `Select a date` |
+| `display-format` | string  | Format string using tokens below                 | `MMMM D, YYYY`  |
+| `size`           | string  | `small` \| `medium` \| `large` \| `extra-large` | `medium`        |
+| `min`            | string  | `YYYY-MM-DD`                                     |                 |
+| `max`            | string  | `YYYY-MM-DD`                                     |                 |
+| `disabled`       | boolean |                                                  |                 |
+| `required`       | boolean |                                                  |                 |
+| `error`          | boolean |                                                  |                 |
+
+**Format tokens** (longer tokens always take precedence in alternation):
+
+| Token  | Output                  | Example     |
+|--------|-------------------------|-------------|
+| `YYYY` | 4-digit year            | `2026`      |
+| `YY`   | 2-digit year            | `26`        |
+| `MMMM` | Full month name         | `January`   |
+| `MMM`  | Short month name        | `Jan`       |
+| `MM`   | 2-digit month           | `01`        |
+| `M`    | Month (no leading zero) | `1`         |
+| `dddd` | Full weekday name       | `Monday`    |
+| `ddd`  | Short weekday name      | `Mon`       |
+| `DD`   | 2-digit day             | `06`        |
+| `Do`   | Day with ordinal suffix | `6th`       |
+| `D`    | Day (no leading zero)   | `6`         |
+
+**Common format presets:**
+
+| Format string              | Example output            |
+|----------------------------|---------------------------|
+| `MM/DD/YYYY`               | `07/14/2026`              |
+| `MM/DD/YY`                 | `07/14/26`                |
+| `DD/MM/YYYY`               | `14/07/2026`              |
+| `YYYY-MM-DD`               | `2026-07-14`              |
+| `MMMM D, YYYY` *(default)* | `July 14, 2026`           |
+| `MMMM Do, YYYY`            | `July 14th, 2026`         |
+| `MMM D, YYYY`              | `Jul 14, 2026`            |
+| `D MMMM YYYY`              | `14 July 2026`            |
+| `Do MMMM YYYY`             | `14th July 2026`          |
+| `dddd, MMMM D, YYYY`       | `Tuesday, July 14, 2026`  |
+| `ddd, MMM D`               | `Tue, Jul 14`             |
+
+**Keyboard navigation:**
+
+| Key                              | Action                                |
+|----------------------------------|---------------------------------------|
+| `Enter` / `Space` / `↓` on input | Opens the calendar                    |
+| `Arrow keys` in calendar         | Move focus between days               |
+| `Enter` / `Space` on a day       | Selects the day                       |
+| `Escape`                         | Closes the calendar without selecting |
+
+**Events:** `change` (bubbles, composed)  -  fires on day selection with `{ detail: { value: 'YYYY-MM-DD' } }`.
 
 ---
 

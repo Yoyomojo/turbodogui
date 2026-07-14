@@ -29,6 +29,7 @@ import "./components/charts/line-chart/td-line-chart";
 import "./components/charts/bubble-chart/td-bubble-chart";
 import "./components/charts/radar-chart/td-radar-chart";
 import "./components/code/td-code";
+import "./components/date-picker/td-date-picker";
 import "./components/sidebar/td-sidebar";
 import "./components/pagination/td-pagination";
 import "./components/mosaic/td-mosaic";
