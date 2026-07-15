@@ -80,6 +80,7 @@ Benefits of this pattern:
 | `<td-code>` | Syntax-highlighted code block with language badge, optional filename label, and copy-to-clipboard button |
 | `<td-date-picker>` | Accessible calendar date picker with size variants, min/max constraints, keyboard navigation, error state, and a `change` event carrying the ISO 8601 value |
 | `<td-donut-chart>` | Ring chart with configurable hole size, optional center label, interactive legend, and toggleable segments |
+| `<td-dropdown>` | Accessible dropdown menu with HTML slot items, JSON `items` attribute, remote `src`/API loading, placement control, size variants, color variants, selected-item tracking, and full keyboard navigation |
 | `<td-drawer>` | Slide-in panel from any viewport edge (`top`, `right`, `bottom`, `left`) with configurable `width`/`height`, overlay backdrop, Escape key dismissal, and `drawer-close` event |
 | `<td-file-input>` | Drag-and-drop or click-to-upload file input with single/multiple mode, type filtering, max file size validation, size variants, and customizable drop-zone labels/content |
 | `<td-line-chart>` | Multi-series line chart with per-point tooltips, toggleable legend, auto-angling x-axis labels, and optional value labels |
@@ -1091,6 +1092,86 @@ pie.data = data;
 | `width`           | string  | `100%`   | CSS width value |
 | `legend-position` | string  | `bottom` | `top` \| `bottom` \| `left` \| `right` |
 | `show-values`     | boolean |   | Renders a percentage label centered inside each slice (slices <5° are skipped) |
+
+---
+
+### `<td-dropdown>`
+
+An accessible dropdown menu built as a native Custom Element. The trigger label updates to reflect the selected item, the panel anchors to the viewport so it always renders above overflow-clipping containers, and items can come from HTML children, a JSON attribute, or a remote API endpoint.
+
+Try it in the examples app: `/examples/dropdown`.
+
+```html
+<!-- HTML slot items -->
+<td-dropdown label="Actions">
+  <button type="button">Edit</button>
+  <button type="button">Duplicate</button>
+  <hr>
+  <a href="/delete">Delete</a>
+</td-dropdown>
+
+<!-- JSON items -->
+<td-dropdown
+  label="File"
+  items='[
+    {"label":"New",   "value":"new"},
+    {"label":"Open",  "value":"open"},
+    {"label":"---"},
+    {"label":"Export","value":"export"},
+    {"label":"Delete","value":"delete","disabled":true}
+  ]'
+></td-dropdown>
+
+<!-- Remote API (endpoint must return DropdownItem[]) -->
+<td-dropdown label="Load from API" src="/api/menu-items.json"></td-dropdown>
+
+<!-- Variants and sizes -->
+<td-dropdown label="Primary" variant="primary" items="[…]"></td-dropdown>
+<td-dropdown label="Small"   size="small"   items="[…]"></td-dropdown>
+
+<!-- Placement -->
+<td-dropdown label="Top end" placement="top-end" items="[…]"></td-dropdown>
+```
+
+Listen for selection:
+
+```js
+dropdown.addEventListener('select', (e) => {
+  console.log(e.detail); // { value: 'new', label: 'New' }
+});
+
+// Programmatic API
+dropdown.value = 'open';  // pre-select an item and update the trigger label
+dropdown.value = null;    // clear selection, restore placeholder label
+dropdown.open();          // open programmatically
+dropdown.close();         // close programmatically
+console.log(dropdown.isOpen); // boolean
+```
+
+**JSON item schema** (`DropdownItem`):
+
+| Field      | Type    | Description |
+|------------|---------|-------------|
+| `label`    | string  | Display text. Use `"---"` or set `divider: true` for a separator |
+| `value`    | string  | Emitted in the `select` event; triggers label update on the trigger |
+| `href`     | string  | Renders the item as an `<a>` link; navigation items do not update the trigger |
+| `target`   | string  | Link target, e.g. `"_blank"` |
+| `icon`     | string  | Raw HTML (typically an inline SVG) rendered before the label |
+| `disabled` | boolean | Dims the item and blocks interaction |
+| `divider`  | boolean | Renders a horizontal rule separator |
+
+| Attribute   | Type    | Values | Default |
+|-------------|---------|--------|---------|
+| `label`     | string  | any    | `"Menu"` |
+| `value`     | string  | any    | — |
+| `items`     | string  | JSON `DropdownItem[]` | — |
+| `src`       | string  | URL    | — |
+| `placement` | string  | `bottom-start` \| `bottom-end` \| `top-start` \| `top-end` | `bottom-start` |
+| `variant`   | string  | `primary` \| `success` \| `warning` \| `alert` | — |
+| `size`      | string  | `small` \| `medium` \| `large` \| `extra-large` | `medium` |
+| `disabled`  | boolean | | — |
+
+**Events:** `select` (bubbles, composed) — fires on item selection with `{ detail: { value, label } }`.
 
 ---
 

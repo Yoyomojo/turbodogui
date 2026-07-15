@@ -1,0 +1,274 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Dropdown Menu Component</h2>
+                <p>A flexible dropdown menu that supports HTML slot items, JSON configuration, and remote API loading. Includes full keyboard navigation and ARIA support.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <!-- HTML Slot Items -->
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>HTML Slot Items</h2>
+                <p>Pass items directly as child HTML elements. Any <code>&lt;a&gt;</code> or <code>&lt;button&gt;</code> inside the component becomes a menu item.</p>
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-start;padding-top:0.5rem;">
+                  <td-dropdown label="Actions">
+                    <button type="button" onclick="alert('Edit clicked')">Edit</button>
+                    <button type="button" onclick="alert('Duplicate clicked')">Duplicate</button>
+                    <hr>
+                    <a href="https://github.com" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+                    <hr>
+                    <button type="button" onclick="alert('Delete clicked')">Delete</button>
+                  </td-dropdown>
+
+                  <td-dropdown label="Navigation">
+                    <a href="/">Home</a>
+                    <a href="/examples/button">Buttons</a>
+                    <a href="/examples/select">Select</a>
+                    <a href="/examples/modal">Modal</a>
+                  </td-dropdown>
+                </div>
+                <td-code language="html" style="margin-top:1rem;">&lt;td-dropdown label="Actions"&gt;
+  &lt;button type="button"&gt;Edit&lt;/button&gt;
+  &lt;button type="button"&gt;Duplicate&lt;/button&gt;
+  &lt;hr&gt;
+  &lt;a href="/view"&gt;View page&lt;/a&gt;
+  &lt;hr&gt;
+  &lt;button type="button"&gt;Delete&lt;/button&gt;
+&lt;/td-dropdown&gt;</td-code>
+              </td-card>
+            </div>
+          </div>
+
+          <!-- JSON Items -->
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>JSON Items</h2>
+                <p>Pass items as a JSON array via the <code>items</code> attribute. Supports labels, values, hrefs, dividers, and disabled items.</p>
+                <div id="json-demo-output" style="margin-bottom:0.75rem;padding:0.6rem 1rem;background:var(--td-surface-2);border-radius:8px;font-size:0.875rem;color:var(--td-muted);">No item selected yet.</div>
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-start;">
+                  <td-dropdown
+                    id="json-dropdown"
+                    label="File"
+                    items='[
+                      {"label":"New File","value":"new"},
+                      {"label":"Open…","value":"open"},
+                      {"label":"Save","value":"save"},
+                      {"label":"---"},
+                      {"label":"Export as PDF","value":"export-pdf"},
+                      {"label":"Export as CSV","value":"export-csv"},
+                      {"label":"---"},
+                      {"label":"Delete (disabled)","value":"delete","disabled":true}
+                    ]'
+                  ></td-dropdown>
+
+                  <td-dropdown
+                    label="Edit"
+                    items='[
+                      {"label":"Undo","value":"undo"},
+                      {"label":"Redo","value":"redo"},
+                      {"label":"---"},
+                      {"label":"Cut","value":"cut"},
+                      {"label":"Copy","value":"copy"},
+                      {"label":"Paste","value":"paste"},
+                      {"label":"---"},
+                      {"label":"Select All","value":"select-all"}
+                    ]'
+                  ></td-dropdown>
+                </div>
+                <td-code language="html" style="margin-top:1rem;">&lt;td-dropdown
+  label="File"
+  items='[
+    {"label":"New File","value":"new"},
+    {"label":"Open…","value":"open"},
+    {"label":"Save","value":"save"},
+    {"label":"---"},
+    {"label":"Export as PDF","value":"export-pdf"},
+    {"label":"Delete","value":"delete","disabled":true}
+  ]'
+&gt;&lt;/td-dropdown&gt;</td-code>
+              </td-card>
+            </div>
+          </div>
+
+          <!-- Icons -->
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Items with Icons</h2>
+                <p>Add SVG or emoji icons to JSON items via the <code>icon</code> property. The value is rendered as raw HTML in the icon slot.</p>
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-start;padding-top:0.5rem;">
+                  <td-dropdown
+                    label="User"
+                    items='[
+                      {"label":"Profile","value":"profile","icon":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\"/><circle cx=\"12\" cy=\"7\" r=\"4\"/></svg>"},
+                      {"label":"Settings","value":"settings","icon":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z\"/></svg>"},
+                      {"label":"---"},
+                      {"label":"Sign Out","value":"signout","icon":"<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4\"/><polyline points=\"16 17 21 12 16 7\"/><line x1=\"21\" y1=\"12\" x2=\"9\" y2=\"12\"/></svg>"}
+                    ]'
+                  ></td-dropdown>
+                </div>
+                <td-code language="json" style="margin-top:1rem;">[
+  { "label": "Profile",  "value": "profile",  "icon": "&lt;svg&gt;…&lt;/svg&gt;" },
+  { "label": "Settings", "value": "settings", "icon": "&lt;svg&gt;…&lt;/svg&gt;" },
+  { "label": "---" },
+  { "label": "Sign Out", "value": "signout",  "icon": "&lt;svg&gt;…&lt;/svg&gt;" }
+]</td-code>
+              </td-card>
+            </div>
+          </div>
+
+          <!-- Remote / API loading -->
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Remote API Loading</h2>
+                <p>Set the <code>src</code> attribute to a URL that returns a <code>DropdownItem[]</code> JSON array. Items are fetched lazily on first open and cached for subsequent opens.</p>
+                <p>This demo fetches user names from <a href="https://jsonplaceholder.typicode.com" target="_blank" rel="noopener noreferrer">JSONPlaceholder</a> and pre-maps the response to the expected format using a small setup script below.</p>
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-start;padding-top:0.5rem;">
+                  <td-dropdown id="api-src-dropdown" label="Load from API"></td-dropdown>
+                </div>
+                <td-code language="html" style="margin-top:1rem;">&lt;!-- Your endpoint must return DropdownItem[] --&gt;
+&lt;td-dropdown label="Load from API" src="/api/menu-items.json"&gt;&lt;/td-dropdown&gt;
+
+&lt;!-- Expected JSON format: --&gt;
+[
+  { "label": "Dashboard", "value": "dashboard", "href": "/dashboard" },
+  { "label": "Reports",   "value": "reports" },
+  { "label": "---" },
+  { "label": "Settings",  "value": "settings" }
+]
+
+&lt;!-- Or map a third-party API response in your own script: --&gt;
+&lt;script&gt;
+fetch('https://jsonplaceholder.typicode.com/users')
+  .then(r => r.json())
+  .then(users => {
+    const items = users.map(u => ({ label: u.name, value: String(u.id) }));
+    dropdown.setAttribute('items', JSON.stringify(items));
+  });
+&lt;/script&gt;</td-code>
+              </td-card>
+            </div>
+          </div>
+
+          <!-- Placement -->
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Placement</h2>
+                <p>Control where the menu opens relative to the trigger using <code>placement</code>: <code>bottom-start</code> (default), <code>bottom-end</code>, <code>top-start</code>, or <code>top-end</code>.</p>
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;padding-top:0.5rem;">
+                  <td-dropdown label="Bottom Start" placement="bottom-start" items='[{"label":"Item One","value":"1"},{"label":"Item Two","value":"2"},{"label":"Item Three","value":"3"}]'></td-dropdown>
+                  <td-dropdown label="Bottom End" placement="bottom-end" items='[{"label":"Item One","value":"1"},{"label":"Item Two","value":"2"},{"label":"Item Three","value":"3"}]'></td-dropdown>
+                  <td-dropdown label="Top Start" placement="top-start" items='[{"label":"Item One","value":"1"},{"label":"Item Two","value":"2"},{"label":"Item Three","value":"3"}]'></td-dropdown>
+                  <td-dropdown label="Top End" placement="top-end" items='[{"label":"Item One","value":"1"},{"label":"Item Two","value":"2"},{"label":"Item Three","value":"3"}]'></td-dropdown>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <!-- Variants & Sizes -->
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Variants &amp; Sizes</h2>
+                <p>Apply color variants with <code>variant</code> and control size with <code>size</code>.</p>
+                <h3 style="margin-top:1.25rem;margin-bottom:0.75rem;font-size:0.875rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--td-muted);">Variants</h3>
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-start;">
+                  <td-dropdown label="Default" items='[{"label":"Item One","value":"1"},{"label":"Item Two","value":"2"}]'></td-dropdown>
+                  <td-dropdown label="Primary" variant="primary" items='[{"label":"Item One","value":"1"},{"label":"Item Two","value":"2"}]'></td-dropdown>
+                  <td-dropdown label="Success" variant="success" items='[{"label":"Item One","value":"1"},{"label":"Item Two","value":"2"}]'></td-dropdown>
+                  <td-dropdown label="Warning" variant="warning" items='[{"label":"Item One","value":"1"},{"label":"Item Two","value":"2"}]'></td-dropdown>
+                  <td-dropdown label="Alert" variant="alert" items='[{"label":"Item One","value":"1"},{"label":"Item Two","value":"2"}]'></td-dropdown>
+                </div>
+                <h3 style="margin-top:1.5rem;margin-bottom:0.75rem;font-size:0.875rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--td-muted);">Sizes</h3>
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-end;">
+                  <td-dropdown label="Small" size="small" items='[{"label":"Item One","value":"1"},{"label":"Item Two","value":"2"}]'></td-dropdown>
+                  <td-dropdown label="Medium" size="medium" items='[{"label":"Item One","value":"1"},{"label":"Item Two","value":"2"}]'></td-dropdown>
+                  <td-dropdown label="Large" size="large" items='[{"label":"Item One","value":"1"},{"label":"Item Two","value":"2"}]'></td-dropdown>
+                  <td-dropdown label="Extra Large" size="extra-large" items='[{"label":"Item One","value":"1"},{"label":"Item Two","value":"2"}]'></td-dropdown>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <!-- Disabled -->
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Disabled State</h2>
+                <p>Add the <code>disabled</code> attribute to prevent the dropdown from opening.</p>
+                <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-start;padding-top:0.5rem;">
+                  <td-dropdown label="Disabled" disabled items='[{"label":"Item One","value":"1"}]'></td-dropdown>
+                </div>
+                <td-code language="html" style="margin-top:1rem;">&lt;td-dropdown label="Disabled" disabled items="[…]"&gt;&lt;/td-dropdown&gt;</td-code>
+              </td-card>
+            </div>
+          </div>
+
+          <!-- Events -->
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Events</h2>
+                <p>Listen for the <code>select</code> event to respond when an item is chosen. The event detail contains <code>value</code> and <code>label</code>.</p>
+                <div id="event-log" style="margin-bottom:0.75rem;padding:0.6rem 1rem;background:var(--td-surface-2);border-radius:8px;font-size:0.875rem;color:var(--td-muted);min-height:2.5rem;">Waiting for selection…</div>
+                <td-dropdown
+                  id="event-dropdown"
+                  label="Choose Action"
+                  items='[
+                    {"label":"Create","value":"create"},
+                    {"label":"Edit","value":"edit"},
+                    {"label":"Archive","value":"archive"},
+                    {"label":"---"},
+                    {"label":"Delete","value":"delete"}
+                  ]'
+                ></td-dropdown>
+                <td-code language="javascript" style="margin-top:1rem;">dropdown.addEventListener('select', (e) => {
+  console.log(e.detail); // { value: 'edit', label: 'Edit' }
+});</td-code>
+              </td-card>
+            </div>
+          </div>
+
+<script>
+(function () {
+  // JSON dropdown select event
+  var jsonDd = document.getElementById('json-dropdown');
+  var jsonOut = document.getElementById('json-demo-output');
+  if (jsonDd && jsonOut) {
+    jsonDd.addEventListener('select', function (e) {
+      jsonOut.textContent = 'Selected: ' + e.detail.label + ' (value: "' + e.detail.value + '")';
+    });
+  }
+
+  // Event log dropdown
+  var evDd = document.getElementById('event-dropdown');
+  var evLog = document.getElementById('event-log');
+  if (evDd && evLog) {
+    evDd.addEventListener('select', function (e) {
+      evLog.textContent = 'select event fired — label: "' + e.detail.label + '", value: "' + e.detail.value + '"';
+    });
+  }
+
+  // API src demo — fetch from JSONPlaceholder and map to DropdownItem[]
+  var apiDd = document.getElementById('api-src-dropdown');
+  if (apiDd) {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then(function (r) { return r.json(); })
+      .then(function (users) {
+        var items = users.map(function (u) {
+          return { label: u.name, value: String(u.id) };
+        });
+        apiDd.setAttribute('items', JSON.stringify(items));
+      })
+      .catch(function () {
+        apiDd.setAttribute('items', '[]');
+      });
+  }
+})();
+</script>

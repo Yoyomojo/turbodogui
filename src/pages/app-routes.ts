@@ -173,6 +173,11 @@ export const exampleTabRoutes: LazyRouteDefinition[] = [
     name: "Date Picker",
     loadHtml: () => import("./examples/tabs/tab-21-date-picker.html?raw").then((module) => module.default),
   },
+  {
+    path: "/examples/dropdown",
+    name: "Dropdown",
+    loadHtml: () => import("./examples/tabs/tab-22-dropdown.html?raw").then((module) => module.default),
+  },
 ];
 
 export const loginRoute: RouteRegistration = {
