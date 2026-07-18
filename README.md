@@ -90,6 +90,7 @@ Benefits of this pattern:
 | `<td-mosaic>` / `<td-mosaic-item>` | CSS Grid photo mosaic with auto-square cells, configurable column count and gap, `col-span`/`row-span` spanning, and hover overlay |
 | `<td-multi-select>` | Dropdown multi-select with size variants, pill badges, live search, Select/Deselect All, keyboard navigation, and JSON/HTML/JS option population |
 | `<td-pagination>` | Page navigation control driven by total item count and page size; emits `td-page-change` with offset/limit ready for API queries |
+| `<td-progress-bar>` | Determinate and indeterminate progress indicator with semantic color variants, striped/animated patterns, custom height and color, and full ARIA support |
 | `<td-pie-chart>` | Pie chart with interactive legend, toggleable slices, optional percentage labels, and configurable legend position |
 | `<td-select>` | Styled `<select>` wrapper with size variants, option groups, multiple selection, label, and `change` event |
 | `<td-sidebar>` | Collapsible side-navigation with search filtering, section labels, badge counts, SVG icon support, and a responsive mobile drawer |
@@ -2088,6 +2089,65 @@ function renderPage() {
 
 pager.addEventListener('td-page-change', renderPage);
 ```
+
+---
+
+### `<td-progress-bar>`
+
+A progress indicator supporting determinate values, indeterminate animation, semantic color variants, striped patterns, and full ARIA attributes.
+
+```html
+<!-- Determinate with label and percentage display -->
+<td-progress-bar value="60" label="Uploading" show-value></td-progress-bar>
+
+<!-- Semantic variants -->
+<td-progress-bar value="80" variant="success" label="Complete" show-value></td-progress-bar>
+<td-progress-bar value="40" variant="warning" label="Low storage" show-value></td-progress-bar>
+<td-progress-bar value="25" variant="danger" label="Critical" show-value></td-progress-bar>
+
+<!-- Striped and animated -->
+<td-progress-bar value="55" striped animated></td-progress-bar>
+
+<!-- Indeterminate (unknown duration) -->
+<td-progress-bar indeterminate label="Loading..."></td-progress-bar>
+
+<!-- Custom height and color -->
+<td-progress-bar value="70" height="1rem" color="#8b5cf6"></td-progress-bar>
+```
+
+| Attribute      | Type    | Default | Description |
+|----------------|---------|---------|-------------|
+| `value`        | number  | `0`     | Current progress value |
+| `max`          | number  | `100`   | Maximum value |
+| `label`        | string  |         | Text label displayed above the bar |
+| `show-value`   | boolean |         | Shows the computed percentage next to the label |
+| `variant`      | string  |         | `success` \| `warning` \| `danger` |
+| `striped`      | boolean |         | Applies a diagonal stripe overlay |
+| `animated`     | boolean |         | Animates the stripes (use with `striped`) |
+| `indeterminate`| boolean |         | Pulsing bar for unknown progress duration |
+| `height`       | string  |         | CSS length for bar height, e.g. `4px`, `1rem` |
+| `color`        | string  |         | Custom CSS color for the bar fill |
+
+**JavaScript API:**
+
+```js
+const bar = document.querySelector('td-progress-bar');
+
+// Set/get value
+bar.value = 75;
+console.log(bar.percentage); // 75
+
+// Set/get max
+bar.max = 200;
+bar.value = 150; // 75%
+```
+
+**CSS Custom Properties:**
+
+| Property            | Description |
+|---------------------|-------------|
+| `--progress-height` | Bar track height (overridden by `height` attribute) |
+| `--progress-color`  | Bar fill color (overridden by `color` attribute) |
 
 ---
 

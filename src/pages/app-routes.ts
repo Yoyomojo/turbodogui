@@ -178,6 +178,11 @@ export const exampleTabRoutes: LazyRouteDefinition[] = [
     name: "Dropdown",
     loadHtml: () => import("./examples/tabs/tab-22-dropdown.html?raw").then((module) => module.default),
   },
+  {
+    path: "/examples/progress-bar",
+    name: "Progress Bar",
+    loadHtml: () => import("./examples/tabs/tab-23-progress-bar.html?raw").then((module) => module.default),
+  },
 ];
 
 export const loginRoute: RouteRegistration = {

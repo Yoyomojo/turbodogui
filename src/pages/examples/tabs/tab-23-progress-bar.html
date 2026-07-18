@@ -1,0 +1,170 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Progress Bar Component</h2>
+                <p>A flexible progress indicator with determinate and indeterminate modes, semantic color variants, striped patterns, and full ARIA support.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Determinate</h3>
+                <td-progress-bar value="25" label="Uploading" show-value></td-progress-bar>
+                <td-progress-bar value="60" label="Processing" show-value></td-progress-bar>
+                <td-progress-bar value="90" label="Almost done" show-value></td-progress-bar>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Variants</h3>
+                <td-progress-bar value="70" label="Default" show-value></td-progress-bar>
+                <td-progress-bar value="70" variant="success" label="Success" show-value></td-progress-bar>
+                <td-progress-bar value="70" variant="warning" label="Warning" show-value></td-progress-bar>
+                <td-progress-bar value="70" variant="danger" label="Danger" show-value></td-progress-bar>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Striped &amp; Animated</h3>
+                <td-progress-bar value="55" label="Striped" show-value striped></td-progress-bar>
+                <td-progress-bar value="55" variant="success" label="Striped + Animated" show-value striped animated></td-progress-bar>
+                <td-progress-bar value="55" variant="warning" label="Striped Warning" show-value striped></td-progress-bar>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Indeterminate</h3>
+                <td-progress-bar indeterminate label="Loading data..."></td-progress-bar>
+                <td-progress-bar indeterminate variant="success" label="Syncing..."></td-progress-bar>
+                <td-progress-bar indeterminate variant="warning" label="Please wait..."></td-progress-bar>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Custom Height</h3>
+                <td-progress-bar value="50" label="Thin (4px)" height="4px" show-value></td-progress-bar>
+                <td-progress-bar value="50" label="Default" show-value></td-progress-bar>
+                <td-progress-bar value="50" label="Thick (1.2rem)" height="1.2rem" show-value></td-progress-bar>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Custom Color &amp; Live Update</h3>
+                <td-progress-bar id="progress-live" value="0" label="Live Progress" show-value color="#8b5cf6"></td-progress-bar>
+                <div style="display:flex; gap:0.5rem; margin-top:0.75rem; flex-wrap:wrap;">
+                  <td-button type="button" id="progress-start-btn" size="small">Start</td-button>
+                  <td-button type="button" id="progress-reset-btn" size="small" variant="warning">Reset</td-button>
+                </div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h3>Code Examples</h3>
+                <td-code language="html">
+                  <template>
+<!-- Determinate with label and value display -->
+<td-progress-bar value="60" label="Uploading" show-value></td-progress-bar>
+
+<!-- Semantic variants -->
+<td-progress-bar value="80" variant="success" show-value></td-progress-bar>
+<td-progress-bar value="40" variant="warning" show-value></td-progress-bar>
+<td-progress-bar value="25" variant="danger" show-value></td-progress-bar>
+
+<!-- Striped and animated -->
+<td-progress-bar value="55" striped animated></td-progress-bar>
+
+<!-- Indeterminate (unknown progress) -->
+<td-progress-bar indeterminate label="Loading..."></td-progress-bar>
+
+<!-- Custom height and color -->
+<td-progress-bar value="70" height="1rem" color="#8b5cf6"></td-progress-bar>
+                  </template>
+                </td-code>
+
+                <td-code language="js">
+                  <template>
+const bar = document.querySelector('td-progress-bar');
+
+// Update value programmatically
+bar.value = 75;
+
+// Read current percentage
+console.log(bar.percentage); // 75
+                  </template>
+                </td-code>
+
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>value</strong> — Current progress value (default: 0)</li>
+                  <li><strong>max</strong> — Maximum value (default: 100)</li>
+                  <li><strong>label</strong> — Accessible label shown above the bar</li>
+                  <li><strong>show-value</strong> — Displays the percentage alongside the label</li>
+                  <li><strong>variant</strong> — <code>success</code> | <code>warning</code> | <code>danger</code></li>
+                  <li><strong>striped</strong> — Applies a diagonal stripe pattern</li>
+                  <li><strong>animated</strong> — Animates the stripes (use with <code>striped</code>)</li>
+                  <li><strong>indeterminate</strong> — Pulsing bar for unknown progress duration</li>
+                  <li><strong>height</strong> — CSS length for bar height (e.g. <code>4px</code>, <code>1rem</code>)</li>
+                  <li><strong>color</strong> — Custom CSS color for the bar fill</li>
+                </ul>
+
+                <h3>JavaScript API</h3>
+                <ul>
+                  <li><strong>value</strong> (get/set) — Current numeric value</li>
+                  <li><strong>max</strong> (get/set) — Maximum numeric value</li>
+                  <li><strong>percentage</strong> (get) — Computed 0–100 percentage</li>
+                </ul>
+
+                <h3>CSS Custom Properties</h3>
+                <ul>
+                  <li><strong>--progress-height</strong> — Bar height (overridden by <code>height</code> attribute)</li>
+                  <li><strong>--progress-color</strong> — Bar fill color (overridden by <code>color</code> attribute)</li>
+                </ul>
+              </td-card>
+            </div>
+          </div>
+
+<script type="module" data-tab-init="tab-23-progress-bar.ts">
+function initTab() {
+    var bar = document.getElementById('progress-live');
+    var startBtn = document.getElementById('progress-start-btn');
+    var resetBtn = document.getElementById('progress-reset-btn');
+    var interval = null;
+
+    if (startBtn) {
+        startBtn.addEventListener('click', function () {
+            if (interval) return;
+            if (bar && bar.value >= 100) bar.value = 0;
+            interval = setInterval(function () {
+                if (!bar) return;
+                var current = Number(bar.getAttribute('value') || 0);
+                if (current >= 100) {
+                    clearInterval(interval);
+                    interval = null;
+                    return;
+                }
+                bar.setAttribute('value', String(Math.min(100, current + 2)));
+            }, 60);
+        });
+    }
+
+    if (resetBtn) {
+        resetBtn.addEventListener('click', function () {
+            clearInterval(interval);
+            interval = null;
+            if (bar) bar.setAttribute('value', '0');
+        });
+    }
+}
+initTab();
+</script>

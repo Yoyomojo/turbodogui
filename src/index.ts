@@ -37,5 +37,6 @@ import "./components/mosaic/td-mosaic";
 import "./components/mosaic/td-mosaic-item";
 import "./components/tabs/td-tabs";
 import "./components/link/td-link";
+import "./components/progress-bar/td-progress-bar";
 import "./components/video-player/td-video-player";
 import "./router/route-view";
