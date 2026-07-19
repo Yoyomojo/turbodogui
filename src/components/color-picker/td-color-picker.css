@@ -1,0 +1,332 @@
+:host {
+  display: block;
+  width: 100%;
+  font-family: inherit;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+label {
+  color: var(--td-fg-muted, #6f6f6f);
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+/* ── Trigger ─────────────────────────────────────── */
+
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--td-border);
+  border-radius: 12px;
+  background: var(--td-surface);
+  color: var(--td-fg);
+  font: inherit;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.trigger:hover:not(:disabled) {
+  border-color: var(--td-primary);
+}
+
+.trigger:focus-visible {
+  outline: none;
+  border-color: var(--td-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--td-primary) 20%, transparent);
+}
+
+.trigger[aria-expanded="true"] {
+  border-color: var(--td-primary);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--td-primary) 20%, transparent);
+}
+
+.trigger:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Size variants */
+.field--small label { font-size: 0.8rem; }
+.field--small .trigger { min-height: 1.75rem; padding: 0.2rem 0.5rem; border-radius: 6px; font-size: 0.8rem; }
+.field--large .trigger { min-height: 3.25rem; padding: 0.65rem 1rem; border-radius: 14px; font-size: 1.125rem; }
+.field--extra-large .trigger { min-height: 3.75rem; padding: 0.8rem 1.25rem; border-radius: 16px; font-size: 1.25rem; }
+
+.swatch {
+  flex-shrink: 0;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.trigger-value {
+  flex: 1;
+  font-size: 0.875rem;
+  font-family: monospace;
+  color: var(--td-fg);
+}
+
+.trigger-arrow {
+  flex-shrink: 0;
+  color: var(--td-fg-muted);
+  display: flex;
+  align-items: center;
+  transition: transform 200ms ease;
+}
+
+.trigger[aria-expanded="true"] .trigger-arrow {
+  transform: rotate(180deg);
+}
+
+/* ── Panel ───────────────────────────────────────── */
+
+.panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  width: 280px;
+  background: var(--td-surface);
+  border: 1px solid var(--td-border);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15), 0 2px 8px rgba(0, 0, 0, 0.08);
+  z-index: 200;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: cp-open 120ms ease;
+}
+
+@keyframes cp-open {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── 2D Gradient picker ──────────────────────────── */
+
+.gradient-area {
+  position: relative;
+  width: 100%;
+  height: 160px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: crosshair;
+  touch-action: none;
+  user-select: none;
+  flex-shrink: 0;
+  outline: none;
+}
+
+.gradient-area:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--td-primary);
+}
+
+.gradient-sat,
+.gradient-val {
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+}
+
+.gradient-val {
+  background: linear-gradient(to bottom, transparent, #000);
+}
+
+.gradient-pointer {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* ── Sliders ─────────────────────────────────────── */
+
+.hue-track {
+  position: relative;
+  height: 14px;
+  border-radius: 7px;
+  background: linear-gradient(to right, #f00 0%, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, #f00 100%);
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+  flex-shrink: 0;
+  outline: none;
+}
+
+.hue-track:focus-visible,
+.alpha-track:focus-visible {
+  box-shadow: 0 0 0 2px var(--td-surface), 0 0 0 4px var(--td-primary);
+}
+
+.alpha-track {
+  position: relative;
+  height: 14px;
+  border-radius: 7px;
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+  flex-shrink: 0;
+  overflow: hidden;
+  outline: none;
+  background-color: #fff;
+  background-image:
+    linear-gradient(45deg, #ddd 25%, transparent 25%),
+    linear-gradient(-45deg, #ddd 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #ddd 75%),
+    linear-gradient(-45deg, transparent 75%, #ddd 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0;
+}
+
+.alpha-gradient {
+  position: absolute;
+  inset: 0;
+}
+
+.slider-thumb {
+  position: absolute;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25), 0 1px 4px rgba(0, 0, 0, 0.3);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+/* ── Inputs row ──────────────────────────────────── */
+
+.inputs-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.preview-wrap {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  border: 1px solid var(--td-border);
+  overflow: hidden;
+  background-color: #fff;
+  background-image:
+    linear-gradient(45deg, #ddd 25%, transparent 25%),
+    linear-gradient(-45deg, #ddd 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #ddd 75%),
+    linear-gradient(-45deg, transparent 75%, #ddd 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0;
+}
+
+.preview-inner {
+  width: 100%;
+  height: 100%;
+}
+
+.input-group {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hex-wrap {
+  flex: 2;
+}
+
+.field-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--td-fg-muted);
+  text-align: center;
+}
+
+.cp-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.3rem 0.35rem;
+  border: 1px solid var(--td-border);
+  border-radius: 6px;
+  background: var(--td-surface-2, #f3f4f6);
+  color: var(--td-fg);
+  font: inherit;
+  font-size: 0.78rem;
+  text-align: center;
+  outline: none;
+  transition: border-color 120ms;
+}
+
+.cp-input--hex {
+  font-family: monospace;
+  text-align: left;
+}
+
+.cp-input:focus {
+  border-color: var(--td-primary);
+  background: var(--td-surface);
+}
+
+.cp-input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.cp-input[type="number"]::-webkit-outer-spin-button,
+.cp-input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+/* ── Presets ─────────────────────────────────────── */
+
+.presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding-top: 2px;
+}
+
+.preset-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: transform 100ms ease, box-shadow 100ms ease;
+}
+
+.preset-btn:hover {
+  transform: scale(1.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.preset-btn:focus-visible {
+  outline: 2px solid var(--td-primary);
+  outline-offset: 2px;
+}

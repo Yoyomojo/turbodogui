@@ -91,6 +91,7 @@ Benefits of this pattern:
 | `<td-multi-select>` | Dropdown multi-select with size variants, pill badges, live search, Select/Deselect All, keyboard navigation, and JSON/HTML/JS option population |
 | `<td-pagination>` | Page navigation control driven by total item count and page size; emits `td-page-change` with offset/limit ready for API queries |
 | `<td-progress-bar>` | Determinate and indeterminate progress indicator with semantic color variants, striped/animated patterns, custom height and color, and full ARIA support |
+| `<td-color-picker>` | Fully custom color picker with a 2D saturation/brightness picker, hue and opacity sliders, hex/RGB/HSL inputs, preset swatches, and full keyboard navigation |
 | `<td-pie-chart>` | Pie chart with interactive legend, toggleable slices, optional percentage labels, and configurable legend position |
 | `<td-select>` | Styled `<select>` wrapper with size variants, option groups, multiple selection, label, and `change` event |
 | `<td-sidebar>` | Collapsible side-navigation with search filtering, section labels, badge counts, SVG icon support, and a responsive mobile drawer |
@@ -2148,6 +2149,73 @@ bar.value = 150; // 75%
 |---------------------|-------------|
 | `--progress-height` | Bar track height (overridden by `height` attribute) |
 | `--progress-color`  | Bar fill color (overridden by `color` attribute) |
+
+---
+
+### `<td-color-picker>`
+
+A fully custom color picker with a 2D saturation/brightness gradient, hue and optional opacity sliders, hex/RGB/HSL text inputs, and optional preset swatches. All interaction is handled with pointer events and includes full keyboard navigation.
+
+```html
+<!-- Basic -->
+<td-color-picker label="Brand color" value="#3b82f6"></td-color-picker>
+
+<!-- With alpha channel -->
+<td-color-picker label="Overlay" value="#000000" alpha></td-color-picker>
+
+<!-- RGB output format -->
+<td-color-picker label="Fill" value="#22c55e" format="rgb"></td-color-picker>
+
+<!-- Preset swatches -->
+<td-color-picker
+  label="Theme color"
+  value="#6366f1"
+  presets='["#ef4444","#22c55e","#3b82f6","#6366f1","#000000"]'>
+</td-color-picker>
+```
+
+| Attribute  | Type    | Default | Description |
+|------------|---------|---------|-------------|
+| `value`    | string  | `#3b82f6` | Initial color — hex (`#rrggbb`), 8-digit hex with alpha, or `rgb()`/`rgba()` |
+| `label`    | string  |         | Field label displayed above the trigger |
+| `format`   | string  | `hex`   | Output format: `hex` \| `rgb` \| `hsl` |
+| `alpha`    | boolean |         | Enables the opacity slider and alpha channel in the emitted value |
+| `disabled` | boolean |         | Prevents opening the picker |
+| `size`     | string  | `medium` | `small` \| `medium` \| `large` \| `extra-large` |
+| `presets`  | string  |         | JSON array of hex strings rendered as clickable swatches |
+
+**`change` event detail:**
+
+| Key     | Type               | Description |
+|---------|--------------------|-------------|
+| `value` | string             | Formatted per the `format` attribute |
+| `hex`   | string             | Always `#rrggbb` regardless of format |
+| `rgb`   | `[number, number, number]` | `[r, g, b]` each 0–255 |
+| `alpha` | number             | 0–1 |
+
+**JavaScript API:**
+
+```js
+const cp = document.querySelector('td-color-picker');
+
+// Set value programmatically
+cp.value = '#ff6600';
+
+// Listen for changes
+cp.addEventListener('change', (e) => {
+  const { value, hex, rgb, alpha } = e.detail;
+  console.log(value);  // formatted per `format` attr
+  console.log(hex);    // always #rrggbb
+  console.log(rgb);    // [r, g, b]
+  console.log(alpha);  // 0–1
+});
+```
+
+**Keyboard navigation:**
+
+- **Gradient area** — Arrow keys adjust saturation (←/→) and brightness (↑/↓); hold Shift for 10× steps
+- **Hue / Alpha sliders** — Arrow keys adjust value; hold Shift for 10× steps
+- **Escape** — Closes the panel and returns focus to the trigger
 
 ---
 

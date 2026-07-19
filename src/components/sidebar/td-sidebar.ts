@@ -33,6 +33,7 @@ const TAB_ROUTE_MAP: Record<string, string> = {
     "tab-21": "/examples/date-picker",
     "tab-22": "/examples/dropdown",
     "tab-23": "/examples/progress-bar",
+    "tab-24": "/examples/color-picker",
 };
 const ROUTE_KEY_MAP: Record<string, string> = {
     "/": "home",
@@ -77,6 +78,7 @@ const ROUTE_KEY_MAP: Record<string, string> = {
     "/examples/date-picker": "tab-21",
     "/examples/dropdown": "tab-22",
     "/examples/progress-bar": "tab-23",
+    "/examples/color-picker": "tab-24",
     "/examples/layouts/login": "layout-login",
     "/examples/layouts/register": "layout-register",
     "/examples/layouts/dashboard": "layout-dashboard",

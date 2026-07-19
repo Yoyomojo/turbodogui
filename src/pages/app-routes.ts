@@ -183,6 +183,11 @@ export const exampleTabRoutes: LazyRouteDefinition[] = [
     name: "Progress Bar",
     loadHtml: () => import("./examples/tabs/tab-23-progress-bar.html?raw").then((module) => module.default),
   },
+  {
+    path: "/examples/color-picker",
+    name: "Color Picker",
+    loadHtml: () => import("./examples/tabs/tab-24-color-picker.html?raw").then((module) => module.default),
+  },
 ];
 
 export const loginRoute: RouteRegistration = {

@@ -1,0 +1,161 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Color Picker Component</h2>
+                <p>A fully custom color picker with a 2D saturation/brightness canvas, hue and opacity sliders, hex/RGB/HSL inputs, preset swatches, and full keyboard navigation.</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Basic</h3>
+                <td-color-picker label="Brand color" value="#3b82f6"></td-color-picker>
+                <td-color-picker label="Accent color" value="#f59e0b"></td-color-picker>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>With Presets</h3>
+                <td-color-picker
+                  label="Theme color"
+                  value="#6366f1"
+                  presets='["#ef4444","#f97316","#eab308","#22c55e","#3b82f6","#6366f1","#a855f7","#ec4899","#14b8a6","#64748b","#000000","#ffffff"]'>
+                </td-color-picker>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>With Opacity (Alpha)</h3>
+                <td-color-picker label="Background overlay" value="#000000" alpha></td-color-picker>
+                <td-color-picker label="Highlight color" value="#3b82f6" alpha
+                  presets='["#ef4444","#22c55e","#3b82f6","#a855f7","#000000","#ffffff"]'>
+                </td-color-picker>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Output Formats</h3>
+                <td-color-picker label="HEX (default)" value="#10b981" format="hex"></td-color-picker>
+                <td-color-picker label="RGB" value="#10b981" format="rgb"></td-color-picker>
+                <td-color-picker label="HSL" value="#10b981" format="hsl"></td-color-picker>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Size Variants</h3>
+                <td-color-picker label="Small" value="#6366f1" size="small"></td-color-picker>
+                <td-color-picker label="Medium (default)" value="#6366f1" size="medium"></td-color-picker>
+                <td-color-picker label="Large" value="#6366f1" size="large"></td-color-picker>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Disabled</h3>
+                <td-color-picker label="Disabled picker" value="#94a3b8" disabled></td-color-picker>
+                <h3 style="margin-top: 1.25rem;">Live Output</h3>
+                <td-color-picker id="cp-live" label="Pick a color" value="#3b82f6"
+                  presets='["#ef4444","#f97316","#22c55e","#3b82f6","#6366f1","#ec4899"]'>
+                </td-color-picker>
+                <p id="cp-live-output" style="font-size:0.875rem; font-family:monospace; color:var(--td-fg-muted); margin:0;">
+                  value: #3b82f6
+                </p>
+                <div id="cp-live-swatch" style="margin-top: 0.5rem; height: 2rem; border-radius: 8px; background: #3b82f6; transition: background 200ms ease;"></div>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h3>Code Examples</h3>
+                <td-code language="html">
+                  <template>
+<!-- Basic -->
+<td-color-picker label="Brand color" value="#3b82f6"></td-color-picker>
+
+<!-- With alpha channel -->
+<td-color-picker label="Overlay" value="#000000" alpha></td-color-picker>
+
+<!-- RGB output format -->
+<td-color-picker label="Fill" value="#22c55e" format="rgb"></td-color-picker>
+
+<!-- Preset swatches -->
+<td-color-picker
+  label="Theme color"
+  value="#6366f1"
+  presets='["#ef4444","#22c55e","#3b82f6","#6366f1","#000000"]'>
+</td-color-picker>
+                  </template>
+                </td-code>
+
+                <td-code language="js">
+                  <template>
+const cp = document.querySelector('td-color-picker');
+
+// Set value programmatically
+cp.value = '#ff6600';
+
+// Listen for changes
+cp.addEventListener('change', (e) => {
+  const { value, hex, rgb, alpha } = e.detail;
+  console.log('value:', value);   // formatted per `format` attr
+  console.log('hex:', hex);       // always #rrggbb
+  console.log('rgb:', rgb);       // [r, g, b]
+  console.log('alpha:', alpha);   // 0–1
+});
+                  </template>
+                </td-code>
+
+                <h3>Attributes</h3>
+                <ul>
+                  <li><strong>value</strong> — Initial color; accepts <code>#rrggbb</code>, 8-digit hex, or <code>rgb()</code>/<code>rgba()</code></li>
+                  <li><strong>label</strong> — Field label shown above the trigger</li>
+                  <li><strong>format</strong> — Output format: <code>hex</code> (default) | <code>rgb</code> | <code>hsl</code></li>
+                  <li><strong>alpha</strong> — Enables the opacity slider and alpha channel in the output value</li>
+                  <li><strong>disabled</strong> — Prevents opening the picker</li>
+                  <li><strong>size</strong> — <code>small</code> | <code>medium</code> (default) | <code>large</code> | <code>extra-large</code></li>
+                  <li><strong>presets</strong> — JSON array of hex strings rendered as clickable swatches</li>
+                </ul>
+
+                <h3>change Event Detail</h3>
+                <ul>
+                  <li><strong>value</strong> — Formatted string per the <code>format</code> attribute</li>
+                  <li><strong>hex</strong> — Always <code>#rrggbb</code> regardless of format</li>
+                  <li><strong>rgb</strong> — <code>[r, g, b]</code> tuple (0–255 each)</li>
+                  <li><strong>alpha</strong> — Number 0–1</li>
+                </ul>
+
+                <h3>Keyboard Navigation</h3>
+                <ul>
+                  <li><strong>Gradient area:</strong> Arrow keys move saturation (←/→) and brightness (↑/↓); hold Shift for 10× steps</li>
+                  <li><strong>Hue / Alpha sliders:</strong> Arrow keys adjust value; hold Shift for 10× steps</li>
+                  <li><strong>Escape:</strong> Closes the panel and returns focus to the trigger</li>
+                </ul>
+              </td-card>
+            </div>
+          </div>
+
+<script type="module" data-tab-init="tab-24-color-picker.ts">
+function initTab() {
+    var cp = document.getElementById('cp-live');
+    var output = document.getElementById('cp-live-output');
+    var swatch = document.getElementById('cp-live-swatch');
+
+    if (cp && output && swatch) {
+        cp.addEventListener('change', function (e) {
+            var detail = e.detail;
+            output.textContent = 'value: ' + detail.value;
+            swatch.style.background = detail.hex;
+        });
+    }
+}
+initTab();
+</script>
