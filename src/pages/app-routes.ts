@@ -236,6 +236,14 @@ export const adminPanelRoute: RouteRegistration = {
   loadHtml: () => import("./examples/layouts/user-dashboard/user-dashboard.html?raw").then((module) => module.default),
 };
 
+export const ptoDashboardRoute: RouteRegistration = {
+  path: "/examples/layouts/pto-dashboard",
+  name: "PTO Dashboard",
+  title: "Turbodog UI | PTO Dashboard",
+  description: "PTO management dashboard layout example",
+  loadHtml: () => import("./examples/layouts/pto-dashboard/pto-dashboard.html?raw").then((module) => module.default),
+};
+
 export const verifyRoute: RouteRegistration = {
   path: "/examples/layouts/verify",
   name: "Verification Code",
@@ -365,6 +373,11 @@ export function initializeAppRoutes(contentEl: HTMLElement): void {
     title: adminPanelRoute.title,
     description: adminPanelRoute.description,
     onMount: adminPanelRoute.onMount,
+  });
+
+  router.register(ptoDashboardRoute.path, async () => ptoDashboardRoute.loadHtml(), {
+    title: ptoDashboardRoute.title,
+    description: ptoDashboardRoute.description,
   });
 
   router.register(verifyRoute.path, async () => verifyRoute.loadHtml(), {

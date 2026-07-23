@@ -35,6 +35,7 @@ const TAB_ROUTE_MAP: Record<string, string> = {
     "tab-23": "/examples/progress-bar",
     "tab-24": "/examples/color-picker",
     "tab-25": "/examples/calendar",
+    "layout-pto-dashboard": "/examples/layouts/pto-dashboard",
 };
 const ROUTE_KEY_MAP: Record<string, string> = {
     "/": "home",
@@ -81,6 +82,7 @@ const ROUTE_KEY_MAP: Record<string, string> = {
     "/examples/progress-bar": "tab-23",
     "/examples/color-picker": "tab-24",
     "/examples/calendar": "tab-25",
+    "/examples/layouts/pto-dashboard": "layout-pto-dashboard",
     "/examples/layouts/login": "layout-login",
     "/examples/layouts/register": "layout-register",
     "/examples/layouts/dashboard": "layout-dashboard",
@@ -670,6 +672,10 @@ export class UISidebar extends UIComponent {
             }
             if (key === "layout-verify") {
                 router.navigate("/examples/layouts/verify");
+                return;
+            }
+            if (key === "layout-pto-dashboard") {
+                router.navigate("/examples/layouts/pto-dashboard");
                 return;
             }
             if (key.startsWith("tab-")) {

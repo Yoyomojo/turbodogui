@@ -1,0 +1,398 @@
+<div class="dashboard-layout">
+  <div class="container" style="padding-top: 2rem; padding-bottom: 3rem;">
+
+    <!-- Breadcrumb -->
+    <div class="row row--center" style="margin-bottom: 0.25rem;">
+      <div class="col-12">
+        <td-breadcrumb separator=">" items='[
+          {"label":"Home","href":"/"},
+          {"label":"Examples","href":"/examples"},
+          {"label":"Layouts","href":"/examples/layouts/dashboard"},
+          {"label":"PTO Dashboard"}
+        ]'></td-breadcrumb>
+      </div>
+    </div>
+
+    <!-- Page Header -->
+    <div class="row">
+      <div class="col-12">
+        <td-card stretch>
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+            <div>
+              <h1 style="margin:0 0 0.375rem; font-size:1.75rem; font-weight:700;">PTO Management</h1>
+              <p style="margin:0; color:var(--td-fg-muted,#6f6f6f); font-size:0.9375rem;">Manage time-off requests, team availability, and PTO balances</p>
+            </div>
+            <td-button-group>
+              <td-button size="small" id="pto-export-btn">Export Report</td-button>
+              <td-button size="small" variant="success" id="pto-new-btn">+ New Request</td-button>
+            </td-button-group>
+          </div>
+        </td-card>
+      </div>
+    </div>
+
+    <!-- Status Alert -->
+    <div class="row" style="margin-top:0.5rem;">
+      <div class="col-12">
+        <td-alert variant="warning" title="Pending Approvals" dismissible>
+          7 PTO requests are awaiting manager approval — 3 are scheduled for this week.
+        </td-alert>
+      </div>
+    </div>
+
+    <!-- KPI Cards -->
+    <div class="row row--dense" style="margin-top:0.5rem;">
+      <div class="col-12 col-sm-6 col-xl-3">
+        <td-card stretch>
+          <p style="margin:0; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--td-fg-muted,#6f6f6f);">Avg Days Remaining</p>
+          <p style="margin:0.35rem 0 0.5rem; font-size:2rem; font-weight:700;">14.9</p>
+          <td-progress-bar value="60" max="100" show-value></td-progress-bar>
+          <p style="margin:0.4rem 0 0; color:var(--td-fg-muted,#6f6f6f); font-size:0.8125rem;">Out of 25 PTO days per year</p>
+        </td-card>
+      </div>
+      <div class="col-12 col-sm-6 col-xl-3">
+        <td-card stretch>
+          <p style="margin:0; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--td-fg-muted,#6f6f6f);">Pending Requests</p>
+          <p style="margin:0.35rem 0 0; font-size:2rem; font-weight:700; color:#f59e0b;">7</p>
+          <p style="margin:0.25rem 0 0; color:var(--td-fg-muted,#6f6f6f); font-size:0.8125rem;">3 require action this week</p>
+        </td-card>
+      </div>
+      <div class="col-12 col-sm-6 col-xl-3">
+        <td-card stretch>
+          <p style="margin:0; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--td-fg-muted,#6f6f6f);">Approved This Month</p>
+          <p style="margin:0.35rem 0 0; font-size:2rem; font-weight:700; color:#10b981;">12</p>
+          <p style="margin:0.25rem 0 0; color:var(--td-fg-muted,#6f6f6f); font-size:0.8125rem;">48 days total approved</p>
+        </td-card>
+      </div>
+      <div class="col-12 col-sm-6 col-xl-3">
+        <td-card stretch>
+          <p style="margin:0; font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.06em; color:var(--td-fg-muted,#6f6f6f);">Out Today</p>
+          <p style="margin:0.35rem 0 0; font-size:2rem; font-weight:700;">1</p>
+          <p style="margin:0.25rem 0 0; color:var(--td-fg-muted,#6f6f6f); font-size:0.8125rem;">Emma Brown · Sick leave</p>
+        </td-card>
+      </div>
+    </div>
+
+    <!-- Calendar + Request Form -->
+    <div class="row" style="margin-top:0.75rem;">
+      <div class="col-12 col-lg-7">
+        <td-card stretch>
+          <h2 style="margin-top:0;">Request Time Off</h2>
+          <p style="margin:0 0 1rem; color:var(--td-fg-muted,#6f6f6f); font-size:0.9rem;">Select a date range on the calendar, then complete the form on the right.</p>
+          <td-calendar id="pto-cal" mode="range" min="2026-07-23"></td-calendar>
+          <p id="pto-date-hint" style="margin:0.75rem 0 0; font-size:0.875rem; color:var(--td-fg-muted,#6f6f6f); min-height:1.25rem;">Select a start date to begin…</p>
+        </td-card>
+      </div>
+      <div class="col-12 col-lg-5" style="display:flex; flex-direction:column; gap:0.75rem;">
+        <td-card stretch>
+          <h2 style="margin-top:0;">Request Details</h2>
+          <td-select label="Employee" id="pto-employee-select">
+            <option value="alice">Alice Chen — Engineering</option>
+            <option value="bob">Bob Martinez — Sales</option>
+            <option value="clara">Clara Williams — HR</option>
+            <option value="david">David Kim — Engineering</option>
+            <option value="emma">Emma Brown — Marketing</option>
+            <option value="frank">Frank Lee — Operations</option>
+            <option value="grace">Grace Johnson — Sales</option>
+            <option value="henry">Henry Park — Finance</option>
+          </td-select>
+          <td-select label="PTO Type" id="pto-type-select">
+            <option value="vacation">Vacation</option>
+            <option value="sick">Sick Leave</option>
+            <option value="personal">Personal</option>
+            <option value="bereavement">Bereavement</option>
+          </td-select>
+          <td-text-input label="Notes (optional)" id="pto-notes" placeholder="Reason or additional details…"></td-text-input>
+          <div id="pto-summary" style="padding:0.75rem; background:color-mix(in srgb,var(--td-primary) 8%,transparent); border-radius:10px; font-size:0.875rem; color:var(--td-fg-muted,#6f6f6f); margin-bottom:0.75rem;">
+            No dates selected — choose a range on the calendar
+          </div>
+          <td-button id="pto-submit-btn" full-width>Submit Request</td-button>
+        </td-card>
+        <td-card stretch>
+          <h2 style="margin-top:0;">PTO Type Breakdown</h2>
+          <p style="margin:0 0 0.5rem; color:var(--td-fg-muted,#6f6f6f); font-size:0.875rem;">Days used across all request types this year</p>
+          <td-donut-chart
+            center-label="59 days"
+            height="220"
+            legend-position="bottom"
+            data='[
+              {"label":"Vacation","value":33,"color":"#42a5f5"},
+              {"label":"Personal","value":12,"color":"#66bb6a"},
+              {"label":"Sick Leave","value":11,"color":"#ef5350"},
+              {"label":"Bereavement","value":3,"color":"#ab47bc"}
+            ]'
+            show-values>
+          </td-donut-chart>
+        </td-card>
+      </div>
+    </div>
+
+    <!-- PTO Requests Table -->
+    <div class="row" style="margin-top:0.75rem;">
+      <div class="col-12">
+        <td-card stretch>
+          <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; margin-bottom:1rem;">
+            <h2 style="margin:0;">PTO Requests</h2>
+            <div style="display:flex; gap:0.5rem; align-items:flex-end; flex-wrap:wrap;">
+              <td-select id="pto-status-filter" label="Status">
+                <option value="">All Statuses</option>
+                <option value="Pending">Pending</option>
+                <option value="Approved">Approved</option>
+                <option value="Denied">Denied</option>
+              </td-select>
+              <td-select id="pto-type-filter" label="Type">
+                <option value="">All Types</option>
+                <option value="Vacation">Vacation</option>
+                <option value="Sick Leave">Sick Leave</option>
+                <option value="Personal">Personal</option>
+                <option value="Bereavement">Bereavement</option>
+              </td-select>
+            </div>
+          </div>
+          <td-table id="pto-requests-table" zebra sticky-header max-rows="8" csv-export csv-filename="pto-requests"></td-table>
+          <div style="margin-top:0.75rem;">
+            <td-pagination id="pto-pagination" total="0" page-size="8" page="1"></td-pagination>
+          </div>
+        </td-card>
+      </div>
+    </div>
+
+    <!-- Team Balance -->
+    <div class="row" style="margin-top:0.75rem;">
+      <div class="col-12 col-lg-7">
+        <td-card stretch>
+          <h2 style="margin-top:0;">Team PTO Balance</h2>
+          <p style="margin:0 0 0.75rem; color:var(--td-fg-muted,#6f6f6f); font-size:0.875rem;">Remaining days per employee out of 25 annual days</p>
+          <td-bar-chart
+            height="280"
+            y-label="Days Remaining"
+            data='[
+              {"label":"Alice Chen","value":22,"color":"#66bb6a"},
+              {"label":"Bob Martinez","value":15,"color":"#ffa726"},
+              {"label":"Clara Williams","value":8,"color":"#ffa726"},
+              {"label":"David Kim","value":19,"color":"#66bb6a"},
+              {"label":"Emma Brown","value":11,"color":"#ffa726"},
+              {"label":"Frank Lee","value":24,"color":"#66bb6a"},
+              {"label":"Grace Johnson","value":3,"color":"#ef5350"},
+              {"label":"Henry Park","value":17,"color":"#66bb6a"}
+            ]'
+            show-values>
+          </td-bar-chart>
+        </td-card>
+      </div>
+      <div class="col-12 col-lg-5">
+        <td-card stretch>
+          <h2 style="margin-top:0;">Individual Balances</h2>
+          <p style="margin:0 0 1rem; color:var(--td-fg-muted,#6f6f6f); font-size:0.875rem;">Days remaining / 25 total</p>
+          <div style="display:flex; flex-direction:column; gap:0.875rem;">
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.875rem; margin-bottom:0.3rem;">
+                <span>Alice Chen</span><span style="color:var(--td-fg-muted,#6f6f6f);">22 / 25</span>
+              </div>
+              <td-progress-bar value="88" max="100" variant="success"></td-progress-bar>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.875rem; margin-bottom:0.3rem;">
+                <span>Bob Martinez</span><span style="color:var(--td-fg-muted,#6f6f6f);">15 / 25</span>
+              </div>
+              <td-progress-bar value="60" max="100" variant="warning"></td-progress-bar>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.875rem; margin-bottom:0.3rem;">
+                <span>Clara Williams</span><span style="color:var(--td-fg-muted,#6f6f6f);">8 / 25</span>
+              </div>
+              <td-progress-bar value="32" max="100" variant="warning"></td-progress-bar>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.875rem; margin-bottom:0.3rem;">
+                <span>David Kim</span><span style="color:var(--td-fg-muted,#6f6f6f);">19 / 25</span>
+              </div>
+              <td-progress-bar value="76" max="100" variant="success"></td-progress-bar>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.875rem; margin-bottom:0.3rem;">
+                <span>Emma Brown</span><span style="color:var(--td-fg-muted,#6f6f6f);">11 / 25</span>
+              </div>
+              <td-progress-bar value="44" max="100" variant="warning"></td-progress-bar>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.875rem; margin-bottom:0.3rem;">
+                <span>Frank Lee</span><span style="color:var(--td-fg-muted,#6f6f6f);">24 / 25</span>
+              </div>
+              <td-progress-bar value="96" max="100" variant="success"></td-progress-bar>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.875rem; margin-bottom:0.3rem;">
+                <span>Grace Johnson</span><span style="color:var(--td-fg-muted,#6f6f6f);">3 / 25</span>
+              </div>
+              <td-progress-bar value="12" max="100" variant="danger"></td-progress-bar>
+            </div>
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.875rem; margin-bottom:0.3rem;">
+                <span>Henry Park</span><span style="color:var(--td-fg-muted,#6f6f6f);">17 / 25</span>
+              </div>
+              <td-progress-bar value="68" max="100" variant="success"></td-progress-bar>
+            </div>
+          </div>
+        </td-card>
+      </div>
+    </div>
+
+    <!-- Monthly Trend -->
+    <div class="row" style="margin-top:0.75rem;">
+      <div class="col-12">
+        <td-card stretch>
+          <h2 style="margin-top:0;">Monthly PTO Usage Trend</h2>
+          <p style="margin:0 0 0.75rem; color:var(--td-fg-muted,#6f6f6f); font-size:0.875rem;">Total team days taken per month by PTO type</p>
+          <td-line-chart
+            height="260"
+            legend-position="bottom"
+            x-labels='["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]'
+            data='[
+              {"label":"Vacation","values":[4,6,8,10,15,18,22,24,12,8,5,3],"color":"#42a5f5"},
+              {"label":"Sick Leave","values":[6,8,5,4,3,2,4,3,5,6,7,9],"color":"#ef5350"},
+              {"label":"Personal","values":[2,2,3,2,4,3,5,4,3,2,2,2],"color":"#66bb6a"}
+            ]'
+            show-values>
+          </td-line-chart>
+        </td-card>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function () {
+
+  /* ── Calendar → request form ───────────────────────────────── */
+  var cal        = document.getElementById('pto-cal');
+  var hint       = document.getElementById('pto-date-hint');
+  var summary    = document.getElementById('pto-summary');
+  var submitBtn  = document.getElementById('pto-submit-btn');
+  var exportBtn  = document.getElementById('pto-export-btn');
+
+  function fmtDate(iso) {
+    var d = new Date(iso + 'T00:00:00');
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+  }
+
+  function workDays(start, end) {
+    var cur = new Date(start + 'T00:00:00');
+    var e   = new Date(end   + 'T00:00:00');
+    var n   = 0;
+    while (cur <= e) { if (cur.getDay() !== 0 && cur.getDay() !== 6) n++; cur.setDate(cur.getDate() + 1); }
+    return n;
+  }
+
+  function toast(variant, title, message) {
+    var el = document.createElement('td-alert');
+    el.setAttribute('variant', variant);
+    el.setAttribute('title', title);
+    el.setAttribute('toast', '');
+    el.setAttribute('toast-position', 'top-right');
+    el.setAttribute('dismissible', '');
+    el.setAttribute('duration', '4000');
+    el.textContent = message;
+    document.body.appendChild(el);
+  }
+
+  if (cal) {
+    cal.addEventListener('range-change', function () {
+      if (hint)    hint.textContent    = 'Select an end date…';
+      if (summary) summary.textContent = 'Waiting for end date…';
+    });
+    cal.addEventListener('change', function (e) {
+      var d    = e.detail;
+      var days = workDays(d.start, d.end);
+      var text = fmtDate(d.start) + ' – ' + fmtDate(d.end) + '  ·  ' + days + ' working day' + (days !== 1 ? 's' : '');
+      if (hint)    hint.textContent    = text;
+      if (summary) summary.textContent = '📅  ' + text;
+    });
+  }
+
+  if (submitBtn) {
+    submitBtn.addEventListener('click', function () {
+      if (!cal || !cal.getRangeStart() || !cal.getRangeEnd()) {
+        toast('warning', 'No Dates Selected', 'Please select a date range on the calendar before submitting.');
+        return;
+      }
+      toast('success', 'Request Submitted', 'Your PTO request has been submitted and is pending manager approval.');
+      cal.clear();
+      if (hint)    hint.textContent    = 'Select a start date to begin…';
+      if (summary) summary.textContent = 'No dates selected — choose a range on the calendar';
+      var notes = document.getElementById('pto-notes');
+      if (notes) notes.removeAttribute('value');
+    });
+  }
+
+  if (exportBtn) {
+    exportBtn.addEventListener('click', function () {
+      toast('info', 'Export Started', 'Your PTO report is being generated and will download shortly.');
+    });
+  }
+
+  /* ── Requests table ────────────────────────────────────────── */
+  var tableEl       = document.getElementById('pto-requests-table');
+  var pagerEl       = document.getElementById('pto-pagination');
+  var statusFilter  = document.getElementById('pto-status-filter');
+  var typeFilter    = document.getElementById('pto-type-filter');
+
+  var STATUS_COLOR = { Approved: '#10b981', Pending: '#f59e0b', Denied: '#ef4444' };
+  var TYPE_COLOR   = { Vacation: '#42a5f5', 'Sick Leave': '#ef5350', Personal: '#66bb6a', Bereavement: '#ab47bc' };
+
+  function badge(text, colorMap) {
+    var c = colorMap[text] || '#6b7280';
+    return '<span style="display:inline-block;padding:2px 10px;border-radius:999px;font-size:0.75rem;font-weight:600;background:' + c + '22;color:' + c + '">' + text + '</span>';
+  }
+
+  var ALL_ROWS = [
+    { employee: 'Alice Chen',     dept: 'Engineering', type: 'Vacation',    start: '2026-07-28', end: '2026-08-01', days: 5,  status: 'Pending'  },
+    { employee: 'Bob Martinez',   dept: 'Sales',       type: 'Sick Leave',  start: '2026-07-21', end: '2026-07-22', days: 2,  status: 'Approved' },
+    { employee: 'Clara Williams', dept: 'HR',          type: 'Personal',    start: '2026-07-30', end: '2026-07-30', days: 1,  status: 'Pending'  },
+    { employee: 'David Kim',      dept: 'Engineering', type: 'Vacation',    start: '2026-08-11', end: '2026-08-21', days: 9,  status: 'Approved' },
+    { employee: 'Emma Brown',     dept: 'Marketing',   type: 'Sick Leave',  start: '2026-07-23', end: '2026-07-23', days: 1,  status: 'Approved' },
+    { employee: 'Frank Lee',      dept: 'Operations',  type: 'Bereavement', start: '2026-07-14', end: '2026-07-16', days: 3,  status: 'Approved' },
+    { employee: 'Grace Johnson',  dept: 'Sales',       type: 'Vacation',    start: '2026-07-24', end: '2026-07-31', days: 6,  status: 'Pending'  },
+    { employee: 'Henry Park',     dept: 'Finance',     type: 'Personal',    start: '2026-08-04', end: '2026-08-04', days: 1,  status: 'Approved' },
+    { employee: 'Bob Martinez',   dept: 'Sales',       type: 'Vacation',    start: '2026-08-18', end: '2026-08-22', days: 5,  status: 'Pending'  },
+    { employee: 'Alice Chen',     dept: 'Engineering', type: 'Sick Leave',  start: '2026-07-10', end: '2026-07-10', days: 1,  status: 'Approved' },
+    { employee: 'Clara Williams', dept: 'HR',          type: 'Vacation',    start: '2026-08-25', end: '2026-09-04', days: 8,  status: 'Denied'   },
+    { employee: 'David Kim',      dept: 'Engineering', type: 'Personal',    start: '2026-07-31', end: '2026-07-31', days: 1,  status: 'Pending'  },
+  ];
+
+  var COLUMNS = [
+    { key: 'employee', label: 'Employee',   sortable: true },
+    { key: 'dept',     label: 'Department', sortable: true },
+    { key: 'type',     label: 'Type',       sortable: true, render: function (v) { return badge(v, TYPE_COLOR);   } },
+    { key: 'dates',    label: 'Dates',      sortable: false },
+    { key: 'days',     label: 'Days',       sortable: true },
+    { key: 'status',   label: 'Status',     sortable: true, render: function (v) { return badge(v, STATUS_COLOR); } },
+  ];
+
+  function filteredRows() {
+    var sv = statusFilter ? statusFilter.value : '';
+    var tv = typeFilter   ? typeFilter.value   : '';
+    return ALL_ROWS
+      .filter(function (r) { return (!sv || r.status === sv) && (!tv || r.type === tv); })
+      .map(function (r) { return Object.assign({}, r, { dates: r.start + ' → ' + r.end }); });
+  }
+
+  function renderPage() {
+    var rows     = filteredRows();
+    var page     = pagerEl ? (pagerEl.page     || 1) : 1;
+    var pageSize = pagerEl ? (pagerEl.pageSize || 8) : 8;
+    if (pagerEl) pagerEl.total = rows.length;
+    if (tableEl) tableEl.data  = rows.slice((page - 1) * pageSize, page * pageSize);
+  }
+
+  if (tableEl) {
+    tableEl.columns = COLUMNS;
+    renderPage();
+  }
+  if (pagerEl)      pagerEl.addEventListener('td-page-change', renderPage);
+  if (statusFilter) statusFilter.addEventListener('change', function () { if (pagerEl) pagerEl.page = 1; renderPage(); });
+  if (typeFilter)   typeFilter.addEventListener('change',   function () { if (pagerEl) pagerEl.page = 1; renderPage(); });
+
+})();
+</script>
