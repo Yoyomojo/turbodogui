@@ -91,6 +91,7 @@ Benefits of this pattern:
 | `<td-multi-select>` | Dropdown multi-select with size variants, pill badges, live search, Select/Deselect All, keyboard navigation, and JSON/HTML/JS option population |
 | `<td-pagination>` | Page navigation control driven by total item count and page size; emits `td-page-change` with offset/limit ready for API queries |
 | `<td-progress-bar>` | Determinate and indeterminate progress indicator with semantic color variants, striped/animated patterns, custom height and color, and full ARIA support |
+| `<td-calendar>` | Inline calendar with single date selection and date range selection, hover preview, min/max constraints, and full keyboard navigation |
 | `<td-color-picker>` | Fully custom color picker with a 2D saturation/brightness picker, hue and opacity sliders, hex/RGB/HSL inputs, preset swatches, and full keyboard navigation |
 | `<td-pie-chart>` | Pie chart with interactive legend, toggleable slices, optional percentage labels, and configurable legend position |
 | `<td-select>` | Styled `<select>` wrapper with size variants, option groups, multiple selection, label, and `change` event |

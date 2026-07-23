@@ -1,0 +1,228 @@
+          <div class="row row--center">
+            <div class="col-12 col-lg-12">
+              <td-card>
+                <h2>Calendar Component</h2>
+                <p>An inline calendar for selecting individual dates or continuous date ranges. Fully keyboard-accessible with hover preview for range selections.</p>
+                <p>Use <code>mode="single"</code> (default) for individual date selection or <code>mode="range"</code> for start/end date ranges. Constrain selectable dates with <code>min</code> and <code>max</code> (ISO 8601 strings).</p>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Single Date Selection</h3>
+                <p>Fires a <code>change</code> event with <code>detail.value</code> (ISO date string) when a date is clicked.</p>
+                <td-calendar id="single-cal"></td-calendar>
+                <p id="single-output" style="margin-top: 0.75rem; font-size: 0.875rem; color: var(--td-fg-muted);">No date selected</p>
+                <script>
+                  (function () {
+                    const cal = document.getElementById('single-cal');
+                    const out = document.getElementById('single-output');
+                    if (cal && out) {
+                      cal.addEventListener('change', function (e) {
+                        out.textContent = 'Selected: ' + e.detail.value;
+                      });
+                    }
+                  })();
+                </script>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Pre-selected Date</h3>
+                <p>Pass <code>value</code> to start with a date already selected.</p>
+                <td-calendar value="2026-07-23"></td-calendar>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Date Range Selection</h3>
+                <p>Set <code>mode="range"</code>. Click once for the start, again for the end. Hover to preview the range. Fires <code>change</code> with <code>detail.start</code> and <code>detail.end</code>.</p>
+                <td-calendar id="range-cal" mode="range"></td-calendar>
+                <p id="range-output" style="margin-top: 0.75rem; font-size: 0.875rem; color: var(--td-fg-muted);">No range selected</p>
+                <script>
+                  (function () {
+                    const cal = document.getElementById('range-cal');
+                    const out = document.getElementById('range-output');
+                    if (cal && out) {
+                      cal.addEventListener('change', function (e) {
+                        out.textContent = 'Range: ' + e.detail.start + ' → ' + e.detail.end;
+                      });
+                      cal.addEventListener('range-change', function (e) {
+                        out.textContent = 'Start selected: ' + e.detail.start + ' — click an end date';
+                      });
+                    }
+                  })();
+                </script>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Pre-selected Range</h3>
+                <p>Set both <code>range-start</code> and <code>range-end</code> to initialise with an existing range.</p>
+                <td-calendar mode="range" range-start="2026-07-10" range-end="2026-07-20"></td-calendar>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Min / Max Constraints</h3>
+                <p>Use <code>min</code> and <code>max</code> to restrict which dates can be selected. Dates outside the range appear dimmed and are not interactive.</p>
+                <td-calendar id="constrained-cal"></td-calendar>
+                <script>
+                  (function () {
+                    const cal = document.getElementById('constrained-cal');
+                    if (cal) {
+                      const now = new Date();
+                      const y = now.getFullYear();
+                      const m = String(now.getMonth() + 1).padStart(2, '0');
+                      const lastDay = new Date(y, now.getMonth() + 1, 0).getDate();
+                      cal.setAttribute('min', y + '-' + m + '-01');
+                      cal.setAttribute('max', y + '-' + m + '-' + String(lastDay).padStart(2, '0'));
+                    }
+                  })();
+                </script>
+              </td-card>
+            </div>
+            <div class="col-12 col-md-6">
+              <td-card stretch>
+                <h3>Programmatic API</h3>
+                <p>Use <code>setValue()</code>, <code>setRange()</code>, <code>clear()</code> and <code>getValue()</code> / <code>getRangeStart()</code> / <code>getRangeEnd()</code> directly on the element.</p>
+                <td-calendar id="api-cal" mode="range"></td-calendar>
+                <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem;">
+                  <td-button id="btn-preset-week" size="small">This Week</td-button>
+                  <td-button id="btn-preset-month" size="small">This Month</td-button>
+                  <td-button id="btn-clear" size="small" variant="alert">Clear</td-button>
+                </div>
+                <p id="api-output" style="margin-top: 0.75rem; font-size: 0.875rem; color: var(--td-fg-muted);">No range selected</p>
+                <script>
+                  (function () {
+                    const cal = document.getElementById('api-cal');
+                    const out = document.getElementById('api-output');
+                    function toISO(d) {
+                      return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+                    }
+                    function updateOutput() {
+                      const s = cal.getRangeStart();
+                      const e = cal.getRangeEnd();
+                      out.textContent = s && e ? 'Range: ' + s + ' → ' + e : (s ? 'Start: ' + s : 'No range selected');
+                    }
+                    document.getElementById('btn-preset-week').addEventListener('click', function () {
+                      const now = new Date();
+                      const dow = now.getDay();
+                      const start = new Date(now); start.setDate(now.getDate() - dow);
+                      const end = new Date(now); end.setDate(now.getDate() + (6 - dow));
+                      cal.setRange(toISO(start), toISO(end));
+                      updateOutput();
+                    });
+                    document.getElementById('btn-preset-month').addEventListener('click', function () {
+                      const now = new Date();
+                      const y = now.getFullYear(); const m = now.getMonth();
+                      cal.setRange(toISO(new Date(y, m, 1)), toISO(new Date(y, m + 1, 0)));
+                      updateOutput();
+                    });
+                    document.getElementById('btn-clear').addEventListener('click', function () {
+                      cal.clear();
+                      updateOutput();
+                    });
+                    cal.addEventListener('change', updateOutput);
+                    cal.addEventListener('range-change', updateOutput);
+                  })();
+                </script>
+              </td-card>
+            </div>
+          </div>
+
+          <div class="row row--center">
+            <div class="col-12 col-lg-10">
+              <td-card>
+                <h3>Usage</h3>
+                <td-code language="html" filename="single-selection.html">&lt;td-calendar value="2026-07-23"&gt;&lt;/td-calendar&gt;</td-code>
+
+                <td-code language="html" filename="range-selection.html">&lt;td-calendar
+  mode="range"
+  range-start="2026-07-10"
+  range-end="2026-07-20"&gt;
+&lt;/td-calendar&gt;</td-code>
+
+                <td-code language="html" filename="constrained.html">&lt;td-calendar min="2026-07-01" max="2026-07-31"&gt;&lt;/td-calendar&gt;</td-code>
+
+                <td-code language="javascript" filename="events.js">// Single mode
+calendar.addEventListener('change', (e) =&gt; {
+  console.log(e.detail.value); // "2026-07-23"
+});
+
+// Range mode — partial (start selected, awaiting end)
+calendar.addEventListener('range-change', (e) =&gt; {
+  console.log(e.detail.start, e.detail.end); // "2026-07-10", null
+});
+
+// Range mode — complete
+calendar.addEventListener('change', (e) =&gt; {
+  console.log(e.detail.start, e.detail.end); // "2026-07-10", "2026-07-20"
+});</td-code>
+
+                <td-code language="javascript" filename="api.js">const cal = document.querySelector('td-calendar');
+
+// Single
+cal.setValue('2026-07-23');
+cal.getValue();          // "2026-07-23"
+
+// Range
+cal.setRange('2026-07-10', '2026-07-20');
+cal.getRangeStart();     // "2026-07-10"
+cal.getRangeEnd();       // "2026-07-20"
+
+cal.clear();             // clears value, range-start, range-end</td-code>
+
+                <h3>Attributes</h3>
+                <table style="width:100%; border-collapse: collapse; font-size: 0.875rem;">
+                  <thead>
+                    <tr style="border-bottom: 1px solid var(--td-border);">
+                      <th style="text-align:left; padding: 0.5rem 0.75rem;">Attribute</th>
+                      <th style="text-align:left; padding: 0.5rem 0.75rem;">Type</th>
+                      <th style="text-align:left; padding: 0.5rem 0.75rem;">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr style="border-bottom: 1px solid var(--td-border);">
+                      <td style="padding: 0.5rem 0.75rem;"><code>mode</code></td>
+                      <td style="padding: 0.5rem 0.75rem;"><code>"single" | "range"</code></td>
+                      <td style="padding: 0.5rem 0.75rem;">Selection mode. Defaults to <code>"single"</code>.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--td-border);">
+                      <td style="padding: 0.5rem 0.75rem;"><code>value</code></td>
+                      <td style="padding: 0.5rem 0.75rem;"><code>string</code></td>
+                      <td style="padding: 0.5rem 0.75rem;">Selected date in <code>YYYY-MM-DD</code> format (single mode).</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--td-border);">
+                      <td style="padding: 0.5rem 0.75rem;"><code>range-start</code></td>
+                      <td style="padding: 0.5rem 0.75rem;"><code>string</code></td>
+                      <td style="padding: 0.5rem 0.75rem;">Range start date in <code>YYYY-MM-DD</code> format.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--td-border);">
+                      <td style="padding: 0.5rem 0.75rem;"><code>range-end</code></td>
+                      <td style="padding: 0.5rem 0.75rem;"><code>string</code></td>
+                      <td style="padding: 0.5rem 0.75rem;">Range end date in <code>YYYY-MM-DD</code> format.</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid var(--td-border);">
+                      <td style="padding: 0.5rem 0.75rem;"><code>min</code></td>
+                      <td style="padding: 0.5rem 0.75rem;"><code>string</code></td>
+                      <td style="padding: 0.5rem 0.75rem;">Earliest selectable date (<code>YYYY-MM-DD</code>).</td>
+                    </tr>
+                    <tr>
+                      <td style="padding: 0.5rem 0.75rem;"><code>max</code></td>
+                      <td style="padding: 0.5rem 0.75rem;"><code>string</code></td>
+                      <td style="padding: 0.5rem 0.75rem;">Latest selectable date (<code>YYYY-MM-DD</code>).</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td-card>
+            </div>
+          </div>

@@ -1,0 +1,196 @@
+:host {
+  display: block;
+  font-family: inherit;
+  width: 100%;
+}
+
+.calendar {
+  background: var(--td-calendar-bg, var(--td-surface));
+  border: var(--td-calendar-border, 1px solid var(--td-border));
+  border-radius: var(--td-calendar-radius, var(--td-radius, 14px));
+  box-shadow: var(--td-calendar-shadow, var(--td-shadow, 0 4px 16px rgba(15, 23, 42, 0.08)));
+  padding: var(--td-calendar-padding, 0.875rem);
+  user-select: none;
+  min-width: var(--td-calendar-min-width, 280px);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ── Header ── */
+
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+  gap: 0.25rem;
+}
+
+.cal-month-label {
+  flex: 1;
+  text-align: center;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--td-fg);
+}
+
+.cal-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--td-muted, #6b7280);
+  transition: background 120ms ease, color 120ms ease;
+  flex-shrink: 0;
+}
+
+.cal-nav:hover {
+  background: var(--td-surface-2);
+  color: var(--td-fg);
+}
+
+.cal-nav:focus-visible {
+  outline: 2px solid var(--td-primary);
+  outline-offset: 2px;
+}
+
+/* ── Grid ── */
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px 0;
+}
+
+.cal-wday {
+  text-align: center;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--td-muted, #6b7280);
+  padding: 0.3rem 0 0.3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cal-day {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8125rem;
+  height: 2.1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--td-fg);
+  outline: none;
+  transition: background 100ms ease, color 100ms ease;
+  z-index: 0;
+}
+
+.cal-day--empty {
+  cursor: default;
+  pointer-events: none;
+}
+
+.cal-day:not(.cal-day--empty):not(.cal-day--disabled):not(.cal-day--selected):not(.cal-day--range-start):not(.cal-day--range-end):hover {
+  background: var(--td-surface-2);
+}
+
+.cal-day:focus-visible {
+  outline: 2px solid var(--td-primary);
+  outline-offset: -2px;
+  border-radius: 6px;
+}
+
+/* ── Today ── */
+
+.cal-day--today {
+  color: var(--td-primary);
+  font-weight: 700;
+}
+
+/* ── Single selection ── */
+
+.cal-day--selected {
+  background: var(--td-primary);
+  color: var(--td-primary-foreground, #fff);
+  font-weight: 600;
+  border-radius: 6px;
+}
+
+/* ── Disabled ── */
+
+.cal-day--disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Range selection ── */
+
+/* In-range days: light band connecting start to end */
+.cal-day--in-range {
+  background: color-mix(in srgb, var(--td-primary) 14%, transparent);
+  color: var(--td-fg);
+  border-radius: 0;
+}
+
+/* Extend the band to fill column gaps */
+.cal-day--in-range::before,
+.cal-day--range-start::after,
+.cal-day--range-end::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: color-mix(in srgb, var(--td-primary) 14%, transparent);
+  z-index: -1;
+}
+
+.cal-day--in-range::before {
+  left: -2px;
+  right: -2px;
+  width: auto;
+}
+
+/* Range start: filled circle + right half-band */
+.cal-day--range-start {
+  background: var(--td-primary);
+  color: var(--td-primary-foreground, #fff);
+  font-weight: 600;
+  border-radius: 6px;
+}
+
+.cal-day--range-start::after {
+  right: -2px;
+  left: 50%;
+}
+
+/* Range end: filled circle + left half-band */
+.cal-day--range-end {
+  background: var(--td-primary);
+  color: var(--td-primary-foreground, #fff);
+  font-weight: 600;
+  border-radius: 6px;
+}
+
+.cal-day--range-end::after {
+  left: -2px;
+  right: 50%;
+}
+
+/* When start and end are the same cell, suppress the half-bands */
+.cal-day--range-start.cal-day--range-end::after {
+  display: none;
+}
+
+/* Today inside a range */
+.cal-day--in-range.cal-day--today {
+  color: var(--td-primary);
+}

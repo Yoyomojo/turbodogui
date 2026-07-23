@@ -188,6 +188,11 @@ export const exampleTabRoutes: LazyRouteDefinition[] = [
     name: "Color Picker",
     loadHtml: () => import("./examples/tabs/tab-24-color-picker.html?raw").then((module) => module.default),
   },
+  {
+    path: "/examples/calendar",
+    name: "Calendar",
+    loadHtml: () => import("./examples/tabs/tab-25-calendar.html?raw").then((module) => module.default),
+  },
 ];
 
 export const loginRoute: RouteRegistration = {
